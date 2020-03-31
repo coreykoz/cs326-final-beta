@@ -24,12 +24,13 @@ There are a few existing applications that perform similar functions to what we 
 ## Important Components:
 
 One component we would have for our app is to have an initial survey when the user signs up to use the app. In the initial survey, we would have a series of questions asking about the user’s normal expenses. Some examples of questions would be:
-    1. Do you live on or off campus?
-    2. Do you have a meal plan?
-    3. Do you get groceries?
-    4. Do you have a car?
-    5. Do you have loan payments?
-    6. Do you have monthly subscription payments?
+1. Do you live on or off campus?
+2. Do you have a meal plan?
+3. Do you get groceries?
+4. Do you have a car?
+5. Do you have loan payments?
+6. Do you have monthly subscription payments?
+
 Based on the answers to the initial set of questions, we would further ask about the amounts the user pays for each of the categories. For example, a follow-up to someone who answered “yes” to question 4 would be, “How much do you spend on gas per month?”. Using these questions will enable us to create a fully customized budget plan for the user. This way, the user has control in terms of what categories they are seeing their spending for. 
 
 Our web application will contain a section regarding transaction history that will primarily rely on user inputs for its data. There will be an additional section portraying the user’s spending habits using different visualizations such as bar graphs, scatterplots, pie charts, etc. To contrast, Mint only presents spending habits as pie charts which aren’t very user friendly and can be misleading at times too. These visualizations will also show trends of how long a user’s current spending habits can be sustainable using predictive analytics.
