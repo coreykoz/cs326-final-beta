@@ -1,0 +1,12 @@
+/* Top Navbar */
+.navbar-text{
+    font-family: 'Graduate', cursive;
+    color: white;
+    font-size: 250%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+.navbar {
+    background-color: #971B2F;
+}
