@@ -10,3 +10,12 @@
 .navbar {
     background-color: #971B2F;
 }
+
+/* Buttons & Forms */
+.btn-primary{
+    background-color: #971B2F;
+    border-color: #971B2F;
+}
+.btn-primary:hover {
+    background-color: #000000;
+}
