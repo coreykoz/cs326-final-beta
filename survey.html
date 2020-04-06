@@ -23,8 +23,10 @@
                 <div>
                 <label for="1"> Do you live on campus?</label>
                 <br>
-                <input type="button" class="btn btn-info" value="Yes"></button>
-                <input type="button" class="btn btn-info" value="No"></button>
+                <input type="radio" id="Yes" name = "campus"value="Yes">
+                <label for="Yes">Yes</label><br>
+                <input type="radio" id="No" name="campus" value="No">
+                <label for="No">No</label><br>
                 </div>
             </li>
 
@@ -32,8 +34,10 @@
                 <div>
                     <label for="2">Do you have a car?</label>
                     <br> 
-                    <input type="button" class="btn btn-info" value="Yes"></button>
-                    <input type="button" class="btn btn-info" value="No"></button>
+                    <input type="radio" id="Yes" name = "car"value="Yes">
+                    <label for="Yes">Yes</label><br>
+                    <input type="radio" id="No" name="car" value="No">
+                    <label for="No">No</label><br>
                     <!–– if yes, pop up with follow up about gas -->
                 </div>
             </li>
@@ -42,8 +46,10 @@
                 <div>
                     <label for="3"> Do you have a meal plan?</label>
                     <br>
-                    <input type="button" class="btn btn-info" value="Yes"></button>
-                    <input type="button" class="btn btn-info" value="No"></button>
+                    <input type="radio" id="Yes" name = "mealplan"value="Yes">
+                    <label for="Yes">Yes</label><br>
+                    <input type="radio" id="No" name="mealplan" value="No">
+                    <label for="No">No</label><br>
                     <!–– if yes (or no), pop up with follow up about type? or meals? -->
                 </div>
             </li>
@@ -52,8 +58,10 @@
                 <div>
                     <label for="4"> Do you get groceries?</label>
                     <br>
-                    <input type="button" class="btn btn-info" value="Yes"></button>
-                    <input type="button" class="btn btn-info" value="No"></button>
+                    <input type="radio" id="Yes" name = "groceries"value="Yes">
+                    <label for="Yes">Yes</label><br>
+                    <input type="radio" id="No" name="groceries" value="No">
+                    <label for="No">No</label><br>
                     <!–– if yes ,pop up with follow up about average spending on groceries -->
                 </div>
             </li>
@@ -62,8 +70,10 @@
                 <div>
                     <label for="5"> Do you have loan payments?</label>
                     <br>
-                    <input type="button" class="btn btn-info" value="Yes"></button>
-                    <input type="button" class="btn btn-info" value="No"></button>
+                    <input type="radio" id="Yes" name = "loan"value="Yes">
+                    <label for="Yes">Yes</label><br>
+                    <input type="radio" id="No" name="loan" value="No">
+                    <label for="No">No</label><br>
                     <!–– if yes, pop up with follow up about average loan payements -->
                 </div>
             </li>
@@ -72,14 +82,18 @@
                 <div>
                     <label for="6"> Do you have monthly subscription payments?</label>
                     <br>
-                    <input type="button" class="btn btn-info" value="Yes"></button>
-                    <input type="button" class="btn btn-info" value="No"></button>
+                    <input type="radio" id="Yes" name = "subscription"value="Yes">
+                    <label for="Yes">Yes</label><br>
+                    <input type="radio" id="No" name="subscription" value="No">
+                    <label for="No">No</label><br>
                     <!–– if yes, pop up with follow up about average total payments for services -->
                 </div>
             </li>
 
+        </ol>
+        <div class = "form-group">
+            <input type="submit" onclick="highlight_simpler()" id="submit" class="btn btn-primary"><br>
         </div>
-
     </div>
 
     </body>
