@@ -20,3 +20,9 @@
     background-color: #000000;
     border-color: #000000;
 }
+
+.nav-item, .nav-link {
+    font-family: 'Graduate', cursive;
+    color: white;
+}
+
