@@ -16,6 +16,7 @@
     background-color: #971B2F;
     border-color: #971B2F;
 }
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
     background-color: #000000;
+    border-color: #000000;
 }
