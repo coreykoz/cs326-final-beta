@@ -11,6 +11,11 @@
     background-color: #971B2F;
 }
 
+.nav-item, .nav-link {
+    font-family: 'Graduate', cursive;
+    color: white;
+}
+
 /* Buttons & Forms */
 .btn-primary{
     background-color: #971B2F;
@@ -19,31 +24,4 @@
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
     background-color: #000000;
     border-color: #000000;
-}
-
-.nav-item, .nav-link {
-    font-family: 'Graduate', cursive;
-    color: white;
-}
-
-.navbar-form input, .form-inline input {
-	width:auto;
-}
-
-header {
-	height:280px;
-    background-color:#971B2F;
-}
-
-#nav.affix {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index:10;
-}
-
-
-
-body {
-    height: 20000000000px;
 }
