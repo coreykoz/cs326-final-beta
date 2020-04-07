@@ -35,13 +35,13 @@
         <nav class = "navbar justify-content-center navbar-expand-sm sticky-top" style="padding-top: 4px; padding-bottom: 4px;"> 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Overview</a>
+                  <a class="nav-link" href="#overview_sec">Overview</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Budget</a>
+                    <a class="nav-link" href="#budget_sec">Budget</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Transactions</a>
+                  <a class="nav-link" href="#transaction_sec">Transactions</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Categories</a>
@@ -49,33 +49,122 @@
               </ul>
         </nav>
 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 pt-5 text-center">
+                    <h3 id="overview_sec">Overview</h3>
+                </div>
+            </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 pt-5">
                 <div class="container">
                     <canvas id="monthySpending" width="400" height="400"></canvas>
                 </div>
             </div>
-            <div class="col-md-6">
-                <button type="button" class="btn btn-primary" onclick="">Add Income</button> <br>
-                <button type="button" class="btn btn-primary" onclick="">Add Expense</button>
+            <div class="col-md-6 text-center pt-5">
+                <button type="button" class="btn btn-primary btn-lg" onclick="">Add Income</button> <br> <br>
+                <button type="button" class="btn btn-primary btn-lg " onclick="">Add Expense</button>
+                <br> <br> <br> <br> 
+                <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Monthly Expenses</th>
+                        <th scope="col">Cost</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Rent</td>
+                        <td>$850</td>
+                      </tr>
+                      <tr>
+                        <td>Loans</td>
+                        <td>$20</td>
+                      </tr>
+                      <tr>
+                        <td>Insurance</td>
+                        <td>$.69</td>
+                      </tr>
+                    </tbody>
+                  </table>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                
+            <div class="col-md-12 pt-5 text-center">
+                <h3 id="budget_sec">Budget</h3>
             </div>
-            <div class="col-md-6">
+        </div>
+        <div class="row">
+            <div class="col-md-6 pt-5">
+                <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Most Popular Spending</th>
+                        <th scope="col">Budget Used</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Entertainment</td>
+                        <td>86%</td>
+                      </tr>
+                      <tr>
+                        <td>Loans</td>
+                        <td>72%</td>
+                      </tr>
+                      <tr>
+                        <td>Rent</td>
+                        <td>48.9%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-md-6 pt-5">
                 <canvas id="budget" width="300" height="300"></canvas>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 pt-5">
                 <canvas id="predictedSpending" width="400" height="400"></canvas>
 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 pt-5">
             </div>
         </div>
+        <div class="container pt-5">
+            <h3 class="text-center" id="transaction_sec">Transactions</h3>
+            <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Johnny's Diner</td>
+                    <td>Expense</td>
+                    <td>4/5/2020</td>
+                    <td>$35.00</td>
+                  </tr>
+                  <tr>
+                    <td>Dhruvi's Drugstore</td>
+                    <td>Expense</td>
+                    <td>4/20/2020</td>
+                    <td>$26.99</td>
+                  </tr>
+                  <tr>
+                    <td>Anna's Apple Shop</td>
+                    <td>Income</td>
+                    <td>4/12/2020</td>
+                    <td>$3.50</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
     </body>
     <script src="js/chart-creation.js"></script>
 </html>

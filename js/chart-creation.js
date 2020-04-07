@@ -24,7 +24,7 @@ var ctx3 = document.getElementById('predictedSpending');
 var pieChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Grocery', 'Transportation & Gas', 'Entertainment', 'Loans & Other Payments', 'Shopping', 'Bills & Insurance'],
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
@@ -61,7 +61,7 @@ var pieChart = new Chart(ctx, {
 var barChart = new Chart(ctx2, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Grocery', 'Transportation & Gas', 'Entertainment', 'Loans & Other Payments', 'Shopping', 'Bills & Insurance'],
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
