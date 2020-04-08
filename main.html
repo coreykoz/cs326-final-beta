@@ -43,9 +43,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#transaction_sec">Transactions</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Categories</a>
-                </li>
               </ul>
         </nav>
 
@@ -62,9 +59,107 @@
                 </div>
             </div>
             <div class="col-md-6 text-center pt-5">
-                <button type="button" class="btn btn-primary btn-lg" onclick="">Add Income</button> <br> <br>
-                <button type="button" class="btn btn-primary btn-lg " onclick="">Add Expense</button>
-                <br> <br> <br> <br> 
+
+              <h3 id="totalMoney">Total Cash: $4.20</h3> <br>
+
+
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#incomeModal">Add Income</button> <br> <br>
+
+                <!--Modal for Income-->
+                <div class="modal fade" id="incomeModal">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">Add Income</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        <div class = "container form-group pt-5">
+                          <input type="text" name="incomeName" id="incomeName" class="form-control" placeholder="Income Name"><br>
+              
+                          <input type="number" name="incomeTotal" id="incomeTotal" class="form-control" placeholder="Income Total"><br>
+                          
+                          <input type="date" name="incomeDate" id="incomeDate" class="form-control" placeholder="Income Date"><br>
+                          
+                            <div class="form-group">
+                              <label for="incomeCatergory">Category</label>
+                              <select class="form-control" id="incomeCatergory">
+                                <option>Cash</option>
+                                <option>Direct Deposit</option>
+                                <option>Check</option>
+                                <option>Gift</option>
+                              </select>
+                            </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Modal footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="" data-dismiss="modal">Submit</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              
+
+
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#expenseModal">Add Expense</button>
+                <br> <br> 
+
+                <!--Modal for Expense-->
+                <div class="modal fade" id="expenseModal">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">Add Expense</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        <div class = "container form-group pt-5">
+                          <input type="text" name="expenseName" id="expenseName" class="form-control" placeholder="Expense Name"><br>
+              
+                          <input type="number" name="expenseTotal" id="expenseTotal" class="form-control" placeholder="Expense Total"><br>
+                          
+                          <input type="date" name="expenseDate" id="expenseDate" class="form-control" placeholder="Expense Date"><br>
+
+                            <div class="form-group">
+                              <label for="expenseCatergory">Category</label>
+                              <select class="form-control" id="expenseCatergory">
+                                <option>Grocery</option>
+                                <option>Transportation & Gas</option>
+                                <option>Entertainment</option>
+                                <option>Loans & Other Payments</option>
+                                <option>Shopping</option>
+                                <option>Bills & Insurance</option>
+                                <option>Restaurant & Dining</option>
+                              </select>
+                            </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Modal footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                
+
+
+
+
+                <br>
                 <table class="table table-bordered">
                     <thead>
                       <tr>
@@ -87,6 +182,8 @@
                       </tr>
                     </tbody>
                   </table>
+
+                  <button type="button" class="btn btn-primary btn-lg" onclick="">Edit Monthly Expenses</button> 
             </div>
         </div>
         <div class="row">
@@ -100,21 +197,21 @@
                     <thead>
                       <tr>
                         <th scope="col">Most Popular Spending</th>
-                        <th scope="col">Budget Used</th>
+                        <th scope="col">Total Spent</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Entertainment</td>
-                        <td>86%</td>
+                        <td>Transportation & Gas</td>
+                        <td>$5526.72</td>
                       </tr>
                       <tr>
-                        <td>Loans</td>
-                        <td>72%</td>
+                        <td>Restaurants & Dining</td>
+                        <td>$35.00</td>
                       </tr>
                       <tr>
-                        <td>Rent</td>
-                        <td>48.9%</td>
+                        <td>Grocery</td>
+                        <td>$26.99</td>
                       </tr>
                     </tbody>
                   </table>
@@ -138,6 +235,7 @@
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Type</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Date</th>
                     <th scope="col">Amount</th>
                   </tr>
@@ -146,18 +244,21 @@
                   <tr>
                     <td>Johnny's Diner</td>
                     <td>Expense</td>
-                    <td>4/5/2020</td>
+                    <td>Restaurants & Dining</td>
+                    <td>4/21/2020</td>
                     <td>$35.00</td>
                   </tr>
                   <tr>
                     <td>Dhruvi's Drugstore</td>
                     <td>Expense</td>
+                    <td>Grocery</td>
                     <td>4/20/2020</td>
                     <td>$26.99</td>
                   </tr>
                   <tr>
                     <td>Anna's Apple Shop</td>
                     <td>Income</td>
+                    <td>Cash</td>
                     <td>4/12/2020</td>
                     <td>$3.50</td>
                   </tr>
