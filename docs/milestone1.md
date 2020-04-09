@@ -6,11 +6,11 @@
 
 ## Data interactions:
 
-Income
-Expenses
-Transaction History
-Survey Answers
-Categories
+* Income
+* Expenses
+* Transaction History
+* Survey Answers
+* Categories
 
 
 
