@@ -20,7 +20,7 @@ Here’s a list of our web application’s wireframes and screenshots of pages:
 
  Log In page: this is the first page that a user will see when they navigate to our website. They will be asked to enter a username and password or create a new account. 
 
-![log in screen](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![log in screen](images/Final Wireframes.png)
 Create Account page: If this is a new user, they will be redirected to the Create Account page from the login page and asked to enter their name, email address, age, and a new password. 
 
 
