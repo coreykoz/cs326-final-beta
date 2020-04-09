@@ -16,7 +16,7 @@ Categories
 
 ## Wireframes and HTML/CSS
 
-![log in screen](/docs/images/Final Wireframes.png)
+![log in screen](/docs/images/wireframe.png)
 
 Here’s a list of our web application’s wireframes and screenshots of pages:
 
@@ -39,6 +39,7 @@ Add Expense pop-up: When users click on the Add Expense button on the home scree
 ![log in screen](/docs/images/expensepopup.JPG)
 
 Add Income pop-up: When users click on the Add Income button, a window will pop up prompting users to enter details such as the income amount, a name for the income, for example, “Paycheck from xyz job”. The users will also be asked to select how the income was received: cash, check, gift, direct deposit.
+
 ![log in screen](/docs/images/incomepopup.JPG)
 
 
