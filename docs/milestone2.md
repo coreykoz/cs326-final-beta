@@ -1,4 +1,4 @@
-# BETA Milestone 1
+# BETA Milestone 2
 
 ## API Documentation for UWallet
 
