@@ -33,11 +33,27 @@ export class Database {
 		})();
     }
 
-    public async put(key: string, value: string) : Promise<void> {
+    public async put(key: String[], dbname: String) : Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
-		console.log("put: key = " + key + ", value = " + value);
-		let result = await collection.updateOne({'name' : key}, { $set : { 'value' : value} }, { 'upsert' : true } );
+		let result;
+		switch(dbname){
+			case "income_db":
+				result = await collection.updateOne({'income_name': key[0], 'income_total': key[1], 'date': key[2], 'category': key[3]});
+				break;
+			case "expense_db":
+				result = await collection.updateOne({'expense_name': key[0], 'expense_total': key[1], 'date': key[2], 'category': key[3]});
+				break;
+			case "trans_db":
+				result = await collection.updateOne({'trans_name': key[0], 'trans_type': key[1], 'category': key[2], 'date': key[3]});
+				break;
+			case "monthly_db":
+				result = await collection.updateOne({'monthly_expense': key[0], 'monthly_cost': key[1]});
+				break;
+			case "userinfo_db":
+				result = await collection.updateOne({'name': key[0], 'iemail': key[1], 'age': key[2], 'password': key[3]});
+				break;
+		}
 		console.log("result = " + result);
     }
 
