@@ -20,7 +20,7 @@ async function postData(url, data) {
 }
 
 
-function addIncome(){
+function createIncome(){
     (async () => {
         let incomeName = document.getElementById("incomeName").value;
         let incomeTotal = document.getElementById("incomeTotal").value;
@@ -28,23 +28,16 @@ function addIncome(){
         let incomeCategory = document.getElementById("incomeCategory").value;
 
         let data = { 'income_name': incomeName, 'income_total': incomeTotal, 'date': incomeDate, 'category': incomeCategory};
-        addTransaction(data, "income");
         
-        const newURL = url + "/addIncome"; 
+        
+        const newURL = url + "/createIncome"; 
         const resp = await postData(newURL, data);
         const j = await resp.json();
-
-        //modify later
-	    if (j['result'] !== 'error') {
-	        document.getElementById("output").innerHTML = "101: <b>" + userName + ", " + counterName + " created.</b>";
-	    } else {
-	        document.getElementById("output").innerHTML = "100: " + userName + ", " + counterName + " not found.</b>";
-        }
-        
+        createTransaction(incomeName, incomeTotal, incomeDate, incomeCategory, "Income");
 	})();
 }
 
-function addExpense(){
+function createExpense(){
     (async () => {
         let expenseName = document.getElementById("expenseName").value;
         let expenseTotal = document.getElementById("expenseTotal").value;
@@ -52,51 +45,53 @@ function addExpense(){
         let expenseCategory = document.getElementById("expenseCategory").value;
 
         let data = { 'expense_name': expenseName, 'expense_total': expenseTotal, 'date': expenseDate, 'category': expenseCategory};
-        addTransaction(data, "expense");
+        createTransaction(data, "Expense");
         
-        const newURL = url + "/addExpense"; 
+        const newURL = url + "/createExpense"; 
         const resp = await postData(newURL, data);
         const j = await resp.json();
-
-        //modify later
-	    if (j['result'] !== 'error') {
-	        document.getElementById("output").innerHTML = "101: <b>" + userName + ", " + counterName + " created.</b>";
-	    } else {
-	        document.getElementById("output").innerHTML = "100: " + userName + ", " + counterName + " not found.</b>";
-        }
-        
 	})();
 }
 
-function addTransaction(data, type){
+function createTransaction(name, total, date, cate, type){
     //reformat this data into our documentation verison of it
-    if(type = "income"){
-        let transactionName = incomeName;
-        let transactionType = type;
-        let category = incomeCategory;
-        let date = incomeDate;
+    (async () => {
+    let data = {'trans_name' : name, 'trans_type': type, 'trans_category': cate, 'trans_date': date, 'trans_price': total};
 
-        let data = {'trans_name' : transactionName, 'trans_type': transactionType, 'trans_category': category, 'trans_date': date}
+    const newURL = url + "/createTransaction"; 
+    const resp = await postData(newURL, data);
+    const j = await resp.json();
+
+    //modify later
+	if (j['result'] !== 'error') {
+        document.getElementById("trans_table").innerHTML = "<tr><td>" +  name + "</td><td>" + type + "</td><td>" + 
+        cate + "</td><td>" + date + "</td><td>" + total + "</td></tr>" + document.getElementById("trans_table").innerHTML;
+	} else {
+	    document.getElementById("output").innerHTML = name + " not found.";
     }
 
-    else if (type = 'expense'){
-        let transactionName = expenseName;
-        let transactionType = type;
-        let category = expenseCategory;
-        let date = expenseDate;
-
-        let data = {'trans_name' : transactionName, 'trans_type': transactionType, 'trans_category': category, 'trans_date': date}
-    }
-    //need to add functionality to monthly expenses
+    })();
 }
 
-function addMonthly(){
+function readTransaction(){
+
+}
+
+function updateTransaction(){
+
+}
+
+function deleteTransaction(){
+    
+}
+
+function createMonthly(){
     (async () => {
         let expenseName = document.getElementById("expenseName").value;
         let monthlyCost = document.getElementById("monthlyCost").value;
         let data = { 'expense_name': expenseName, 'monthly_cost': monthlyCost};
         //addTransaction(data);
-        const newURL = url + "/addMonthly"; 
+        const newURL = url + "/createMonthly"; 
         const resp = await postData(newURL, data);
         const j = await resp.json();
 
@@ -109,13 +104,13 @@ function addMonthly(){
 	})();
 }
 
-function removeMonthly(){
+function deleteMonthly(){
     (async () => {
         let expenseName = document.getElementById("expenseName").value;
         let monthlyCost = document.getElementById("monthlyCost").value;
 
         let data = { 'expense_name': expenseName, 'monthly_cost': monthlyCost};
-        const newURL = url + "/removeMonthly"; 
+        const newURL = url + "/deleteMonthly"; 
         const resp = await postData(newURL, data);
         const j = await resp.json();
 
@@ -128,7 +123,7 @@ function removeMonthly(){
 	})();
 }
 
-function addUserInfo(){
+function createUserInfo(){
     //same as add income
     (async () => {
         let name = document.getElementById("fullname").value;
@@ -140,7 +135,7 @@ function addUserInfo(){
         //we could try to compare the password entries
 
         let data = {"name": name, 'email': email, 'age': age, 'password': password};
-        const newURL = url + "/addUserInfo"; 
+        const newURL = url + "/createUserInfo"; 
         const resp = await postData(newURL, data);
         const j = await resp.json();
 

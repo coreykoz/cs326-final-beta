@@ -22,5 +22,9 @@
   "homepage": "https://github.com/coreykoz/cs326-final-beta#readme",
   "devDependencies": {
     "@types/node": "^13.13.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.5.6"
   }
 }
