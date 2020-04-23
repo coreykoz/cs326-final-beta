@@ -19,9 +19,9 @@
 
         <!--Custom Code-->
         <link href="https://fonts.googleapis.com/css?family=Graduate&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/chart.css">
-        <script src="js/uwallet.js"></script>
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/chart.css">
+        <script src="../js/uwallet.js"></script>
         
     </head>
 
@@ -86,8 +86,8 @@
                           <input type="date" name="incomeDate" id="incomeDate" class="form-control" placeholder="Income Date"><br>
                           
                             <div class="form-group">
-                              <label for="incomeCatergory">Category</label>
-                              <select class="form-control" id="incomeCatergory">
+                              <label for="incomeCategory">Category</label>
+                              <select class="form-control" id="incomeCategory">
                                 <option>Cash</option>
                                 <option>Direct Deposit</option>
                                 <option>Check</option>
@@ -99,7 +99,7 @@
                       
                       <!-- Modal footer -->
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="" data-dismiss="modal">Submit</button>
+                        <button type="button" class="btn btn-primary" onclick="addIncome()" data-dismiss="modal">Submit</button>
                       </div>
                       
                     </div>
@@ -266,5 +266,5 @@
         </div>
     </div>
     </body>
-    <script src="js/chart-creation.js"></script>
+    <script src="../js/chart-creation.js"></script>
 </html>
