@@ -38,6 +38,8 @@ export class MyServer {
 	this.router.post('/createIncome', this.createIncomeHandler.bind(this));
 	this.router.post('/createTransaction', this.createTransactionHandler.bind(this));
 
+	this.router.post('/readTransaction', this.readTransactionHandler.bind(this));
+
 	this.router.post('*', async (request, response) => {
 	    response.send(JSON.stringify({ "result" : "command-not-found" }));
 	});
@@ -45,12 +47,11 @@ export class MyServer {
 	this.server.use('/uwallet', this.router);
 	}
 	
+	//id: string, total: string, date: string, category: string, type: string, name: string
 	private async createIncomeHandler(request, response){
-		let name = request.body.income_name;
-		console.log("testing income handler:'" + name + "'");
-		await this.theDatabase.put(name, 0);
+		await this.theDatabase.put(request.body.income_name, request.body.income_total, request.body.date, request.body.category, "unused", request.body.id);
 		response.write(JSON.stringify({'result' : 'created',
-					       'income_name' : name,
+					       'income_name' : request.body.income_name,
 					       'value' : 0 }));
 		response.end();
 	}
@@ -58,10 +59,18 @@ export class MyServer {
 	private async createTransactionHandler(request, response){
 		let name = request.body.trans_name;
 		console.log("testing transaction handler:'" + name + "'");
-		await this.theDatabase.put(name, 0);
+		
+		await this.theDatabase.put(request.body.trans_name, request.body.trans_price, request.body.trans_category, request.body.trans_date, request.body.trans_type, request.body.id);
 		response.write(JSON.stringify({'result' : 'created',
 					       'income_name' : name,
 					       'value' : 0 }));
+		response.end();
+	}
+
+	private async readTransactionHandler(request, response){
+		let list = await this.theDatabase.get(request.body.id);
+		console.log(list);
+		response.write(JSON.stringify(list));
 		response.end();
 	}
 

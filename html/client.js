@@ -19,7 +19,7 @@ async function postData(url, data) {
     return resp;
 }
 
-
+//CREATES
 function createIncome(){
     (async () => {
         let incomeName = document.getElementById("incomeName").value;
@@ -27,7 +27,7 @@ function createIncome(){
         let incomeDate = document.getElementById("incomeDate").value;
         let incomeCategory = document.getElementById("incomeCategory").value;
 
-        let data = { 'income_name': incomeName, 'income_total': incomeTotal, 'date': incomeDate, 'category': incomeCategory};
+        let data = { 'income_name': incomeName, 'income_total': incomeTotal, 'date': incomeDate, 'category': incomeCategory,  'id': "income"};
         
         
         const newURL = url + "/createIncome"; 
@@ -44,8 +44,8 @@ function createExpense(){
         let expenseDate = document.getElementById("expenseDate").value;
         let expenseCategory = document.getElementById("expenseCategory").value;
 
-        let data = { 'expense_name': expenseName, 'expense_total': expenseTotal, 'date': expenseDate, 'category': expenseCategory};
-        createTransaction(data, "Expense");
+        let data = { 'expense_name': expenseName, 'expense_total': expenseTotal, 'date': expenseDate, 'category': expenseCategory, 'id': "expense"};
+        createTransaction(expenseName, expenseTotal, expenseDate, expenseCategory, "Expense");
         
         const newURL = url + "/createExpense"; 
         const resp = await postData(newURL, data);
@@ -56,7 +56,8 @@ function createExpense(){
 function createTransaction(name, total, date, cate, type){
     //reformat this data into our documentation verison of it
     (async () => {
-    let data = {'trans_name' : name, 'trans_type': type, 'trans_category': cate, 'trans_date': date, 'trans_price': total};
+    let id = "transaction";
+    let data = {'trans_name' : name, 'trans_type': type, 'trans_category': cate, 'trans_date': date, 'trans_price': total, 'id': id};
 
     const newURL = url + "/createTransaction"; 
     const resp = await postData(newURL, data);
@@ -73,16 +74,29 @@ function createTransaction(name, total, date, cate, type){
     })();
 }
 
+
+//READ IDs:
+// transaction, expense, income, userInfo, monthly
+
 function readTransaction(){
+    (async () => {
+    let id = {'id':"transaction"};
 
+    const newURL = url + "/readTransaction"; 
+    const resp = await postData(newURL, id);
+    const j = await resp.json();
+    if (j) {
+        return j;
+	} else {
+	    return "Error: Could not read";
+    }
+    })();
 }
 
-function updateTransaction(){
 
-}
 
 function deleteTransaction(){
-    
+
 }
 
 function createMonthly(){
@@ -147,3 +161,17 @@ function createUserInfo(){
         }
 	})();
 }
+
+
+//will not modify html ON ITS OWN
+//the thinking is that our drawPieChart will call readTransaction --> data --> graph based on data
+
+function drawTable(){
+    //call readTransaction -> array of documents (transactions)
+    // actually modify html
+    console.log("about to calculate readTrans()");
+    let val = readTransaction();
+    console.log(val);
+}
+
+

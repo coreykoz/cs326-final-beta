@@ -32,23 +32,38 @@ export class Database {
 	    await this.client.connect().catch(err => { console.log(err); });
 	})();
     }
-
-    public async put(key: string, value: string) : Promise<void> {
+	
+    public async put(name: string, total: string, date: string, category: string, type: string, id: string) : Promise<void> {
 	let db = this.client.db(this.dbName);
 	let collection = db.collection(this.collectionName);
-	console.log("put: key = " + key + ", value = " + value);
-	let result = await collection.updateOne({'name' : key}, { $set : { 'value' : value} }, { 'upsert' : true } );
-	console.log("result = " + result);
+	
+	console.log("id is:" + id);
+	switch(id){
+		case "transaction":
+			var result = await collection.updateOne({'trans_name' : name, 'trans_type': type, 'trans_category': category, 'trans_date': date, 'trans_price': total, 'id': id}, { $set : { 'trans_price' : total} }, { 'upsert' : true });
+			break;
+		case "expense":
+			var result = await collection.updateOne({'expense_name': name, 'expense_total': total, 'date': date, 'category': category, 'id': id},{ $set : { 'expense_total' : total} }, { 'upsert' : true });
+			break;
+		case "income":
+			console.log("entered income case");
+			var result = await collection.updateOne({'income_name': name, 'income_total': total, 'date': date, 'category': category,  'id': id}, { $set : { 'income_total' : total} }, { 'upsert' : true });
+			break;
+		case "userInfo":
+			break;
+		case "monthly":
+			break;
+	}
+	
     }
 
-    public async get(key: string) : Promise<string> {
+    public async get(id: string) : Promise<string> {
 	let db = this.client.db(this.dbName); // this.level(this.dbFile);
 	let collection = db.collection(this.collectionName);
-	console.log("get: key = " + key);
-	let result = await collection.findOne({'name' : key });
-	console.log("get: returned " + JSON.stringify(result));
+	console.log("get w/ id");
+	let result = await collection.find({'id': id}).toArray();
 	if (result) {
-	    return result.value;
+	    return result;
 	} else {
 	    return null;
 	}
