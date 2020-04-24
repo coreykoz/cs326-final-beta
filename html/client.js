@@ -109,6 +109,13 @@ function readMonthly(){
     })();
 }
 
+function readIncome(){
+
+}
+
+function readExpense(){
+    
+}
 
 // UPDATES
 
@@ -140,57 +147,7 @@ function deleteMonthly(){
 	})();
 }
 
-function createMonthly(){
-    (async () => {
-        let expenseName = document.getElementById("expenseName").value;
-        let monthlyCost = document.getElementById("monthlyCost").value;
-        let data = { 'expense_name': expenseName, 'monthly_cost': monthlyCost};
-        //addTransaction(data);
-        const newURL = url + "/createMonthly"; 
-        const resp = await postData(newURL, data);
-        const j = await resp.json();
-
-        //modify later
-	    if (j['result'] !== 'error') {
-	        document.getElementById("output").innerHTML = "101: <b>" + userName + ", " + counterName + " created.</b>";
-	    } else {
-	        document.getElementById("output").innerHTML = "100: " + userName + ", " + counterName + " not found.</b>";
-        }
-	})();
-}
-
-
-
-//doesnt work
-function createUserInfo(){
-    //same as add income
-    (async () => {
-        let name = document.getElementById("fullname").value;
-        let email = document.getElementById("email").value;
-        let age = document.getElementById("age").value;
-        //let createpass = document.getElementById("createpass").value;
-        let password = document.getElementById("confirmpass").value;
-
-        //we could try to compare the password entries
-
-        let data = {"name": name, 'email': email, 'age': age, 'password': password};
-        const newURL = url + "/createUserInfo"; 
-        const resp = await postData(newURL, data);
-        const j = await resp.json();
-
-        //modify later
-	    if (j['result'] !== 'error') {
-	        document.getElementById("output").innerHTML = "101: <b>" + userName + ", " + counterName + " created.</b>";
-	    } else {
-	        document.getElementById("output").innerHTML = "100: " + userName + ", " + counterName + " not found.</b>";
-        }
-	})();
-}
-
-
-//will not modify html ON ITS OWN
 //the thinking is that our drawPieChart will call readTransaction --> data --> graph based on data
-
 function drawTransTable(){
     //call readTransaction -> array of documents (transactions)
     // actually modify html
