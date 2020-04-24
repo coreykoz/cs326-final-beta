@@ -75,36 +75,33 @@ function createTransaction(name, total, date, cate, type){
 //READ IDs:
 // transaction, expense, income, userInfo, monthly
 
-function readTransaction(){
-    (async () => {
+async function readTransaction(){
     let id = {'id':"transaction"};
 
     const newURL = url + "/read"; 
     const resp = await postData(newURL, id);
     const j = await resp.json();
     if (j) {
-        console.log(j);
+        //console.log(j);
         return j;
 	} else {
 	    return "Error: Could not read";
     }
-    })();
 }
 
-function readMonthly(){
-    (async () => {
+async function readMonthly(){
+    
     let id = {'id':"monthly"};
 
     const newURL = url + "/read"; 
     const resp = await postData(newURL, id);
     const j = await resp.json();
     if (j) {
-        console.log(j);
+        //console.log(j);
         return j;
 	} else {
 	    return "Error: Could not read";
     }
-    })();
 }
 
 function readIncome(){
@@ -206,11 +203,12 @@ function drawTransTable(){
 }
 
 // Table - Should be calling readMonthly() and displaying results
-function drawMonthlyTable(){
+async function drawMonthlyTable(){
     // 
-    //let val = readMonthly();
-    //console.log(val);
+    let val = await readMonthly();
+    console.log(val);
 
+    /*
     // Get array of JSONs
     let array = readMonthly();
     
@@ -220,7 +218,7 @@ function drawMonthlyTable(){
         let total = array[i].monthlyCost;
 
         document.getElementById("monthly_table").innerHTML = "<tr><td>" +  name + "</td><td>" + total + document.getElementById("monthly_table").innerHTML;
-    }
+    }*/
 }
 
 
