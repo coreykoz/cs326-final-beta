@@ -196,7 +196,7 @@ function drawTransTable(){
     
     //Draws each row of HTML based on sorted array
     for(let i = 0; i < array.length; i++){
-        let name = array[i].trans_name;
+        let name = array[i].mon;
         let type = array[i].trans_type;
         let cate = array[i].trans_category;
         let date = array[i].trans_date;
@@ -212,10 +212,39 @@ function drawMonthlyTable(){
     // 
     //let val = readMonthly();
     //console.log(val);
+
+    // Get array of JSONs
+    let array = readMonthly();
+    
+    //Draws each row of HTML
+    for(let i = 0; i < array.length; i++){
+        let name = array[i].monthlyName;
+        let total = array[i].monthlyCost;
+
+        document.getElementById("monthly_table").innerHTML = "<tr><td>" +  name + "</td><td>" + total + document.getElementById("monthly_table").innerHTML;
+    }
 }
 
 // Table - Should be calling readMonthly() and displaying results
 function drawPopSpendingTable(){
+    let array = readExpense();
+
+    var x = new GroupBy(array, expenseCategory);
+
+    x.sum();
+
+
+    //Calculation
+    //for(let i=0; i<array)
+    
+    //Draws each row of HTML
+    for(let i = 0; i < array.length; i++){
+        //let name = array[i].expenseName;
+        let cate = array[i].expenseCategory;
+        let total = array[i].monthlyCost;
+
+        document.getElementById("popspend_table").innerHTML = "<tr><td>" +  cate + "</td><td>" + total + document.getElementById("popspend_table").innerHTML;
+    }
 
 }
 
@@ -236,7 +265,7 @@ function drawMostPopSpendingTable(){
 
 }
 
-// Line Graph - forget what this one does, anna input?
+// Line Graph - forget what this one does, anna input? shows the monthly trend filtered down by category
 function drawLineGraph(){
-
+    //might have to create array that holds the category, date and expense amt
 }
