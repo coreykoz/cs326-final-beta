@@ -1,6 +1,4 @@
-const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet"; // NOTE NEW URL
-
-
+const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
 
 // NEW: helper method for posting data
 async function postData(url, data) {
@@ -227,9 +225,27 @@ function drawMonthlyTable(){
 
 
 // Pie Chart - Should be calling readExpenses() and only using values from current month
-function drawMonthlyCateBySpendingGraph(){
+function drawMonthlySpendingByCateGraph(){
+    let array = readExpense();
+    const currDate = new Date(); // gets the current date as a string
+    const currMonth = currDate.getMonth();
 
+    //need to compare expense date month to current month
+    //if the months match
+    for( let i = 0; i < array.length; i++){
+        if(i.expense.date.getMonth() == currMonth){ //don't know how to access the date from the expense
+            //get category and price
+            //add up to get a total for the categoy
+            //add category + total to graph
+            //document.getElementById("monthySpending").innerHTML = category + total + document.getElementById("monthySpending").innerHTML;
+        }
+        else{
+            //idk
+        }
+    }
 }
+
+    
 
 // Bar Chart - Should be calling readExpenses() - have one array hold all docs from readExpenses() for current month and another for the rest
 //                                                we'll calculate budget based on avg spending? Or we could have more data (inside userInfo or a separate data structure)
