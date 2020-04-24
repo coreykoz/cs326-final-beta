@@ -68,13 +68,20 @@ export class Database {
 		}
     }
     
-    public async del(key: string) : Promise<void> {
-	let db = this.client.db(this.dbName);
-	let collection = db.collection(this.collectionName);
-	console.log("delete: key = " + key);
-	let result = await collection.deleteOne({'name' : key });
-	console.log("result = " + result);
-	// await this.db.del(key);
+    public async del(name: string, id: string) : Promise<void> {
+		let db = this.client.db(this.dbName);
+		let collection = db.collection(this.collectionName);
+		console.log("delete: key = " + name);
+
+		switch(id){
+			case "monthly":
+				var result = await collection.deleteOne({'monthly_expense' : name});
+				break;
+			case "transaction":
+				
+		}
+		let result = await collection.deleteOne({'name' : key });
+		console.log("result = " + result);
     }
     
     public async isFound(key: string) : Promise<boolean>  {

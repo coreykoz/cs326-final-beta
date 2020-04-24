@@ -43,6 +43,8 @@ export class MyServer {
 
 	this.router.post('/updateMonthly', this.updateMonthlyHandler.bind(this));
 
+	this.router.post('/deleteMonthly', this.deleteMonthlyHandler.bind(this));
+
 	this.router.post('*', async (request, response) => {
 	    response.send(JSON.stringify({ "result" : "command-not-found" }));
 	});
@@ -52,6 +54,8 @@ export class MyServer {
 	
 	//id: string, total: string, date: string, category: string, type: string, name: string
 	
+
+	//CREATES
 	private async createIncomeHandler(request, response){
 		await this.theDatabase.put(request.body.income_name, request.body.income_total, request.body.date, request.body.category, "unused", request.body.id);
 		response.write(JSON.stringify({'result' : 'created',
@@ -79,12 +83,14 @@ export class MyServer {
 		response.end();
 	}
 
+	//READ
 	private async readHandler(request, response){
 		let list = await this.theDatabase.get(request.body.id);
 		response.write(JSON.stringify(list));
 		response.end();
 	}
 
+	//UPDATES
 	private async updateMonthlyHandler(request, response){
 		await this.theDatabase.put(request.body.monthly_expense, request.body.monthly_cost, "unused", "unused", "unused", request.body.id);
 		response.write(JSON.stringify({'result' : 'updated',
@@ -92,6 +98,15 @@ export class MyServer {
 				       'value' : request.body.monthly_cost }));
 		response.end();
 	}
+
+	//DELETES
+	private async deleteMonthlyHandler(request, response){
+		await this.theDatabase.del(name);
+		response.write(JSON.stringify({'result' : 'deleted',
+					       'value'  : name }));
+		response.end();
+	}
+	
 
     private async errorHandler(request, response, next) : Promise<void> {
 	let value : boolean = await this.theDatabase.isFound(request.params['userId']+"-"+request.query.name);

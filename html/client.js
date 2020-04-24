@@ -74,20 +74,6 @@ function createTransaction(name, total, date, cate, type){
     })();
 }
 
-function createMonthly(){
-    (async () => {
-        let monthlyName = document.getElementById("monthlyName").value;
-        let monthlyCost = document.getElementById("monthlyTotal").value;
-
-        const newURL = url + "/createMonthly";
-        const data = { 'monthly_expense': monthlyName, 'monthly_cost': monthlyCost, 'id': "monthly"};
-	    const resp = await postData(newURL, data);    
-	    const j = await resp.json();
-	    
-    })();
-}
-
-
 //READ IDs:
 // transaction, expense, income, userInfo, monthly
 
@@ -139,8 +125,19 @@ function updateMonthly(){
     })();
 }
 
-function deleteTransaction(){
 
+// DELETES
+
+function deleteMonthly(){
+    (async () => {
+        let expenseName = document.getElementById("expenseName").value;
+
+        let data = { 'expense_name': expenseName};
+        const newURL = url + "/deleteMonthly"; 
+        const resp = await postData(newURL, data);
+        const j = await resp.json();
+
+	})();
 }
 
 function createMonthly(){
@@ -162,25 +159,9 @@ function createMonthly(){
 	})();
 }
 
-function deleteMonthly(){
-    (async () => {
-        let expenseName = document.getElementById("expenseName").value;
-        let monthlyCost = document.getElementById("monthlyCost").value;
 
-        let data = { 'expense_name': expenseName, 'monthly_cost': monthlyCost};
-        const newURL = url + "/deleteMonthly"; 
-        const resp = await postData(newURL, data);
-        const j = await resp.json();
 
-        //modify later
-	    if (j['result'] !== 'error') {
-	        document.getElementById("output").innerHTML = "101: <b>" + userName + ", " + counterName + " created.</b>";
-	    } else {
-	        document.getElementById("output").innerHTML = "100: " + userName + ", " + counterName + " not found.</b>";
-        }
-	})();
-}
-
+//doesnt work
 function createUserInfo(){
     //same as add income
     (async () => {
