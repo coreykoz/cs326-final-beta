@@ -171,19 +171,66 @@ function deleteMonthly(){
 	})();
 }
 
-//the thinking is that our drawPieChart will call readTransaction --> data --> graph based on data
+
+// ALL DRAW FUNCTIONS:
+// This is all assuming TA's get back to us and the functions work as intended
+//
+// 1) call a read --> returns an array of documents (in JSON format)
+// 2) process data and draw/create graphs
+
+// Table - Should be calling readTransaction() and displaying results
 function drawTransTable(){
-    //call readTransaction -> array of documents (transactions)
-    // actually modify html
-    console.log("about to calculate readTrans()");
-    let val = readTransaction();
-    console.log(val);
+
+    // Get array of JSONs
+    let array = readTransaction();
+
+    //Sort by date, descending 
+    array.sort(function(a, b){
+
+    });
+    
+    for(let i = 0; i < array.length; i++){
+        let name = array[i].trans_name;
+        let type = array[i].trans_type;
+        let cate = array[i].trans_category;
+        let date = array[i].trans_date;
+        let total = array[i].trans_price;
+
+        document.getElementById("trans_table").innerHTML = "<tr><td>" +  name + "</td><td>" + type + "</td><td>" + 
+        cate + "</td><td>" + date + "</td><td>" + total + "</td></tr>" + document.getElementById("trans_table").innerHTML;
+    }
 }
 
+// Table - Should be calling readMonthly() and displaying results
 function drawMonthlyTable(){
     // 
     //let val = readMonthly();
     //console.log(val);
 }
 
+// Table - Should be calling readMonthly() and displaying results
+function drawPopSpendingTable(){
 
+}
+
+// Pie Chart - Should be calling readExpenses() and only using values from current month
+function drawMonthlyCateBySpendingGraph(){
+
+}
+
+// Bar Chart - Should be calling readExpenses() - have one array hold all docs from readExpenses() for current month and another for the rest
+//                                                we'll calculate budget based on avg spending? Or we could have more data (inside userInfo or a separate data structure)
+//                                                that allows input for budget
+function drawBudgetGraph(){
+
+}
+
+// Table - Should be calling readExpenses() and only using values from current month and putting top 3-5 values (total spent wise) on table
+function drawMostPopSpendingTable(){
+
+}
+
+// Line Graph - forget what this one does, anna input?
+function drawLineGraph(){
+
+}
