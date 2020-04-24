@@ -110,11 +110,35 @@ function readMonthly(){
 }
 
 function readIncome(){
-
+    (async () => {
+        let id = {'id':"income"};
+    
+        const newURL = url + "/read"; 
+        const resp = await postData(newURL, id);
+        const j = await resp.json();
+        if (j) {
+            console.log(j);
+            return j;
+        } else {
+            return "Error: Could not read";
+        }
+        })();
 }
 
 function readExpense(){
+    (async () => {
+        let id = {'id':"expense"};
     
+        const newURL = url + "/read"; 
+        const resp = await postData(newURL, id);
+        const j = await resp.json();
+        if (j) {
+            console.log(j);
+            return j;
+        } else {
+            return "Error: Could not read";
+        }
+        })();
 }
 
 // UPDATES
