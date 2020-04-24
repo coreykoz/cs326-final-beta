@@ -112,7 +112,7 @@ function readIncome(){
         const resp = await postData(newURL, id);
         const j = await resp.json();
         if (j) {
-            console.log(j);
+            
             return j;
         } else {
             return "Error: Could not read";
@@ -128,7 +128,7 @@ function readExpense(){
         const resp = await postData(newURL, id);
         const j = await resp.json();
         if (j) {
-            console.log(j);
+            
             return j;
         } else {
             return "Error: Could not read";
