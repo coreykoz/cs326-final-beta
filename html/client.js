@@ -187,8 +187,14 @@ function drawTransTable(){
     //Sort by date, descending 
     array.sort(function(a, b){
 
+        //converts "2020-04-24" to "2020/04/24" and creates date obj
+        let date1 = new Date(a.replace(/-/g,'/'));
+        let date2 = new Date(b.replace(/-/g,'/'));
+
+        return date2 - date1;
     });
     
+    //Draws each row of HTML based on sorted array
     for(let i = 0; i < array.length; i++){
         let name = array[i].trans_name;
         let type = array[i].trans_type;
