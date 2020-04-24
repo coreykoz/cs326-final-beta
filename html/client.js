@@ -1,4 +1,4 @@
-const url = "http://localhost:8080/uwallet"; // NOTE NEW URL
+const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet"; // NOTE NEW URL
 
 
 
