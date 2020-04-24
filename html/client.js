@@ -225,28 +225,6 @@ function drawMonthlyTable(){
     }
 }
 
-// Table - Should be calling readMonthly() and displaying results
-function drawPopSpendingTable(){
-    let array = readExpense();
-
-    var x = new GroupBy(array, expenseCategory);
-
-    x.sum();
-
-
-    //Calculation
-    //for(let i=0; i<array)
-    
-    //Draws each row of HTML
-    for(let i = 0; i < array.length; i++){
-        //let name = array[i].expenseName;
-        let cate = array[i].expenseCategory;
-        let total = array[i].monthlyCost;
-
-        document.getElementById("popspend_table").innerHTML = "<tr><td>" +  cate + "</td><td>" + total + document.getElementById("popspend_table").innerHTML;
-    }
-
-}
 
 // Pie Chart - Should be calling readExpenses() and only using values from current month
 function drawMonthlyCateBySpendingGraph(){
@@ -262,6 +240,23 @@ function drawBudgetGraph(){
 
 // Table - Should be calling readExpenses() and only using values from current month and putting top 3-5 values (total spent wise) on table
 function drawMostPopSpendingTable(){
+    let array = readExpense();
+
+    var x = new GroupBy(array, expenseCategory);
+
+    x.sum();
+
+    //Calculation
+    //for(let i=0; i<array)
+    
+    //Draws each row of HTML
+    for(let i = 0; i < array.length; i++){
+        //let name = array[i].expenseName;
+        let cate = array[i].expenseCategory;
+        let total = array[i].monthlyCost;
+
+        document.getElementById("popspend_table").innerHTML = "<tr><td>" +  cate + "</td><td>" + total + document.getElementById("popspend_table").innerHTML;
+    }
 
 }
 
