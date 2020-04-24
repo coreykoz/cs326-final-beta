@@ -36,9 +36,12 @@ export class MyServer {
 	// Set a fall-through handler if nothing matches.
 
 	this.router.post('/createIncome', this.createIncomeHandler.bind(this));
+	this.router.post('/createExpense', this.createExpenseHandler.bind(this));
 	this.router.post('/createTransaction', this.createTransactionHandler.bind(this));
 
-	this.router.post('/readTransaction', this.readTransactionHandler.bind(this));
+	this.router.post('/read', this.readHandler.bind(this));
+
+	this.router.post('/updateMonthly', this.updateMonthlyHandler.bind(this));
 
 	this.router.post('*', async (request, response) => {
 	    response.send(JSON.stringify({ "result" : "command-not-found" }));
@@ -48,10 +51,19 @@ export class MyServer {
 	}
 	
 	//id: string, total: string, date: string, category: string, type: string, name: string
+	
 	private async createIncomeHandler(request, response){
 		await this.theDatabase.put(request.body.income_name, request.body.income_total, request.body.date, request.body.category, "unused", request.body.id);
 		response.write(JSON.stringify({'result' : 'created',
 					       'income_name' : request.body.income_name,
+					       'value' : 0 }));
+		response.end();
+	}
+
+	private async createExpenseHandler(request, response){
+		await this.theDatabase.put(request.body.expense_name, request.body.expense_total, request.body.date, request.body.category, "unused", request.body.id);
+		response.write(JSON.stringify({'result' : 'created',
+					       'expense_name' : request.body.expense_name,
 					       'value' : 0 }));
 		response.end();
 	}
@@ -67,14 +79,19 @@ export class MyServer {
 		response.end();
 	}
 
-	private async readTransactionHandler(request, response){
+	private async readHandler(request, response){
 		let list = await this.theDatabase.get(request.body.id);
-		console.log(list);
 		response.write(JSON.stringify(list));
 		response.end();
 	}
 
-
+	private async updateMonthlyHandler(request, response){
+		await this.theDatabase.put(request.body.monthly_expense, request.body.monthly_cost, "unused", "unused", "unused", request.body.id);
+		response.write(JSON.stringify({'result' : 'updated',
+				       'name' : request.body.monthly_expense,
+				       'value' : request.body.monthly_cost }));
+		response.end();
+	}
 
     private async errorHandler(request, response, next) : Promise<void> {
 	let value : boolean = await this.theDatabase.isFound(request.params['userId']+"-"+request.query.name);
@@ -91,10 +108,11 @@ export class MyServer {
 	await this.createCounter(request.params['userId']+"-"+request.query.name, response);
     }
 
+	/*
     private async readHandler(request, response): Promise<void> {
 	console.log(request.params['userId']);
 	await this.readCounter(request.params['userId']+"-"+request.body.name, response);
-    }
+    }*/
 
     private async updateHandler(request, response) : Promise<void> {
 	await this.updateCounter(request.params['userId']+"-"+request.body.name, request.body.value, response);

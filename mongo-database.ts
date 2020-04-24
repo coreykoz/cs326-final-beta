@@ -46,27 +46,26 @@ export class Database {
 			var result = await collection.updateOne({'expense_name': name, 'expense_total': total, 'date': date, 'category': category, 'id': id},{ $set : { 'expense_total' : total} }, { 'upsert' : true });
 			break;
 		case "income":
-			console.log("entered income case");
 			var result = await collection.updateOne({'income_name': name, 'income_total': total, 'date': date, 'category': category,  'id': id}, { $set : { 'income_total' : total} }, { 'upsert' : true });
 			break;
 		case "userInfo":
 			break;
 		case "monthly":
+			var result = await collection.updateOne({'monthly_expense': name, 'id': id}, { $set : { 'monthly_cost' : total} }, { 'upsert' : true });
 			break;
 	}
 	
     }
 
     public async get(id: string) : Promise<string> {
-	let db = this.client.db(this.dbName); // this.level(this.dbFile);
-	let collection = db.collection(this.collectionName);
-	console.log("get w/ id");
-	let result = await collection.find({'id': id}).toArray();
-	if (result) {
-	    return result;
-	} else {
-	    return null;
-	}
+		let db = this.client.db(this.dbName); // this.level(this.dbFile);
+		let collection = db.collection(this.collectionName);
+		let result = await collection.find({'id': id}).toArray();
+		if (result) {
+		    return result;
+		} else {
+		    return null;
+		}
     }
     
     public async del(key: string) : Promise<void> {

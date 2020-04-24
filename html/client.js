@@ -74,6 +74,19 @@ function createTransaction(name, total, date, cate, type){
     })();
 }
 
+function createMonthly(){
+    (async () => {
+        let monthlyName = document.getElementById("monthlyName").value;
+        let monthlyCost = document.getElementById("monthlyTotal").value;
+
+        const newURL = url + "/createMonthly";
+        const data = { 'monthly_expense': monthlyName, 'monthly_cost': monthlyCost, 'id': "monthly"};
+	    const resp = await postData(newURL, data);    
+	    const j = await resp.json();
+	    
+    })();
+}
+
 
 //READ IDs:
 // transaction, expense, income, userInfo, monthly
@@ -82,10 +95,27 @@ function readTransaction(){
     (async () => {
     let id = {'id':"transaction"};
 
-    const newURL = url + "/readTransaction"; 
+    const newURL = url + "/read"; 
     const resp = await postData(newURL, id);
     const j = await resp.json();
     if (j) {
+        console.log(j);
+        return j;
+	} else {
+	    return "Error: Could not read";
+    }
+    })();
+}
+
+function readMonthly(){
+    (async () => {
+    let id = {'id':"monthly"};
+
+    const newURL = url + "/read"; 
+    const resp = await postData(newURL, id);
+    const j = await resp.json();
+    if (j) {
+        console.log(j);
         return j;
 	} else {
 	    return "Error: Could not read";
@@ -94,6 +124,20 @@ function readTransaction(){
 }
 
 
+// UPDATES
+
+function updateMonthly(){
+    (async () => {
+        let monthlyName = document.getElementById("monthlyName").value;
+        let monthlyCost = document.getElementById("monthlyTotal").value;
+
+        const newURL = url + "/updateMonthly";
+        const data = { 'monthly_expense': monthlyName, 'monthly_cost': monthlyCost, 'id': "monthly"};
+	    const resp = await postData(newURL, data);    
+	    const j = await resp.json();
+	    
+    })();
+}
 
 function deleteTransaction(){
 

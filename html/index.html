@@ -183,7 +183,37 @@
                     </tbody>
                   </table>
 
-                  <button type="button" class="btn btn-primary btn-lg" onclick="createMonthly()">Edit Monthly Expenses</button> 
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#monthlyModal">Edit Monthly Expenses</button> 
+
+                  <!--Modal for Monthly Expense-->
+                <div class="modal fade" id="monthlyModal">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">Edit Monthly Expenses</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        <div class = "container form-group pt-5">
+                          <input type="text" name="monthlyName" id="monthlyName" class="form-control" placeholder="Monthly Expense Name"><br>
+              
+                          <input type="number" name="monthlyTotal" id="monthlyTotal" class="form-control" placeholder="Monthly Expense Total"><br>
+                          
+                        </div>
+                      </div>
+                      
+                      <!-- Modal footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="updateMonthly()" data-dismiss="modal">Submit</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -267,5 +297,5 @@
     </div>
     </body>
     <script src="chart-creation.js"></script>
-    <script>readTransaction()</script>
+    <script>readTransaction(); readMonthly();</script>
 </html>
