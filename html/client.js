@@ -201,8 +201,8 @@ function drawTransTable(){
 
 function drawMonthlyTable(){
     // 
-    let val = readMonthly();
-    console.log(val);
+    //let val = readMonthly();
+    //console.log(val);
 }
 
 
