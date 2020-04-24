@@ -76,12 +76,14 @@ export class Database {
 		switch(id){
 			case "monthly":
 				var result = await collection.deleteOne({'monthly_expense' : name});
+				console.log("entered monthly delete");
 				break;
 			case "transaction":
+				var result = await collection.deleteOne({'trans_name' : name});
+				break;
 				
 		}
-		let result = await collection.deleteOne({'name' : key });
-		console.log("result = " + result);
+		
     }
     
     public async isFound(key: string) : Promise<boolean>  {

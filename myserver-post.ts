@@ -101,9 +101,9 @@ export class MyServer {
 
 	//DELETES
 	private async deleteMonthlyHandler(request, response){
-		await this.theDatabase.del(name);
+		await this.theDatabase.del(request.body.expense_name, request.body.id);
 		response.write(JSON.stringify({'result' : 'deleted',
-					       'value'  : name }));
+					       'value'  : request.body.expense_name }));
 		response.end();
 	}
 	

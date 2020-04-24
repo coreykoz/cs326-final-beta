@@ -130,9 +130,9 @@ function updateMonthly(){
 
 function deleteMonthly(){
     (async () => {
-        let expenseName = document.getElementById("expenseName").value;
+        let expenseName = document.getElementById("monthlyName").value;
 
-        let data = { 'expense_name': expenseName};
+        let data = { 'expense_name': expenseName, 'id': "monthly"};
         const newURL = url + "/deleteMonthly"; 
         const resp = await postData(newURL, data);
         const j = await resp.json();
@@ -191,11 +191,17 @@ function createUserInfo(){
 //will not modify html ON ITS OWN
 //the thinking is that our drawPieChart will call readTransaction --> data --> graph based on data
 
-function drawTable(){
+function drawTransTable(){
     //call readTransaction -> array of documents (transactions)
     // actually modify html
     console.log("about to calculate readTrans()");
     let val = readTransaction();
+    console.log(val);
+}
+
+function drawMonthlyTable(){
+    // 
+    let val = readMonthly();
     console.log(val);
 }
 
