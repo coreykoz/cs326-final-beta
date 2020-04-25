@@ -17,24 +17,44 @@ function removeData(chart) {
     chart.update();
 }
 */
-var ctx = document.getElementById('monthySpending');
+/*var ctx = document.getElementById('monthySpending');
 var ctx2 = document.getElementById('budget');
 var ctx3 = document.getElementById('predictedSpending');
+
+var count = drawMonthlySpendingByCateGraph().length;
+var counter = 0;
+while(count > 0){
+  // Remove brackets around right hand side to prevent 2 dimensional arrays
+  LabelResult[counter] = drawMonthlySpendingByCateGraph[counter].category;
+  counter++;
+  count --;
+}
+
+var count = Data.length;
+var counter = 0;
+
+while(count > 0){
+  DataResult[counter] = drawMonthlySpendingByCateGraph[counter].expense_total;
+  counter++;
+  count --;
+}
 
 var pieChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ['Grocery', 'Transportation & Gas', 'Entertainment', 'Loans & Other Payments', 'Shopping', 'Bills & Insurance'],
+        //labels: ['Grocery', 'Transportation & Gas', 'Entertainment', 'Loans & Other Payments', 'Shopping', 'Bills & Insurance', 'Restaurant & Dining'],
+        labels: LabelResult,
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Spending by Category',
+            data: DataResult,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(196, 249, 143, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -42,7 +62,8 @@ var pieChart = new Chart(ctx, {
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 159, 64, 1)',
+                'rgba(196, 249, 143, 1)'
             ],
             borderWidth: 1
         }]
@@ -61,17 +82,18 @@ var pieChart = new Chart(ctx, {
 var barChart = new Chart(ctx2, {
     type: 'bar',
     data: {
-        labels: ['Grocery', 'Transportation & Gas', 'Entertainment', 'Loans & Other Payments', 'Shopping', 'Bills & Insurance'],
+        labels: ['Grocery', 'Transportation & Gas', 'Entertainment', 'Loans & Other Payments', 'Shopping', 'Bills & Insurance', 'Restaurant & Dining'],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [12, 19, 3, 5, 2, 3, 4],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(196, 249, 143, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -79,7 +101,8 @@ var barChart = new Chart(ctx2, {
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 159, 64, 1)',
+                'rgba(196, 249, 143, 1)'
             ],
             borderWidth: 1
         }]
@@ -128,7 +151,8 @@ var lineGraph = new Chart(ctx3, {
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(196, 249, 143, 0.2)'
         ],
             borderColor:  [
                 'rgba(54, 162, 235, 1)',
@@ -136,7 +160,8 @@ var lineGraph = new Chart(ctx3, {
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 159, 64, 1)',
+                'rgba(196, 249, 143, 1)'
         ],
             borderWidth: 1
         }]
@@ -150,4 +175,4 @@ var lineGraph = new Chart(ctx3, {
             }]
         }
     }
-});
+});*/

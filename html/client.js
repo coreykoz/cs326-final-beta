@@ -1,6 +1,12 @@
 //const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
 const url = "http://localhost:8080/uwallet";
 
+//canvas for the graphs
+var ctx = document.getElementById('monthySpending');
+var ctx2 = document.getElementById('budget');
+var ctx3 = document.getElementById('predictedSpending');
+
+
 // NEW: helper method for posting data
 async function postData(url, data) {
     const resp = await fetch(url,
@@ -262,6 +268,46 @@ function drawMonthlySpendingByCateGraph(){
     
         let allCategory  = [["Grocery",groceryTotal], ["Transportation & Gas", transportTotal], ["Entertainment", entertainmentTotal], ["Loans & Other Payments", loanTotal], ["Shopping", shoppingTotal], ["Bills & Insurance", billTotal], ["Restaurant & Dining", dineTotal]];
         //display this array
+        var pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Grocery', 'Transportation & Gas', 'Entertainment', 'Loans & Other Payments', 'Shopping', 'Bills & Insurance', 'Restaurant & Dining'],
+                labels: LabelResult,
+                datasets: [{
+                    label: 'Spending by Category',
+                    data: [groceryTotal, transportTotal, entertainmentTotal, loanTotal, , billTotal, dineTotal],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(196, 249, 143, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(196, 249, 143, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
     }
 }
 
@@ -345,11 +391,374 @@ function drawLineGraph(){
     let cate;
     let month;
     let total;
+    //const currDate = new Date(); // gets the current date as a string
+    //const currMonth = currDate.getMonth();
 
-    for(i = 0; i < array.length; i++){
+    let grocery;
+    let transport;
+    let entertainment;
+    let loan;
+    let shopping;
+    let bill;
+    let dine;
+
+    array.sort(function(a, b){
+        //converts "2020-04-24" to "2020/04/24" and creates date obj
+        let date1 = new Date(a.trans_date.replace(/-/g, '/'));
+        let date2 = new Date(b.trans_date.replace(/-/g, '/'));
         
+        return date1.getTime() - date2.getTime();
+    });
+
+    for(let i=0; i < array.length; i++){
+        if(array[i].category == "Grocery"){
+            grocery.push(array[i].expense_total);
+        }
+        else if(array[i].category == "Transportation & Gas"){
+            transport.push(array[i].expense_total);
+        }
+        else if(array[i].category == "Entertainment"){
+            entertainment.push(array[i].expense_total);
+        }
+        else if(array[i].category == "Loans & Other Payments"){
+            loan.push(array[i].expense_total);
+        }
+        else if(array[i].category == "Shopping"){
+            shopping.push(array[i].expense_total);
+        }
+        else if(array[i].category == "Bills & Insurance"){
+            bill.push(array[i].expense_total);
+        }
+        else if(array[i].category == "Restaurant & Dining"){
+            dine.push(array[i].expense_total);
+        }
+        else{
+
+        }
     }
+
+    var lineGraph = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: ['Nov','Dec', 'Jan', 'Feb', 'Mar', 'Apr'],
+            datasets: [{
+                label: 'Grocery',
+                data: [12,5,3,4,6],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                    /*'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'*/
+                ],
+                borderColor: [
+                    //'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)'
+                    //'rgba(255, 206, 86, 1)',
+                    //'rgba(75, 192, 192, 1)',
+                    //'rgba(153, 102, 255, 1)',
+                    //'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            },{
+                label: 'Transportation & Gas',
+                data: transport,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(196, 249, 143, 0.2)'
+            ],
+                borderColor:  [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(196, 249, 143, 1)'
+            ],
+                borderWidth: 1
+            },{
+                label: 'Entertainment',
+                data: entertainment,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            },{
+                label: 'Loan & Other Payments',
+                data: loan,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            },{
+                label: 'Shopping',
+                data: shopping,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            
+        },{
+            label: 'Bills & Insurance',
+            data: bill,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },{
+            label: 'Restaurant & Dining',
+            data: dine,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 
     //might have to create array that holds the category, date and expense amt
 }
 }
+
+//converts 2-d array into 2 separate arrays
+/*var count = drawMonthlySpendingByCateGraph().length;
+var counter = 0;
+while(count > 0){
+  // Remove brackets around right hand side to prevent 2 dimensional arrays
+  LabelResult[counter] = drawMonthlySpendingByCateGraph[counter].category;
+  counter++;
+  count --;
+}
+
+var count = Data.length;
+var counter = 0;
+
+while(count > 0){
+  DataResult[counter] = drawMonthlySpendingByCateGraph[counter].expense_total;
+  counter++;
+  count --;
+}*/
+
+// GRAPHS
+//1. Piechart
+
+/*var pieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        //labels: ['Grocery', 'Transportation & Gas', 'Entertainment', 'Loans & Other Payments', 'Shopping', 'Bills & Insurance', 'Restaurant & Dining'],
+        labels: LabelResult,
+        datasets: [{
+            label: 'Spending by Category',
+            data: DataResult,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(196, 249, 143, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(196, 249, 143, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+//2. Bar chart
+var barChart = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: ['Grocery', 'Transportation & Gas', 'Entertainment', 'Loans & Other Payments', 'Shopping', 'Bills & Insurance', 'Restaurant & Dining'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3, 4],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(196, 249, 143, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(196, 249, 143, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});*/
+
+//Line graph
+var lineGraph = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: ['Nov','Dec', 'Jan', 'Feb', 'Mar', 'Apr'],
+        datasets: [{
+            label: 'Grocery',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        },{
+            label: 'Transportation',
+            data: [7,9,4,12,5,2],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(196, 249, 143, 0.2)'
+        ],
+            borderColor:  [
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(196, 249, 143, 1)'
+        ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
