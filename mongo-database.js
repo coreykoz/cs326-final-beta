@@ -73,7 +73,7 @@ var Database = /** @class */ (function () {
             });
         }); })();
     }
-    Database.prototype.put = function (name, total, date, category, type, id) {
+    Database.prototype.put = function (name, total, category, date, type, id) {
         return __awaiter(this, void 0, void 0, function () {
             var db, collection, _a, result, result, result, result;
             return __generator(this, function (_b) {
@@ -81,7 +81,6 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
-                        console.log("id is:" + id);
                         _a = id;
                         switch (_a) {
                             case "transaction": return [3 /*break*/, 1];
@@ -143,7 +142,6 @@ var Database = /** @class */ (function () {
                     case 0:
                         db = this.client.db(this.dbName);
                         collection = db.collection(this.collectionName);
-                        console.log("delete: key = " + name);
                         _a = id;
                         switch (_a) {
                             case "monthly": return [3 /*break*/, 1];
@@ -153,35 +151,12 @@ var Database = /** @class */ (function () {
                     case 1: return [4 /*yield*/, collection.deleteOne({ 'monthly_expense': name })];
                     case 2:
                         result = _b.sent();
-                        console.log("entered monthly delete");
                         return [3 /*break*/, 5];
                     case 3: return [4 /*yield*/, collection.deleteOne({ 'trans_name': name })];
                     case 4:
                         result = _b.sent();
                         return [3 /*break*/, 5];
                     case 5: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Database.prototype.isFound = function (key) {
-        return __awaiter(this, void 0, void 0, function () {
-            var v;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        console.log("isFound: key = " + key);
-                        return [4 /*yield*/, this.get(key)];
-                    case 1:
-                        v = _a.sent();
-                        console.log("is found result = " + v);
-                        if (v === null) {
-                            return [2 /*return*/, false];
-                        }
-                        else {
-                            return [2 /*return*/, true];
-                        }
-                        return [2 /*return*/];
                 }
             });
         });

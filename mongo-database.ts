@@ -33,11 +33,10 @@ export class Database {
 	})();
     }
 	
-    public async put(name: string, total: string, date: string, category: string, type: string, id: string) : Promise<void> {
+    public async put(name: string, total: string, category: string, date: string, type: string, id: string) : Promise<void> {
 	let db = this.client.db(this.dbName);
 	let collection = db.collection(this.collectionName);
 	
-	console.log("id is:" + id);
 	switch(id){
 		case "transaction":
 			var result = await collection.updateOne({'trans_name' : name, 'trans_type': type, 'trans_category': category, 'trans_date': date, 'trans_price': total, 'id': id}, { $set : { 'trans_price' : total} }, { 'upsert' : true });
@@ -71,12 +70,10 @@ export class Database {
     public async del(name: string, id: string) : Promise<void> {
 		let db = this.client.db(this.dbName);
 		let collection = db.collection(this.collectionName);
-		console.log("delete: key = " + name);
 
 		switch(id){
 			case "monthly":
 				var result = await collection.deleteOne({'monthly_expense' : name});
-				console.log("entered monthly delete");
 				break;
 			case "transaction":
 				var result = await collection.deleteOne({'trans_name' : name});
@@ -85,15 +82,5 @@ export class Database {
 		}
 		
     }
-    
-    public async isFound(key: string) : Promise<boolean>  {
-	console.log("isFound: key = " + key);
-	let v = await this.get(key);
-	console.log("is found result = " + v);
-	if (v === null) {
-	    return false;
-	} else {
-	    return true;
-	}
-    }
+   
 }

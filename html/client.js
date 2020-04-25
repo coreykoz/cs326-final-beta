@@ -1,4 +1,5 @@
-const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
+//const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
+const url = "http://localhost:8080/uwallet";
 
 // NEW: helper method for posting data
 async function postData(url, data) {
@@ -55,7 +56,7 @@ function createTransaction(name, total, date, cate, type){
     //reformat this data into our documentation verison of it
     (async () => {
     let id = "transaction";
-    let data = {'trans_name' : name, 'trans_type': type, 'trans_category': cate, 'trans_date': date, 'trans_price': total, 'id': id};
+    let data = {'trans_name' : name, 'trans_price': total, 'trans_category': cate, 'trans_date': date, 'trans_type': type, 'id': id};
 
     const newURL = url + "/createTransaction"; 
     const resp = await postData(newURL, data);
@@ -90,7 +91,6 @@ async function readTransaction(){
 }
 
 async function readMonthly(){
-    
     let id = {'id':"monthly"};
 
     const newURL = url + "/read"; 
@@ -104,36 +104,30 @@ async function readMonthly(){
     }
 }
 
-function readIncome(){
-    (async () => {
+async function readIncome(){
         let id = {'id':"income"};
     
         const newURL = url + "/read"; 
         const resp = await postData(newURL, id);
         const j = await resp.json();
         if (j) {
-            
             return j;
         } else {
             return "Error: Could not read";
         }
-        })();
 }
 
-function readExpense(){
-    (async () => {
+async function readExpense(){
         let id = {'id':"expense"};
     
         const newURL = url + "/read"; 
         const resp = await postData(newURL, id);
         const j = await resp.json();
         if (j) {
-            
             return j;
         } else {
             return "Error: Could not read";
         }
-        })();
 }
 
 // UPDATES
@@ -174,51 +168,57 @@ function deleteMonthly(){
 // 2) process data and draw/create graphs
 
 // Table - Should be calling readTransaction() and displaying results
-function drawTransTable(){
+async function drawTransTable(){
 
     // Get array of JSONs
-    let array = readTransaction();
+    let array = await readTransaction();
+
+    // [ {'name': "something", 'counter': 2} , {'name': "something", 'counter': 2}]
+    //  array[0].name = "something"
+    // array[0].counter = 2
 
     //Sort by date, descending 
     array.sort(function(a, b){
-
         //converts "2020-04-24" to "2020/04/24" and creates date obj
-        let date1 = new Date(a.replace(/-/g,'/'));
-        let date2 = new Date(b.replace(/-/g,'/'));
+        let date1 = new Date(a.trans_date.replace(/-/g, '/'));
+        let date2 = new Date(b.trans_date.replace(/-/g, '/'));
+        
+        return date1.getTime() - date2.getTime();
+    });
 
-        return date2 - date1;
+    //money formatter
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
     });
     
     //Draws each row of HTML based on sorted array
     for(let i = 0; i < array.length; i++){
-        let name = array[i].mon;
+        let name = array[i].trans_name;
         let type = array[i].trans_type;
         let cate = array[i].trans_category;
         let date = array[i].trans_date;
         let total = array[i].trans_price;
 
         document.getElementById("trans_table").innerHTML = "<tr><td>" +  name + "</td><td>" + type + "</td><td>" + 
-        cate + "</td><td>" + date + "</td><td>" + total + "</td></tr>" + document.getElementById("trans_table").innerHTML;
+         cate + "</td><td>" + date + "</td><td>" + formatter.format(total) + "</td></tr>" + document.getElementById("trans_table").innerHTML;
     }
 }
 
 // Table - Should be calling readMonthly() and displaying results
 async function drawMonthlyTable(){
-    // 
-    let val = await readMonthly();
-    console.log(val);
-
-    /*
+   
     // Get array of JSONs
-    let array = readMonthly();
+    let array = await readMonthly();
     
     //Draws each row of HTML
     for(let i = 0; i < array.length; i++){
         let name = array[i].monthlyName;
         let total = array[i].monthlyCost;
 
-        document.getElementById("monthly_table").innerHTML = "<tr><td>" +  name + "</td><td>" + total + document.getElementById("monthly_table").innerHTML;
-    }*/
+        document.getElementById("monthly_table").innerHTML = "<tr><td>" +  name + "</td><td>" + total +  + "</td></tr>"+ document.getElementById("monthly_table").innerHTML;
+    }
 }
 
 

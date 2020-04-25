@@ -58,13 +58,6 @@ var MyServer = /** @class */ (function () {
         this.server.use('/', express.static('./html'));
         // NEW: handle POST in JSON format
         this.server.use(express.json());
-        // Set a single handler for a route.
-        this.router.post('/users/:userId/create', this.createHandler.bind(this));
-        // Set multiple handlers for a route, in sequence.
-        this.router.post('/users/:userId/read', [this.errorHandler.bind(this), this.readHandler.bind(this)]);
-        this.router.post('/users/:userId/update', [this.errorHandler.bind(this), this.updateHandler.bind(this)]);
-        this.router.post('/users/:userId/delete', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
-        // Set a fall-through handler if nothing matches.
         this.router.post('/createIncome', this.createIncomeHandler.bind(this));
         this.router.post('/createExpense', this.createExpenseHandler.bind(this));
         this.router.post('/createTransaction', this.createTransactionHandler.bind(this));
@@ -121,7 +114,6 @@ var MyServer = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         name = request.body.trans_name;
-                        console.log("testing transaction handler:'" + name + "'");
                         return [4 /*yield*/, this.theDatabase.put(request.body.trans_name, request.body.trans_price, request.body.trans_category, request.body.trans_date, request.body.trans_type, request.body.id)];
                     case 1:
                         _a.sent();
@@ -204,124 +196,8 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
-    MyServer.prototype.createHandler = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.createCounter(request.params['userId'] + "-" + request.query.name, response)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /*
-    private async readHandler(request, response): Promise<void> {
-    console.log(request.params['userId']);
-    await this.readCounter(request.params['userId']+"-"+request.body.name, response);
-    }*/
-    MyServer.prototype.updateHandler = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateCounter(request.params['userId'] + "-" + request.body.name, request.body.value, response)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MyServer.prototype.deleteHandler = function (request, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.deleteCounter(request.params['userId'] + "-" + request.query.name, response)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
     MyServer.prototype.listen = function (port) {
         this.server.listen(port);
-    };
-    MyServer.prototype.createCounter = function (name, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        console.log("creating counter named '" + name + "'");
-                        return [4 /*yield*/, this.theDatabase.put(name, 0)];
-                    case 1:
-                        _a.sent();
-                        response.write(JSON.stringify({ 'result': 'created',
-                            'name': name,
-                            'value': 0 }));
-                        response.end();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MyServer.prototype.errorCounter = function (name, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                response.write(JSON.stringify({ 'result': 'error' }));
-                response.end();
-                return [2 /*return*/];
-            });
-        });
-    };
-    MyServer.prototype.readCounter = function (name, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            var value;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.get(name)];
-                    case 1:
-                        value = _a.sent();
-                        response.write(JSON.stringify({ 'result': 'read',
-                            'name': name,
-                            'value': value }));
-                        response.end();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MyServer.prototype.updateCounter = function (name, value, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.put(name, value)];
-                    case 1:
-                        _a.sent();
-                        response.write(JSON.stringify({ 'result': 'updated',
-                            'name': name,
-                            'value': value }));
-                        response.end();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MyServer.prototype.deleteCounter = function (name, response) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.del(name)];
-                    case 1:
-                        _a.sent();
-                        response.write(JSON.stringify({ 'result': 'deleted',
-                            'value': name }));
-                        response.end();
-                        return [2 /*return*/];
-                }
-            });
-        });
     };
     return MyServer;
 }());

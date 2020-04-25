@@ -26,15 +26,6 @@ export class MyServer {
 	// NEW: handle POST in JSON format
 	this.server.use(express.json());
 
-
-	// Set a single handler for a route.
-	this.router.post('/users/:userId/create', this.createHandler.bind(this));
-	// Set multiple handlers for a route, in sequence.
-	this.router.post('/users/:userId/read',   [this.errorHandler.bind(this), this.readHandler.bind(this) ]);
-	this.router.post('/users/:userId/update', [this.errorHandler.bind(this), this.updateHandler.bind(this)]);
-	this.router.post('/users/:userId/delete', [this.errorHandler.bind(this), this.deleteHandler.bind(this)]);
-	// Set a fall-through handler if nothing matches.
-
 	this.router.post('/createIncome', this.createIncomeHandler.bind(this));
 	this.router.post('/createExpense', this.createExpenseHandler.bind(this));
 	this.router.post('/createTransaction', this.createTransactionHandler.bind(this));
@@ -74,7 +65,6 @@ export class MyServer {
 
 	private async createTransactionHandler(request, response){
 		let name = request.body.trans_name;
-		console.log("testing transaction handler:'" + name + "'");
 		
 		await this.theDatabase.put(request.body.trans_name, request.body.trans_price, request.body.trans_category, request.body.trans_date, request.body.trans_type, request.body.id);
 		response.write(JSON.stringify({'result' : 'created',
@@ -106,7 +96,6 @@ export class MyServer {
 					       'value'  : request.body.expense_name }));
 		response.end();
 	}
-	
 
     private async errorHandler(request, response, next) : Promise<void> {
 	let value : boolean = await this.theDatabase.isFound(request.params['userId']+"-"+request.query.name);
@@ -118,64 +107,9 @@ export class MyServer {
 	    next();
 	}
     }
-    
-    private async createHandler(request, response) : Promise<void> {
-	await this.createCounter(request.params['userId']+"-"+request.query.name, response);
-    }
-
-	/*
-    private async readHandler(request, response): Promise<void> {
-	console.log(request.params['userId']);
-	await this.readCounter(request.params['userId']+"-"+request.body.name, response);
-    }*/
-
-    private async updateHandler(request, response) : Promise<void> {
-	await this.updateCounter(request.params['userId']+"-"+request.body.name, request.body.value, response);
-    }
-
-    private async deleteHandler(request, response) : Promise<void> {
-	await this.deleteCounter(request.params['userId']+"-"+request.query.name, response);
-    }
 
     public listen(port) : void  {
 	this.server.listen(port);
-    }
-
-    public async createCounter(name: string, response) : Promise<void> {
-	console.log("creating counter named '" + name + "'");
-	await this.theDatabase.put(name, 0);
-	response.write(JSON.stringify({'result' : 'created',
-				       'name' : name,
-				       'value' : 0 }));
-	response.end();
-    }
-
-    public async errorCounter(name: string, response) : Promise<void> {
-	response.write(JSON.stringify({'result': 'error'}));
-	response.end();
-    }
-
-    public async readCounter(name: string, response) : Promise<void> {
-	let value = await this.theDatabase.get(name);
-	response.write(JSON.stringify({'result' : 'read',
-				       'name' : name,
-				       'value' : value }));
-	response.end();
-    }
-
-    public async updateCounter(name: string, value: number, response) : Promise<void> {
-	await this.theDatabase.put(name, value);
-	response.write(JSON.stringify({'result' : 'updated',
-				       'name' : name,
-				       'value' : value }));
-	response.end();
-    }
-    
-    public async deleteCounter(name : string, response) : Promise<void> {
-	await this.theDatabase.del(name);
-	response.write(JSON.stringify({'result' : 'deleted',
-				       'value'  : name }));
-	response.end();
     }
 }
 
