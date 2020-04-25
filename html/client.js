@@ -227,11 +227,16 @@ function drawMonthlySpendingByCateGraph(){
 
     //need to compare expense date month to current month
     //if the months match
+
+    let total;
     for( let i = 0; i < array.length; i++){
-        if(i.expense.date.getMonth() == currMonth){ //don't know how to access the date from the expense
+        if(array[i].date.getMonth() == currMonth){ 
             //get category and price
-            //add up to get a total for the categoy
+            let category = array[i].category;
+            let price = array[i].expense_total;
+            total = total + price;
             //add category + total to graph
+        }
             //document.getElementById("monthySpending").innerHTML = category + total + document.getElementById("monthySpending").innerHTML;
         }
         else{
