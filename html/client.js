@@ -83,7 +83,6 @@ async function readTransaction(){
     const resp = await postData(newURL, id);
     const j = await resp.json();
     if (j) {
-        //console.log(j);
         return j;
 	} else {
 	    return "Error: Could not read";
@@ -97,7 +96,6 @@ async function readMonthly(){
     const resp = await postData(newURL, id);
     const j = await resp.json();
     if (j) {
-        //console.log(j);
         return j;
 	} else {
 	    return "Error: Could not read";
@@ -132,8 +130,7 @@ async function readExpense(){
 
 // UPDATES
 
-function updateMonthly(){
-    (async () => {
+async function updateMonthly(){
         let monthlyName = document.getElementById("monthlyName").value;
         let monthlyCost = document.getElementById("monthlyTotal").value;
 
@@ -141,8 +138,6 @@ function updateMonthly(){
         const data = { 'monthly_expense': monthlyName, 'monthly_cost': monthlyCost, 'id': "monthly"};
 	    const resp = await postData(newURL, data);    
 	    const j = await resp.json();
-	    
-    })();
 }
 
 
@@ -167,6 +162,14 @@ function deleteMonthly(){
 // 1) call a read --> returns an array of documents (in JSON format)
 // 2) process data and draw/create graphs
 
+
+//Money formatter
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+});
+
 // Table - Should be calling readTransaction() and displaying results
 async function drawTransTable(){
 
@@ -186,12 +189,6 @@ async function drawTransTable(){
         return date1.getTime() - date2.getTime();
     });
 
-    //money formatter
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2
-    });
     
     //Draws each row of HTML based on sorted array
     for(let i = 0; i < array.length; i++){
@@ -214,10 +211,10 @@ async function drawMonthlyTable(){
     
     //Draws each row of HTML
     for(let i = 0; i < array.length; i++){
-        let name = array[i].monthlyName;
-        let total = array[i].monthlyCost;
+        let name = array[i].monthly_expense;
+        let total = array[i].monthly_cost;
 
-        document.getElementById("monthly_table").innerHTML = "<tr><td>" +  name + "</td><td>" + total +  + "</td></tr>"+ document.getElementById("monthly_table").innerHTML;
+        document.getElementById("monthly_table").innerHTML = "<tr><td>" +  name + "</td><td>" + formatter.format(total) +  "</td></tr>" + document.getElementById("monthly_table").innerHTML;
     }
 }
 
