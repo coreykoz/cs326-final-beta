@@ -1,9 +1,9 @@
 1. Run the following commands:
 ```
 npm init -y
+npm install level
 npm install mongodb
 npm install express
-npm install 
 ```
 2. Create .gitignore, and add the following:
 ```
@@ -16,7 +16,7 @@ heroku login
 heroku create
 ```
 
-4. Create Procfile with the following command:
+4. Create Procfile with the following code snippet:
 ```
 web: node server-main.js
 ```
@@ -28,7 +28,7 @@ theServer.listen(process.env.PORT);
 
 6. Compile all .ts files as .js files with the command:
 ```
-tsc html/client.ts html/chart-creation.ts mongo-database.ts myserver-post.ts server-main.ts
+tsc html/client.ts mongo-database.ts myserver-post.ts server-main.ts
 ```
 
 7. On the Heroku website, link github repo to given Heroku Link (from 3) and enable auto-deploy.
