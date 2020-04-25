@@ -407,8 +407,6 @@ function drawMonthlySpendingByCateGraph() {
                         }
                     }
                     allCategory = [["Grocery", groceryTotal], ["Transportation & Gas", transportTotal], ["Entertainment", entertainmentTotal], ["Loans & Other Payments", loanTotal], ["Shopping", shoppingTotal], ["Bills & Insurance", billTotal], ["Restaurant & Dining", dineTotal]];
-                    //display this array
-                    console.log(allCategory);
                     pieChart = new Chart(ctx, {
                         type: 'pie',
                         data: {
