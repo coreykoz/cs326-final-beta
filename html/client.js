@@ -575,7 +575,7 @@ function drawLineGraph() {
                             labels: ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'],
                             datasets: [{
                                     label: 'Grocery',
-                                    data: [12, 5, 3, 4, 6],
+                                    data: grocery,
                                     backgroundColor: [
                                         'rgba(255, 99, 132, 0.2)'
                                         /*'rgba(54, 162, 235, 0.2)',
