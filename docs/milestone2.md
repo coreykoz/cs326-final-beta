@@ -139,4 +139,4 @@ Here we intend to delete "Health Insurance" from Monthly Expenses. We open the p
 On submission and refresh, the "Health Insurance" portion is gone. 
 
 ### Division of Labor
-For the API planning, we all simulateouly worked together on a Google Doc and a Zoom call, and once we were done, one of us edited the md file. 
+For the API planning, we all simultaneously worked together on a Google Doc and a Zoom call, and once we were done, one of us edited the md file. We all went through the code together over a Zoom while primarily one person was typing for a specific section. We did  switch around who was typing for different sections, but we found it easier to have one person type while everyone was online together at the same time to discuss changes. We used this method for the backend server, front end ts/js, and our charting.
