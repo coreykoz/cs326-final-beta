@@ -21,10 +21,11 @@ some-heroku-link.com/survey.html
 | Email Address     | User’s email address for account creation.                          | { ‘email’ : example_email }      |
 | Age               | User’s age used to personalize the application for the user.        | { ‘age’: example_age }           |
 | Password          | User’s private password to keep their personal information secure.  | { ‘password’: example_password } |
+| Id                 | This acts as an identifier for the type of data we’re dealing with.| { ‘id’ : “user”}                 |
+
 
 #### Responses
 The user API will return the survey data as a JSON object. 
-
 
 ### Income
 #### Overview
@@ -41,6 +42,8 @@ some-heroku-link.com/main.html
 | Income Total | User inputs the amount of money being deposited.                                      | { ‘income_total’’ : 607}        |
 | Date         | User inputs the date of the deposit.                                                  | { ‘date’: 04/22/2020}           |
 | Category     | User picks the best fitting category the deposit falls under from a list of options.  | { ‘category’’: direct deposit } |
+| Id           | This acts as an identifier for the type of data we’re dealing with.                   | { ‘id’ : “income”}              |
+
 
 #### Responses
 The income API will return the income data as a JSON object.
@@ -60,6 +63,7 @@ some-heroku-link.com/main.html
 | Expense total | Total amount of the expense as per user input.                      | { ‘expense_total’ : 27.50 } |
 | Date          | The date that the expense incurred as entered by the user.          | { ‘date’ : 04/22/2020 }     |
 | Category      | The category that the expense belongs to as determined by the user. | { ‘category’ : groceries }  |
+| Id            | This acts as an identifier for the type of data we’re dealing with. | { ‘id’ : “expense”}         |   
 
 #### Responses
 The expenses API will return the expenses data as a JSON object.
@@ -79,7 +83,8 @@ some-heroku-link.com/main.html
 | Transaction Type | Type of transaction that occurred that is of 3 types: Income, Expense, or Monthly Expense.               | { ‘trans_type’ : expense }              |
 | Category         | The category that the transaction belongs to, derived from either income, expenses, or monthly expenses. | { ‘trans_category’ : example_category } |
 | Date             | The date in which the transaction occurred, derived from either income, expenses, or monthly expenses.   | { ‘trans_date’ : example_date}          |
-| Price            | The price of the transaction. 									      | { ‘trans_price': example_price}		|
+| Price            | The price of the transaction. 								                                    	      | { ‘trans_price': example_price}		    |
+| Id               | This acts as an identifier for the type of data we’re dealing with.                                      | { ‘id’ : “transaction"}                 |
 
 
 #### Responses
@@ -100,8 +105,13 @@ some-heroku-link.com/survey.html
 |--------------|------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|
 | Expense Name | Name of given monthly expense. This is autofilled if given through the survey. If not through the survey, user input is required.  | { ‘monthly_expense’: example_expense } |
 | Monthly Cost | Price of the given monthly expense. This input is required.                                                                        | { ‘monthly_cost’ : example_cost }      |
+| Id           | This acts as an identifier for the type of data we’re dealing with.                                                                | { ‘id’ : “monthly”}                    |
 
 #### Responses
 The monthly expenses API will return the montly expense data as a JSON object.
 
+###Heroku
+Heroku URL: https://cryptic-eyrie-49046.herokuapp.com/uwallet
 
+###Division of Labor
+For the API planning, we all simulateouly worked together on a Google Doc and a Zoom call, and once we were done, one of us edited the md file. 
