@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/coreykoz/cs326-final-beta#readme",
   "devDependencies": {
+    "@types/chart.js": "^2.9.19",
     "@types/node": "^13.13.2"
   },
   "dependencies": {

@@ -21,7 +21,7 @@
         <link href="https://fonts.googleapis.com/css?family=Graduate&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="chart.css">
-        <script src="client.js"></script>
+        
         
     </head>
 
@@ -198,7 +198,7 @@
                       <!-- Modal footer -->
                       <div class="modal-footer">
                         <button type="button" class="btn btn-primary" onclick="updateMonthly();" data-dismiss="modal">Edit/Create</button>
-                        <button type="button" class="btn btn-primary" onclick="deleteMonthly();drawMonthlyTable()" data-dismiss="modal">Delete</button>
+                        <button type="button" class="btn btn-primary" onclick="deleteMonthly();" data-dismiss="modal">Delete</button>
                       </div>
                       
                     </div>
@@ -221,18 +221,7 @@
                       </tr>
                     </thead>
                     <tbody id="popspend_table">
-                      <tr>
-                        <td>Transportation & Gas</td>
-                        <td>$5526.72</td>
-                      </tr>
-                      <tr>
-                        <td>Restaurants & Dining</td>
-                        <td>$35.00</td>
-                      </tr>
-                      <tr>
-                        <td>Grocery</td>
-                        <td>$26.99</td>
-                      </tr>
+                      
                     </tbody>
                   </table>
             </div>
@@ -267,5 +256,12 @@
     </div>
     </body>
     <script src="client.js"></script>
-    <script>drawTransTable(); drawMonthlyTable();</script>
+    <script>
+    drawTransTable(); 
+    drawMonthlyTable();
+
+    drawMonthlySpendingByCateGraph();
+    drawMostPopSpendingTable();
+    drawLineGraph();
+    </script>
 </html>

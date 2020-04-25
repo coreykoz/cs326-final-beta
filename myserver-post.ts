@@ -56,7 +56,7 @@ export class MyServer {
 	}
 
 	private async createExpenseHandler(request, response){
-		await this.theDatabase.put(request.body.expense_name, request.body.expense_total, request.body.date, request.body.category, "unused", request.body.id);
+		await this.theDatabase.put(request.body.expense_name, request.body.expense_total, request.body.category, request.body.date, "unused", request.body.id);
 		response.write(JSON.stringify({'result' : 'created',
 					       'expense_name' : request.body.expense_name,
 					       'value' : 0 }));

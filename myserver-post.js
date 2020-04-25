@@ -95,7 +95,7 @@ var MyServer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.theDatabase.put(request.body.expense_name, request.body.expense_total, request.body.date, request.body.category, "unused", request.body.id)];
+                    case 0: return [4 /*yield*/, this.theDatabase.put(request.body.expense_name, request.body.expense_total, request.body.category, request.body.date, "unused", request.body.id)];
                     case 1:
                         _a.sent();
                         response.write(JSON.stringify({ 'result': 'created',
