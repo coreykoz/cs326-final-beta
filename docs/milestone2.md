@@ -111,11 +111,32 @@ some-heroku-link.com/survey.html
 The monthly expenses API will return the montly expense data as a JSON object.
 
 ### Heroku
-Heroku URL: https://cryptic-eyrie-49046.herokuapp.com/uwallet
+Heroku URL: https://cryptic-eyrie-49046.herokuapp.com/
 
 ### CRUD
+Quick Note: To see changes, you must refresh the page. We're planning on fixing this soon. 
 
-####Create
+#### Create
+![create](/docs/images/create_1.PNG)
+Here we filled out the Income portion, where we intend to create a new Income document and send the data to a server. The results are displayed in the next section, Read.
+
+#### Read
+![read](/docs/images/read_1.PNG)
+Here, we can read the new Income we previously added once we refresh the page. 
+
+#### Update
+![update](/docs/images/update_1.PNG)
+Here we intend to update the Monthly Expense "Health Insurance", and change its price to 20. We open the prompt and fill in the following:
+![update](/docs/images/update_2.PNG)
+
+Once we submit and refresh, we get the following:
+![update](/docs/images/update_3.PNG)
+
+#### Delete
+![delete](/docs/images/delete_1.PNG)
+Here we intend to delete "Health Insurance" from Monthly Expenses. We open the prompt and fill in the requirements.
+![delete](/docs/images/delete_2.PNG)
+On submission and refresh, the "Health Insurance" portion is gone. 
 
 ### Division of Labor
 For the API planning, we all simulateouly worked together on a Google Doc and a Zoom call, and once we were done, one of us edited the md file. 
