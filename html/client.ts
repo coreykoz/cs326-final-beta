@@ -1,8 +1,6 @@
 const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
 //const url = "http://localhost:8080/uwallet";
 
-let chartjs = require('chart.js');
-
 //canvas for the graphs
 const ctx = (<HTMLCanvasElement>document.getElementById('monthySpending'));
 const ctx2 = (<HTMLCanvasElement>document.getElementById('budget'));

@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
 //const url = "http://localhost:8080/uwallet";
-var chartjs = require('chart.js');
 //canvas for the graphs
 var ctx = document.getElementById('monthySpending');
 var ctx2 = document.getElementById('budget');
