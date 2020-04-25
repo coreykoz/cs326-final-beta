@@ -110,8 +110,8 @@ some-heroku-link.com/survey.html
 #### Responses
 The monthly expenses API will return the montly expense data as a JSON object.
 
-###Heroku
+### Heroku
 Heroku URL: https://cryptic-eyrie-49046.herokuapp.com/uwallet
 
-###Division of Labor
+### Division of Labor
 For the API planning, we all simulateouly worked together on a Google Doc and a Zoom call, and once we were done, one of us edited the md file. 
