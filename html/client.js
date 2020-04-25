@@ -224,24 +224,44 @@ function drawMonthlySpendingByCateGraph(){
     let array = readExpense();
     const currDate = new Date(); // gets the current date as a string
     const currMonth = currDate.getMonth();
-
-    //need to compare expense date month to current month
-    //if the months match
-
-    let total;
-    for( let i = 0; i < array.length; i++){
-        if(array[i].date.getMonth() == currMonth){ 
+    
+    let groceryTotal;
+    let transportTotal;
+    let entertainmentTotal;
+    let loanTotal;
+    let shoppingTotal;
+    let billTotal;
+    let dineTotal;
+    for(let i = 0; i < array.length; i++){
+        if(new Date(array[i].date.replace(/-/g, '/')).getMonth() == currMonth){ 
             //get category and price
-            let category = array[i].category;
-            let price = array[i].expense_total;
-            total = total + price;
-            //add category + total to graph
-        }
-            //document.getElementById("monthySpending").innerHTML = category + total + document.getElementById("monthySpending").innerHTML;
-        }
-        else{
-            //idk
-        }
+            if(array[i].category == "Grocery"){
+                groceryTotal += parseFloat(array[i].expense_total);
+            }
+            else if(array[i].category == "Transportation & Gas"){
+                transportTotal += parseFloat(array[i].expense_total);
+            }
+            else if(array[i].category == "Entertainment"){
+                entertainmentTotal += parseFloat(array[i].expense_total);
+            }
+            else if(array[i].category == "Loans & Other Payments"){
+                loanTotal += parseFloat(array[i].expense_total);
+            }
+            else if(array[i].category == "Shopping"){
+                shoppingTotal += parseFloat(array[i].expense_total);
+            }
+            else if(array[i].category == "Bills & Insurance"){
+                billTotal += parseFloat(array[i].expense_total);
+            }
+            else if(array[i].category == "Restaurant & Dining"){
+                dineTotal += parseFloat(array[i].expense_total);
+            }
+            else{
+    
+            }
+    
+        let allCategory  = [["Grocery",groceryTotal], ["Transportation & Gas", transportTotal], ["Entertainment", entertainmentTotal], ["Loans & Other Payments", loanTotal], ["Shopping", shoppingTotal], ["Bills & Insurance", billTotal], ["Restaurant & Dining", dineTotal]];
+        //display this array
     }
 }
 
@@ -250,33 +270,86 @@ function drawMonthlySpendingByCateGraph(){
 // Bar Chart - Should be calling readExpenses() - have one array hold all docs from readExpenses() for current month and another for the rest
 //                                                we'll calculate budget based on avg spending? Or we could have more data (inside userInfo or a separate data structure)
 //                                                that allows input for budget
+/*
 function drawBudgetGraph(){
-
-}
-
-// Table - Should be calling readExpenses() and only using values from current month and putting top 3-5 values (total spent wise) on table
-function drawMostPopSpendingTable(){
     let array = readExpense();
+    const currDate = new Date(); // gets the current date as a string
+    const currMonth = currDate.getMonth();
 
-    var x = new GroupBy(array, expenseCategory);
+    for(let i = 0; i < array.length; i++){  
+        if(new Date(array[i].date.replace(/-/g, '/')).getMonth() == currMonth){ 
+            monthlyArray += array[i];
+        }
+    }
+}
+*/
 
-    x.sum();
+// Table - Should be calling readExpenses() and putting top 3-5 values (total spent wise) on table
+async function drawMostPopSpendingTable(){
+    let array = await readExpense();
 
     //Calculation
-    //for(let i=0; i<array)
-    
-    //Draws each row of HTML
-    for(let i = 0; i < array.length; i++){
-        //let name = array[i].expenseName;
-        let cate = array[i].expenseCategory;
-        let total = array[i].monthlyCost;
+    let groceryTotal;
+    let transportTotal;
+    let entertainmentTotal;
+    let loanTotal;
+    let shoppingTotal;
+    let billTotal;
+    let dineTotal;
 
-        document.getElementById("popspend_table").innerHTML = "<tr><td>" +  cate + "</td><td>" + total + document.getElementById("popspend_table").innerHTML;
+    for(let i=0; i < array.length; i++){
+        if(array[i].category == "Grocery"){
+            groceryTotal += parseFloat(array[i].expense_total);
+        }
+        else if(array[i].category == "Transportation & Gas"){
+            transportTotal += parseFloat(array[i].expense_total);
+        }
+        else if(array[i].category == "Entertainment"){
+            entertainmentTotal += parseFloat(array[i].expense_total);
+        }
+        else if(array[i].category == "Loans & Other Payments"){
+            loanTotal += parseFloat(array[i].expense_total);
+        }
+        else if(array[i].category == "Shopping"){
+            shoppingTotal += parseFloat(array[i].expense_total);
+        }
+        else if(array[i].category == "Bills & Insurance"){
+            billTotal += parseFloat(array[i].expense_total);
+        }
+        else if(array[i].category == "Restaurant & Dining"){
+            dineTotal += parseFloat(array[i].expense_total);
+        }
+        else{
+
+        }
+
+    let allCategory  = [["Grocery",groceryTotal], ["Transportation & Gas", transportTotal], ["Entertainment", entertainmentTotal], ["Loans & Other Payments", loanTotal], ["Shopping", shoppingTotal], ["Bills & Insurance", billTotal], ["Restaurant & Dining", dineTotal]];
+
+    allCategory.sort(function(a, b){        
+        return a[1] - b[1];
+    });
+
+    }
+    //Draws each row of HTML
+    for(let i = 0; i < allCategory.length; i++){
+        document.getElementById("popspend_table").innerHTML = "<tr><td>" +  i[i][0] + "</td><td>" + i[i][1] + "</td></tr>"+ document.getElementById("popspend_table").innerHTML;
+        
     }
 
 }
 
+
 // Line Graph - forget what this one does, anna input? shows the monthly trend filtered down by category
 function drawLineGraph(){
+    let array = readExpense();
+    let cate;
+    let month;
+    let total;
+
+    for(i = 0; i < array.length; i++){
+        
+    }
+
     //might have to create array that holds the category, date and expense amt
+}
 }
