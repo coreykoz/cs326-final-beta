@@ -136,7 +136,7 @@ async function updateMonthly(){
 
         const newURL = url + "/updateMonthly";
         const data = { 'monthly_expense': monthlyName, 'monthly_cost': monthlyCost, 'id': "monthly"};
-	    const resp = await postData(newURL, data);    
+	    const resp = await postData(newURL, data);
 	    const j = await resp.json();
 }
 
