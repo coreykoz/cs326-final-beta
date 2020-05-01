@@ -34,8 +34,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
-//const url = "http://localhost:8080/uwallet";
+//const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
+var url = "http://localhost:8080/uwallet";
 //canvas for the graphs
 var ctx = document.getElementById('monthySpending');
 var ctx2 = document.getElementById('budget');

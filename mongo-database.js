@@ -40,9 +40,18 @@ var Database = /** @class */ (function () {
     function Database(collectionName) {
         var _this = this;
         this.MongoClient = require('mongodb').MongoClient;
-        this.uri = "mongodb+srv://guest:guest@cluster0-y0tyl.mongodb.net/test?retryWrites=true&w=majority";
-        this.dbName = "emery";
+        this.dbName = "uwallet";
         this.collectionName = collectionName;
+        var secrets;
+        var password;
+        if (!process.env.PASSWORD) {
+            secrets = require('./secrets.json');
+            password = secrets.password;
+        }
+        else {
+            password = process.env.PASSWORD;
+        }
+        this.uri = password;
         this.client = new this.MongoClient(this.uri, { useNewUrlParser: true });
         // Open up a connection to the client.
         // Open up a connection to the client.

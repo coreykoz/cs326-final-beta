@@ -4,6 +4,8 @@ npm init -y
 npm install level
 npm install mongodb
 npm install express
+npm install @types/node
+npm install @types/chart.js
 ```
 2. Create .gitignore, and add the following:
 ```
