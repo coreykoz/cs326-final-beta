@@ -60,8 +60,8 @@
             </div>
             <div class="col-md-6 text-center pt-5">
 
-              <h3 id="totalMoney">Total Cash: $4.20</h3> <br>
-
+              <h3>Total Available:</h3> <br>
+              <h4 id = "totalMoney"> </h4>
 
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#incomeModal">Add Income</button> <br> <br>
 
@@ -257,6 +257,7 @@
     </body>
     <script src="client.js"></script>
     <script>
+    totalAvailable();
     drawTransTable(); 
     drawMonthlyTable();
 

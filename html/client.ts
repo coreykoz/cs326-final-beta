@@ -273,7 +273,7 @@ async function drawMonthlySpendingByCateGraph(){
         let allCategory  = [["Grocery",groceryTotal], ["Transportation & Gas", transportTotal], ["Entertainment", entertainmentTotal], ["Loans & Other Payments", loanTotal], ["Shopping", shoppingTotal], ["Bills & Insurance", billTotal], ["Restaurant & Dining", dineTotal]];
         //display this array
 
-        var pieChart: Chart = new Chart(ctx, {
+        var pieChart = new Chart(ctx, {
             type: 'pie',
             data: {
                 labels: ['Grocery', 'Transportation & Gas', 'Entertainment', 'Loans & Other Payments', 'Shopping', 'Bills & Insurance', 'Restaurant & Dining'],
@@ -315,6 +315,43 @@ async function drawMonthlySpendingByCateGraph(){
     
 }
 
+/*
+Available funds display
+read income - read expenses
+should update when income or expenses is changed - should budget be factored into this??
+*/
+async function totalAvailable(){
+    let expenses = await readExpense();
+    let income = await readIncome();
+    let expenseTotal = 0;
+    let incomeTotal = 0;
+
+    console.log(expenses);
+    console.log(income);
+
+    for (let i=0; i < expenses.length; i++){
+        expenseTotal += parseFloat(expenses[i].expense_total);
+    }
+    for (let i=0; i < income.length; i++){
+        incomeTotal += parseFloat(income[i].income_total);
+    }
+
+    console.log(expenseTotal);
+    console.log(incomeTotal);
+
+    let remaining = (expenseTotal - incomeTotal).toFixed(2);
+    remaining.toString();
+    console.log(remaining);
+
+    if(expenseTotal > incomeTotal){
+        document.getElementById("totalMoney").innerHTML = "-" + remaining;
+
+    }
+    else{
+        document.getElementById("totalMoney").innerHTML = "" + remaining;
+    }
+
+}
     
 
 // Bar Chart - Should be calling readExpenses() - have one array hold all docs from readExpenses() for current month and another for the rest

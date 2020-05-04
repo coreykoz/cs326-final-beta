@@ -449,6 +449,48 @@ function drawMonthlySpendingByCateGraph() {
         });
     });
 }
+/*
+Available funds display
+read income - read expenses
+should update when income or expenses is changed - should budget be factored into this??
+*/
+function totalAvailable() {
+    return __awaiter(this, void 0, void 0, function () {
+        var expenses, income, expenseTotal, incomeTotal, i, i, remaining;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, readExpense()];
+                case 1:
+                    expenses = _a.sent();
+                    return [4 /*yield*/, readIncome()];
+                case 2:
+                    income = _a.sent();
+                    expenseTotal = 0;
+                    incomeTotal = 0;
+                    console.log(expenses);
+                    console.log(income);
+                    for (i = 0; i < expenses.length; i++) {
+                        expenseTotal += parseFloat(expenses[i].expense_total);
+                    }
+                    for (i = 0; i < income.length; i++) {
+                        incomeTotal += parseFloat(income[i].income_total);
+                    }
+                    console.log(expenseTotal);
+                    console.log(incomeTotal);
+                    remaining = (expenseTotal - incomeTotal).toFixed(2);
+                    remaining.toString();
+                    console.log(remaining);
+                    if (expenseTotal > incomeTotal) {
+                        document.getElementById("totalMoney").innerHTML = "-" + remaining;
+                    }
+                    else {
+                        document.getElementById("totalMoney").innerHTML = "" + remaining;
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 // Bar Chart - Should be calling readExpenses() - have one array hold all docs from readExpenses() for current month and another for the rest
 //                                                we'll calculate budget based on avg spending? Or we could have more data (inside userInfo or a separate data structure)
 //                                                that allows input for budget
