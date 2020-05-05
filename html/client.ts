@@ -383,22 +383,95 @@ async function totalAvailable(){
 
 async function drawBudgetGraph(){
     let array = await readBudget();
-    console.log(array);
+    let expense = await readExpense();
+    // budgetArra = [groceryBudgetValue, TransBudgetValue, EntertainmentBudget, etc]
+    let budgetArray = [0,0,0,0,0,0,0];
+    let expenseArray = [0,0,0,0,0,0,0];
+
+    for(let i = 0; i < array.length; i++){
+        if(array[i].budget_category == "Grocery"){
+            budgetArray[0] = parseFloat(array[i].budget_total);
+        }
+        else if(array[i].budget_category == "Transportation & Gas"){
+            budgetArray[1] = parseFloat(array[i].budget_total);
+        }
+        else if(array[i].budget_category == "Entertainment"){
+            budgetArray[2] = parseFloat(array[i].budget_total);
+        }
+        else if(array[i].budget_category == "Loan & Other Payments"){
+            budgetArray[3] = parseFloat(array[i].budget_total);
+        }
+        else if(array[i].budget_category == "Shopping"){
+            budgetArray[4] = parseFloat(array[i].budget_total);
+        }
+        else if(array[i].budget_category == "Bills & Insurance"){
+            budgetArray[5] = parseFloat(array[i].budget_total);
+        }
+        else if(array[i].budget_category == "Restaurant & Dining"){
+            budgetArray[6] = parseFloat(array[i].budget_total);
+        }
+        else{
+
+        }
+
+    }
+
+    for(let i = 0; i < expense.length; i++){
+            if(expense[i].category == "Grocery"){
+                expenseArray[0] += parseFloat(expense[i].expense_total);
+            }
+            else if(expense[i].category == "Transportation & Gas"){
+                expenseArray[1] += parseFloat(expense[i].expense_total);
+            }
+            else if(expense[i].category == "Entertainment"){
+                expenseArray[2] += parseFloat(expense[i].expense_total);
+            }
+            else if(expense[i].category == "Loans & Other Payments"){
+                expenseArray[3] += parseFloat(expense[i].expense_total);
+            }
+            else if(expense[i].category == "Shopping"){
+                expenseArray[4] += parseFloat(expense[i].expense_total);
+            }
+            else if(expense[i].category == "Bills & Insurance"){
+                expenseArray[5] += parseFloat(expense[i].expense_total);
+            }
+            else if(expense[i].category == "Restaurant & Dining"){
+                expenseArray[6] += parseFloat(expense[i].expense_total);
+            }
+            else{
     
+            }
+    }
+
+    console.log(expenseArray);
     var mixedChart = new Chart(ctx2, {
         type: 'bar',
         data: {
             datasets: [{
-                label: 'Bar Dataset',
-                data: [10, 20, 30, 40]
+                label: 'Spending',
+                data: expenseArray,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                    'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
             }, {
-                label: 'Line Dataset',
-                data: [50, 50, 50, 50],
+                label: 'Budget',
+                data: budgetArray,
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                    'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1,                    
     
                 // Changes this dataset to become a line
                 type: 'bar'
             }],
-            labels: ['January', 'February', 'March', 'April']
+            labels: ['Grocery', 'Transportation & Gas', 'Entertainment', 'Loan & Other Payments', 'Shopping', 'Bills & Insurance', 'Restaurant & Dining']
         },
         options: {  scales: {
                     xAxes: [{ stacked: true }],
