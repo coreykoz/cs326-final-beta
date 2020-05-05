@@ -133,6 +133,19 @@ async function readExpense(){
         }
 }
 
+async function readBudget(){
+    let id = {'id':"budget"};
+
+    const newURL = url + "/read"; 
+    const resp = await postData(newURL, id);
+    const j = await resp.json();
+    if (j) {
+        return j;
+    } else {
+        return "Error: Could not read";
+    }
+}
+
 // UPDATES
 
 async function updateMonthly(){
@@ -145,6 +158,16 @@ async function updateMonthly(){
 	    const j = await resp.json();
 }
 
+async function updateBudget(){
+    let budgetCate = (<HTMLInputElement>document.getElementById("budgetCategory")).value;
+    let budgetTotal = (<HTMLInputElement>document.getElementById("budgetTotal")).value;
+
+    const newURL = url + "/updateBudget";
+    const data = { 'budget_category': budgetCate, 'budget_total': budgetTotal, 'id': "budget"};
+	const resp = await postData(newURL, data);
+    const j = await resp.json();
+}
+
 
 // DELETES
 
@@ -154,6 +177,18 @@ function deleteMonthly(){
 
         let data = { 'expense_name': expenseName, 'id': "monthly"};
         const newURL = url + "/deleteMonthly"; 
+        const resp = await postData(newURL, data);
+        const j = await resp.json();
+
+	})();
+}
+
+function deleteBudget(){
+    (async () => {
+        let budgetCate = (<HTMLInputElement>document.getElementById("budgetCategory")).value;
+
+        let data = { 'budget_category': budgetCate, 'id': "budget"};
+        const newURL = url + "/deleteBudget"; 
         const resp = await postData(newURL, data);
         const j = await resp.json();
 

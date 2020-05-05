@@ -33,8 +33,10 @@ export class MyServer {
 	this.router.post('/read', this.readHandler.bind(this));
 
 	this.router.post('/updateMonthly', this.updateMonthlyHandler.bind(this));
+	this.router.post('/updateBudget', this.updateBudgetHandler.bind(this));
 
 	this.router.post('/deleteMonthly', this.deleteMonthlyHandler.bind(this));
+	this.router.post('/deleteBudget', this.deleteBudgetHandler.bind(this));
 
 	this.router.post('*', async (request, response) => {
 	    response.send(JSON.stringify({ "result" : "command-not-found" }));
@@ -89,11 +91,23 @@ export class MyServer {
 		response.end();
 	}
 
+	private async updateBudgetHandler(request, response){
+		await this.theDatabase.put(request.body.budget_category, request.body.budget_total, "unused", "unused", "unused", request.body.id);
+		response.end();
+	}
+
 	//DELETES
 	private async deleteMonthlyHandler(request, response){
 		await this.theDatabase.del(request.body.expense_name, request.body.id);
 		response.write(JSON.stringify({'result' : 'deleted',
 					       'value'  : request.body.expense_name }));
+		response.end();
+	}
+
+	private async deleteBudgetHandler(request, response){
+		await this.theDatabase.del(request.body.budget_category, request.body.id);
+		response.write(JSON.stringify({'result' : 'deleted',
+					       'value'  : request.body.budget_category }));
 		response.end();
 	}
 

@@ -247,6 +247,31 @@ function readExpense() {
         });
     });
 }
+function readBudget() {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, newURL, resp, j;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    id = { 'id': "budget" };
+                    newURL = url + "/read";
+                    return [4 /*yield*/, postData(newURL, id)];
+                case 1:
+                    resp = _a.sent();
+                    return [4 /*yield*/, resp.json()];
+                case 2:
+                    j = _a.sent();
+                    if (j) {
+                        return [2 /*return*/, j];
+                    }
+                    else {
+                        return [2 /*return*/, "Error: Could not read"];
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 // UPDATES
 function updateMonthly() {
     return __awaiter(this, void 0, void 0, function () {
@@ -269,6 +294,27 @@ function updateMonthly() {
         });
     });
 }
+function updateBudget() {
+    return __awaiter(this, void 0, void 0, function () {
+        var budgetCate, budgetTotal, newURL, data, resp, j;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    budgetCate = document.getElementById("budgetCategory").value;
+                    budgetTotal = document.getElementById("budgetTotal").value;
+                    newURL = url + "/updateBudget";
+                    data = { 'budget_category': budgetCate, 'budget_total': budgetTotal, 'id': "budget" };
+                    return [4 /*yield*/, postData(newURL, data)];
+                case 1:
+                    resp = _a.sent();
+                    return [4 /*yield*/, resp.json()];
+                case 2:
+                    j = _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 // DELETES
 function deleteMonthly() {
     var _this = this;
@@ -280,6 +326,27 @@ function deleteMonthly() {
                     expenseName = document.getElementById("monthlyName").value;
                     data = { 'expense_name': expenseName, 'id': "monthly" };
                     newURL = url + "/deleteMonthly";
+                    return [4 /*yield*/, postData(newURL, data)];
+                case 1:
+                    resp = _a.sent();
+                    return [4 /*yield*/, resp.json()];
+                case 2:
+                    j = _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    }); })();
+}
+function deleteBudget() {
+    var _this = this;
+    (function () { return __awaiter(_this, void 0, void 0, function () {
+        var budgetCate, data, newURL, resp, j;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    budgetCate = document.getElementById("budgetCategory").value;
+                    data = { 'budget_category': budgetCate, 'id': "budget" };
+                    newURL = url + "/deleteBudget";
                     return [4 /*yield*/, postData(newURL, data)];
                 case 1:
                     resp = _a.sent();

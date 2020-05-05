@@ -63,7 +63,9 @@ var MyServer = /** @class */ (function () {
         this.router.post('/createTransaction', this.createTransactionHandler.bind(this));
         this.router.post('/read', this.readHandler.bind(this));
         this.router.post('/updateMonthly', this.updateMonthlyHandler.bind(this));
+        this.router.post('/updateBudget', this.updateBudgetHandler.bind(this));
         this.router.post('/deleteMonthly', this.deleteMonthlyHandler.bind(this));
+        this.router.post('/deleteBudget', this.deleteBudgetHandler.bind(this));
         this.router.post('*', function (request, response) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 response.send(JSON.stringify({ "result": "command-not-found" }));
@@ -159,6 +161,19 @@ var MyServer = /** @class */ (function () {
             });
         });
     };
+    MyServer.prototype.updateBudgetHandler = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.theDatabase.put(request.body.budget_category, request.body.budget_total, "unused", "unused", "unused", request.body.id)];
+                    case 1:
+                        _a.sent();
+                        response.end();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     //DELETES
     MyServer.prototype.deleteMonthlyHandler = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
@@ -169,6 +184,21 @@ var MyServer = /** @class */ (function () {
                         _a.sent();
                         response.write(JSON.stringify({ 'result': 'deleted',
                             'value': request.body.expense_name }));
+                        response.end();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MyServer.prototype.deleteBudgetHandler = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.theDatabase.del(request.body.budget_category, request.body.id)];
+                    case 1:
+                        _a.sent();
+                        response.write(JSON.stringify({ 'result': 'deleted',
+                            'value': request.body.budget_category }));
                         response.end();
                         return [2 /*return*/];
                 }
