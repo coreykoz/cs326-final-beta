@@ -89,6 +89,9 @@ export class Database {
 			case "transaction":
 				var result = await collection.deleteOne({'trans_name' : name});
 				break;
+			case "budget":
+				var result = await collection.deleteOne({'budget_category' : name});
+				break;
 				
 		}
 		

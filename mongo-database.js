@@ -148,7 +148,7 @@ var Database = /** @class */ (function () {
     };
     Database.prototype.del = function (name, id) {
         return __awaiter(this, void 0, void 0, function () {
-            var db, collection, _a, result, result;
+            var db, collection, _a, result, result, result;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -158,17 +158,22 @@ var Database = /** @class */ (function () {
                         switch (_a) {
                             case "monthly": return [3 /*break*/, 1];
                             case "transaction": return [3 /*break*/, 3];
+                            case "budget": return [3 /*break*/, 5];
                         }
-                        return [3 /*break*/, 5];
+                        return [3 /*break*/, 7];
                     case 1: return [4 /*yield*/, collection.deleteOne({ 'monthly_expense': name })];
                     case 2:
                         result = _b.sent();
-                        return [3 /*break*/, 5];
+                        return [3 /*break*/, 7];
                     case 3: return [4 /*yield*/, collection.deleteOne({ 'trans_name': name })];
                     case 4:
                         result = _b.sent();
-                        return [3 /*break*/, 5];
-                    case 5: return [2 /*return*/];
+                        return [3 /*break*/, 7];
+                    case 5: return [4 /*yield*/, collection.deleteOne({ 'budget_category': name })];
+                    case 6:
+                        result = _b.sent();
+                        return [3 /*break*/, 7];
+                    case 7: return [2 /*return*/];
                 }
             });
         });
