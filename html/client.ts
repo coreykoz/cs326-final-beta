@@ -325,24 +325,17 @@ async function totalAvailable(){
     let income = await readIncome();
     let expenseTotal = 0;
     let incomeTotal = 0;
-
-    console.log(expenses);
-    console.log(income);
-
+   
     for (let i=0; i < expenses.length; i++){
         expenseTotal += parseFloat(expenses[i].expense_total);
     }
     for (let i=0; i < income.length; i++){
         incomeTotal += parseFloat(income[i].income_total);
     }
-
-    console.log(expenseTotal);
-    console.log(incomeTotal);
-
+    
     let remaining = (expenseTotal - incomeTotal).toFixed(2);
     remaining.toString();
-    console.log(remaining);
-
+    
     if(expenseTotal > incomeTotal){
         document.getElementById("totalMoney").innerHTML = "-" + remaining;
 
@@ -431,7 +424,8 @@ async function drawMostPopSpendingTable(){
 async function drawLineGraph(){
     let array = await readExpense();
     let cate;
-    let month;
+    let month=[];
+    console.log(month);
     let total;
     //const currDate = new Date(); // gets the current date as a string
     //const currMonth = currDate.getMonth();
@@ -455,34 +449,54 @@ async function drawLineGraph(){
     for(let i=0; i < array.length; i++){
         if(array[i].category == "Grocery"){
             grocery.push(array[i].expense_total);
+            let date = new Date(array[i].date);
+            month.push(date);
+            //month.push(new Date(array[i].date));
+            console.log(array[i].date);
+            console.log(month);
         }
         else if(array[i].category == "Transportation & Gas"){
             transport.push(array[i].expense_total);
+            month.push(array[i].date);
         }
         else if(array[i].category == "Entertainment"){
             entertainment.push(array[i].expense_total);
+            month.push(array[i].date);
         }
         else if(array[i].category == "Loans & Other Payments"){
             loan.push(array[i].expense_total);
+            month.push(array[i].date);
         }
         else if(array[i].category == "Shopping"){
             shopping.push(array[i].expense_total);
+            month.push(array[i].date);
         }
         else if(array[i].category == "Bills & Insurance"){
             bill.push(array[i].expense_total);
+            month.push(array[i].date);
         }
         else if(array[i].category == "Restaurant & Dining"){
             dine.push(array[i].expense_total);
+            month.push(array[i].date);
         }
         else{
 
         }
     }
+    
+    /*console.log(grocery);
+    console.log(transport);
+    console.log(entertainment);
+    console.log(loan);
+    console.log(shopping);
+    console.log(bill);
+    console.log(dine);*/
+
 
     var lineGraph = new Chart(ctx3, {
         type: 'line',
         data: {
-            labels: ['Nov','Dec', 'Jan', 'Feb', 'Mar', 'Apr'],
+            labels: month,
             datasets: [{
                 label: 'Grocery',
                 data: grocery,
@@ -630,9 +644,12 @@ async function drawLineGraph(){
     },
     options: {
             scales: {
+                /*xAxes: [{
+                    type: 'time'
+                }], */
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: false
                     }
                 }]
             }

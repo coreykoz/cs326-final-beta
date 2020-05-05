@@ -467,19 +467,14 @@ function totalAvailable() {
                     income = _a.sent();
                     expenseTotal = 0;
                     incomeTotal = 0;
-                    console.log(expenses);
-                    console.log(income);
                     for (i = 0; i < expenses.length; i++) {
                         expenseTotal += parseFloat(expenses[i].expense_total);
                     }
                     for (i = 0; i < income.length; i++) {
                         incomeTotal += parseFloat(income[i].income_total);
                     }
-                    console.log(expenseTotal);
-                    console.log(incomeTotal);
                     remaining = (expenseTotal - incomeTotal).toFixed(2);
                     remaining.toString();
-                    console.log(remaining);
                     if (expenseTotal > incomeTotal) {
                         document.getElementById("totalMoney").innerHTML = "-" + remaining;
                     }
@@ -567,12 +562,14 @@ function drawMostPopSpendingTable() {
 // Line Graph - forget what this one does, anna input? shows the monthly trend filtered down by category
 function drawLineGraph() {
     return __awaiter(this, void 0, void 0, function () {
-        var array, cate, month, total, grocery, transport, entertainment, loan, shopping, bill, dine, i, lineGraph;
+        var array, cate, month, total, grocery, transport, entertainment, loan, shopping, bill, dine, i, date, lineGraph;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, readExpense()];
                 case 1:
                     array = _a.sent();
+                    month = [];
+                    console.log(month);
                     grocery = [];
                     transport = [];
                     entertainment = [];
@@ -589,24 +586,35 @@ function drawLineGraph() {
                     for (i = 0; i < array.length; i++) {
                         if (array[i].category == "Grocery") {
                             grocery.push(array[i].expense_total);
+                            date = new Date(array[i].date);
+                            month.push(date);
+                            //month.push(new Date(array[i].date));
+                            console.log(array[i].date);
+                            console.log(month);
                         }
                         else if (array[i].category == "Transportation & Gas") {
                             transport.push(array[i].expense_total);
+                            month.push(array[i].date);
                         }
                         else if (array[i].category == "Entertainment") {
                             entertainment.push(array[i].expense_total);
+                            month.push(array[i].date);
                         }
                         else if (array[i].category == "Loans & Other Payments") {
                             loan.push(array[i].expense_total);
+                            month.push(array[i].date);
                         }
                         else if (array[i].category == "Shopping") {
                             shopping.push(array[i].expense_total);
+                            month.push(array[i].date);
                         }
                         else if (array[i].category == "Bills & Insurance") {
                             bill.push(array[i].expense_total);
+                            month.push(array[i].date);
                         }
                         else if (array[i].category == "Restaurant & Dining") {
                             dine.push(array[i].expense_total);
+                            month.push(array[i].date);
                         }
                         else {
                         }
@@ -614,7 +622,7 @@ function drawLineGraph() {
                     lineGraph = new Chart(ctx3, {
                         type: 'line',
                         data: {
-                            labels: ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'],
+                            labels: month,
                             datasets: [{
                                     label: 'Grocery',
                                     data: grocery,
@@ -761,9 +769,12 @@ function drawLineGraph() {
                         },
                         options: {
                             scales: {
+                                /*xAxes: [{
+                                    type: 'time'
+                                }], */
                                 yAxes: [{
                                         ticks: {
-                                            beginAtZero: true
+                                            beginAtZero: false
                                         }
                                     }]
                             }
