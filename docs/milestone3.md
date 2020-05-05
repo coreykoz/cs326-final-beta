@@ -1,7 +1,7 @@
 # BETA Milestone 3
 
 ## Database Documentation
-Transaction document{
+```json Transaction document{
     * id: "transaction" - string, the type of object it is
     * trans_category: "Transportation & Gas" - String, category of the transaction
     * trans_date: "2020-04-05" - String, data of the transaction
@@ -10,8 +10,8 @@ Transaction document{
     * trans_type: "Expense" - String, type of transaction
     _id: "5eb091c3b6fbfe46cecd9a63"
 }
-
-Expense document{
+```
+```json Expense document{
     * category: "Shopping" - String, category of the expense
     * date: "2020-04-20" - String Date of expense
     * expense_name: "Shoes" - String, name of expense
@@ -19,8 +19,9 @@ Expense document{
     * id: "expense" - String, the type of object that it is
     * _id: "5eaca211b6fbfe46ce1241ac"
 }
+```
 
-Income document{
+```json Income document{
     * category: "Cash" - String, category of income
     * date: "2020-05-04"- String, date of income payment
     * id: "income" - String, the type of object
@@ -28,9 +29,10 @@ Income document{
     * income_total: "5.50" - String, the total in dollars
     * _id: "5eb08c8db6fbfe46cecb5c68"
 }
+```
 
 Still has to be implemented after we figure out user authentication
-User{
+```json User{
     * name: "Bob Ross" - String, first and last name of user
     * email: "bob@umass.edu: - String, email of user
     * age: "32" - String, age of user
@@ -38,4 +40,5 @@ User{
     * id: "user" - String, the type of object
     * _id: "5eb08c8db6fbfe46cecb5c68"
 }
+```
 ### Division of Labor
