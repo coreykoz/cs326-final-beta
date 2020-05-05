@@ -424,19 +424,19 @@ async function drawMostPopSpendingTable(){
 async function drawLineGraph(){
     let array = await readExpense();
     let cate;
-    let month=[];
+    let month=['Dec', 'Jan', 'Feb', 'Mar', 'Apr','May'];
     console.log(month);
     let total;
     //const currDate = new Date(); // gets the current date as a string
     //const currMonth = currDate.getMonth();
 
-    let grocery = [];
-    let transport = [];     
-    let entertainment = [];
-    let loan= [];
-    let shopping= [];
-    let bill= [];
-    let dine= [];
+    let grocery = [0,0,0,0,0,0];
+    let transport = [0,0,0,0,0,0];     
+    let entertainment = [0,0,0,0,0,0];
+    let loan= [0,0,0,0,0,0];
+    let shopping= [0,0,0,0,0,0];
+    let bill= [0,0,0,0,0,0];
+    let dine= [0,0,0,0,0,0];
 
     array.sort(function(a, b){
         //converts "2020-04-24" to "2020/04/24" and creates date obj
@@ -447,37 +447,84 @@ async function drawLineGraph(){
     });
 
     for(let i=0; i < array.length; i++){
+        
         if(array[i].category == "Grocery"){
-            grocery.push(array[i].expense_total);
-            let date = new Date(array[i].date);
-            month.push(date);
+            
+            //grocery.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            //grocery = [ _ , _ , _ , _ , _, _]
+            grocery[date.getMonth()+1] = grocery[date.getMonth()+1] + parseFloat(array[i].expense_total);
+            
+            
             //month.push(new Date(array[i].date));
             console.log(array[i].date);
             console.log(month);
         }
         else if(array[i].category == "Transportation & Gas"){
-            transport.push(array[i].expense_total);
-            month.push(array[i].date);
+           /* transport.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            console.log(date);
+            month.push((date.getMonth()+1) + "/" + (date.getDate()) + "/" + date.getFullYear());*/
+
+            //grocery.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            //grocery = [ _ , _ , _ , _ , _, _]
+            transport[date.getMonth()+1] = transport[date.getMonth()+1] + parseFloat(array[i].expense_total);
         }
         else if(array[i].category == "Entertainment"){
-            entertainment.push(array[i].expense_total);
-            month.push(array[i].date);
+            /*entertainment.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            console.log(date);
+            month.push((date.getMonth()+1) + "/" + (date.getDate()) + "/" + date.getFullYear());*/
+
+            //grocery.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            //grocery = [ _ , _ , _ , _ , _, _]
+            entertainment[date.getMonth()+1] = entertainment[date.getMonth()+1] + parseFloat(array[i].expense_total);
         }
         else if(array[i].category == "Loans & Other Payments"){
-            loan.push(array[i].expense_total);
-            month.push(array[i].date);
+            /*loan.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            console.log(date);
+            month.push((date.getMonth()+1) + "/" + (date.getDate()) + "/" + date.getFullYear());*/
+
+            //grocery.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            //grocery = [ _ , _ , _ , _ , _, _]
+            loan[date.getMonth()+1] = loan[date.getMonth()+1] + parseFloat(array[i].expense_total);
         }
         else if(array[i].category == "Shopping"){
-            shopping.push(array[i].expense_total);
-            month.push(array[i].date);
+            /*shopping.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            console.log(date);
+            month.push((date.getMonth()+1) + "/" + (date.getDate()) + "/" + date.getFullYear());*/
+
+            //grocery.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            //grocery = [ _ , _ , _ , _ , _, _]
+            shopping[date.getMonth()+1] = shopping[date.getMonth()+1] + parseFloat(array[i].expense_total);
         }
         else if(array[i].category == "Bills & Insurance"){
-            bill.push(array[i].expense_total);
-            month.push(array[i].date);
+            /*bill.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            console.log(date);
+            month.push((date.getMonth()+1) + "/" + (date.getDate()) + "/" + date.getFullYear());*/
+
+            //grocery.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            //grocery = [ _ , _ , _ , _ , _, _]
+            bill[date.getMonth()+1] = bill[date.getMonth()+1] + parseFloat(array[i].expense_total);
         }
         else if(array[i].category == "Restaurant & Dining"){
-            dine.push(array[i].expense_total);
-            month.push(array[i].date);
+            /*dine.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            console.log(date);
+            month.push((date.getMonth()+1) + "/" + (date.getDate()) + "/" + date.getFullYear());*/
+
+            //grocery.push(array[i].expense_total);
+            let date = new Date(array[i].date.replace(/-/g, '/'));
+            //grocery = [ _ , _ , _ , _ , _, _]
+            dine[date.getMonth()+1] = dine[date.getMonth()+1] + parseFloat(array[i].expense_total);
         }
         else{
 

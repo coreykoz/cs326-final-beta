@@ -562,21 +562,21 @@ function drawMostPopSpendingTable() {
 // Line Graph - forget what this one does, anna input? shows the monthly trend filtered down by category
 function drawLineGraph() {
     return __awaiter(this, void 0, void 0, function () {
-        var array, cate, month, total, grocery, transport, entertainment, loan, shopping, bill, dine, i, date, lineGraph;
+        var array, cate, month, total, grocery, transport, entertainment, loan, shopping, bill, dine, i, date, date, date, date, date, date, date, lineGraph;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, readExpense()];
                 case 1:
                     array = _a.sent();
-                    month = [];
+                    month = ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'];
                     console.log(month);
-                    grocery = [];
-                    transport = [];
-                    entertainment = [];
-                    loan = [];
-                    shopping = [];
-                    bill = [];
-                    dine = [];
+                    grocery = [0, 0, 0, 0, 0, 0];
+                    transport = [0, 0, 0, 0, 0, 0];
+                    entertainment = [0, 0, 0, 0, 0, 0];
+                    loan = [0, 0, 0, 0, 0, 0];
+                    shopping = [0, 0, 0, 0, 0, 0];
+                    bill = [0, 0, 0, 0, 0, 0];
+                    dine = [0, 0, 0, 0, 0, 0];
                     array.sort(function (a, b) {
                         //converts "2020-04-24" to "2020/04/24" and creates date obj
                         var date1 = new Date(a.date.replace(/-/g, '/'));
@@ -585,36 +585,42 @@ function drawLineGraph() {
                     });
                     for (i = 0; i < array.length; i++) {
                         if (array[i].category == "Grocery") {
-                            grocery.push(array[i].expense_total);
-                            date = new Date(array[i].date);
-                            month.push(date);
+                            date = new Date(array[i].date.replace(/-/g, '/'));
+                            //grocery = [ _ , _ , _ , _ , _, _]
+                            grocery[date.getMonth() + 1] = grocery[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                             //month.push(new Date(array[i].date));
                             console.log(array[i].date);
                             console.log(month);
                         }
                         else if (array[i].category == "Transportation & Gas") {
-                            transport.push(array[i].expense_total);
-                            month.push(array[i].date);
+                            date = new Date(array[i].date.replace(/-/g, '/'));
+                            //grocery = [ _ , _ , _ , _ , _, _]
+                            transport[date.getMonth() + 1] = transport[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else if (array[i].category == "Entertainment") {
-                            entertainment.push(array[i].expense_total);
-                            month.push(array[i].date);
+                            date = new Date(array[i].date.replace(/-/g, '/'));
+                            //grocery = [ _ , _ , _ , _ , _, _]
+                            entertainment[date.getMonth() + 1] = entertainment[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else if (array[i].category == "Loans & Other Payments") {
-                            loan.push(array[i].expense_total);
-                            month.push(array[i].date);
+                            date = new Date(array[i].date.replace(/-/g, '/'));
+                            //grocery = [ _ , _ , _ , _ , _, _]
+                            loan[date.getMonth() + 1] = loan[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else if (array[i].category == "Shopping") {
-                            shopping.push(array[i].expense_total);
-                            month.push(array[i].date);
+                            date = new Date(array[i].date.replace(/-/g, '/'));
+                            //grocery = [ _ , _ , _ , _ , _, _]
+                            shopping[date.getMonth() + 1] = shopping[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else if (array[i].category == "Bills & Insurance") {
-                            bill.push(array[i].expense_total);
-                            month.push(array[i].date);
+                            date = new Date(array[i].date.replace(/-/g, '/'));
+                            //grocery = [ _ , _ , _ , _ , _, _]
+                            bill[date.getMonth() + 1] = bill[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else if (array[i].category == "Restaurant & Dining") {
-                            dine.push(array[i].expense_total);
-                            month.push(array[i].date);
+                            date = new Date(array[i].date.replace(/-/g, '/'));
+                            //grocery = [ _ , _ , _ , _ , _, _]
+                            dine[date.getMonth() + 1] = dine[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else {
                         }
