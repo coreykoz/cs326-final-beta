@@ -93,6 +93,9 @@ export class MyServer {
 
 	private async updateBudgetHandler(request, response){
 		await this.theDatabase.put(request.body.budget_category, request.body.budget_total, "unused", "unused", "unused", request.body.id);
+		response.write(JSON.stringify({'result' : 'updated',
+				       'name' : request.body.budget_category,
+				       'value' : request.body.budget_total }));
 		response.end();
 	}
 

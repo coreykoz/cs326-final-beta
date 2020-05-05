@@ -302,8 +302,10 @@ function updateBudget() {
                 case 0:
                     budgetCate = document.getElementById("budgetCategory").value;
                     budgetTotal = document.getElementById("budgetTotal").value;
+                    console.log(budgetCate, budgetTotal);
                     newURL = url + "/updateBudget";
                     data = { 'budget_category': budgetCate, 'budget_total': budgetTotal, 'id': "budget" };
+                    console.log(data);
                     return [4 /*yield*/, postData(newURL, data)];
                 case 1:
                     resp = _a.sent();
