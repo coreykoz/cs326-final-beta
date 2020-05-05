@@ -389,7 +389,7 @@ async function drawBudgetGraph(){
         else if(array[i].budget_category == "Entertainment"){
             budgetArray[2] = parseFloat(array[i].budget_total);
         }
-        else if(array[i].budget_category == "Loan & Other Payments"){
+        else if(array[i].budget_category == "Loans & Other Payments"){
             budgetArray[3] = parseFloat(array[i].budget_total);
         }
         else if(array[i].budget_category == "Shopping"){
