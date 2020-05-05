@@ -84,7 +84,7 @@ var Database = /** @class */ (function () {
     }
     Database.prototype.put = function (name, total, category, date, type, id) {
         return __awaiter(this, void 0, void 0, function () {
-            var db, collection, _a, result, result, result, result;
+            var db, collection, _a, result, result, result, result, result;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -95,28 +95,31 @@ var Database = /** @class */ (function () {
                             case "transaction": return [3 /*break*/, 1];
                             case "expense": return [3 /*break*/, 3];
                             case "income": return [3 /*break*/, 5];
-                            case "userInfo": return [3 /*break*/, 7];
-                            case "monthly": return [3 /*break*/, 8];
+                            case "budget": return [3 /*break*/, 7];
+                            case "monthly": return [3 /*break*/, 9];
                         }
-                        return [3 /*break*/, 10];
+                        return [3 /*break*/, 11];
                     case 1: return [4 /*yield*/, collection.updateOne({ 'trans_name': name, 'trans_type': type, 'trans_category': category, 'trans_date': date, 'trans_price': total, 'id': id }, { $set: { 'trans_price': total } }, { 'upsert': true })];
                     case 2:
                         result = _b.sent();
-                        return [3 /*break*/, 10];
+                        return [3 /*break*/, 11];
                     case 3: return [4 /*yield*/, collection.updateOne({ 'expense_name': name, 'expense_total': total, 'date': date, 'category': category, 'id': id }, { $set: { 'expense_total': total } }, { 'upsert': true })];
                     case 4:
                         result = _b.sent();
-                        return [3 /*break*/, 10];
+                        return [3 /*break*/, 11];
                     case 5: return [4 /*yield*/, collection.updateOne({ 'income_name': name, 'income_total': total, 'date': date, 'category': category, 'id': id }, { $set: { 'income_total': total } }, { 'upsert': true })];
                     case 6:
                         result = _b.sent();
-                        return [3 /*break*/, 10];
-                    case 7: return [3 /*break*/, 10];
-                    case 8: return [4 /*yield*/, collection.updateOne({ 'monthly_expense': name, 'id': id }, { $set: { 'monthly_cost': total } }, { 'upsert': true })];
-                    case 9:
+                        return [3 /*break*/, 11];
+                    case 7: return [4 /*yield*/, collection.updateOne({ 'budget_category': name, 'id': id }, { $set: { 'budget_total': total } }, { 'upsert': true })];
+                    case 8:
                         result = _b.sent();
-                        return [3 /*break*/, 10];
-                    case 10: return [2 /*return*/];
+                        return [3 /*break*/, 11];
+                    case 9: return [4 /*yield*/, collection.updateOne({ 'monthly_expense': name, 'id': id }, { $set: { 'monthly_cost': total } }, { 'upsert': true })];
+                    case 10:
+                        result = _b.sent();
+                        return [3 /*break*/, 11];
+                    case 11: return [2 /*return*/];
                 }
             });
         });
@@ -145,7 +148,7 @@ var Database = /** @class */ (function () {
     };
     Database.prototype.del = function (name, id) {
         return __awaiter(this, void 0, void 0, function () {
-            var db, collection, _a, result, result;
+            var db, collection, _a, result, result, result;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -155,17 +158,22 @@ var Database = /** @class */ (function () {
                         switch (_a) {
                             case "monthly": return [3 /*break*/, 1];
                             case "transaction": return [3 /*break*/, 3];
+                            case "budget": return [3 /*break*/, 5];
                         }
-                        return [3 /*break*/, 5];
+                        return [3 /*break*/, 7];
                     case 1: return [4 /*yield*/, collection.deleteOne({ 'monthly_expense': name })];
                     case 2:
                         result = _b.sent();
-                        return [3 /*break*/, 5];
+                        return [3 /*break*/, 7];
                     case 3: return [4 /*yield*/, collection.deleteOne({ 'trans_name': name })];
                     case 4:
                         result = _b.sent();
-                        return [3 /*break*/, 5];
-                    case 5: return [2 /*return*/];
+                        return [3 /*break*/, 7];
+                    case 5: return [4 /*yield*/, collection.deleteOne({ 'budget_category': name })];
+                    case 6:
+                        result = _b.sent();
+                        return [3 /*break*/, 7];
+                    case 7: return [2 /*return*/];
                 }
             });
         });

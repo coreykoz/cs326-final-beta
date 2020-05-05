@@ -247,6 +247,31 @@ function readExpense() {
         });
     });
 }
+function readBudget() {
+    return __awaiter(this, void 0, void 0, function () {
+        var id, newURL, resp, j;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    id = { 'id': "budget" };
+                    newURL = url + "/read";
+                    return [4 /*yield*/, postData(newURL, id)];
+                case 1:
+                    resp = _a.sent();
+                    return [4 /*yield*/, resp.json()];
+                case 2:
+                    j = _a.sent();
+                    if (j) {
+                        return [2 /*return*/, j];
+                    }
+                    else {
+                        return [2 /*return*/, "Error: Could not read"];
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 // UPDATES
 function updateMonthly() {
     return __awaiter(this, void 0, void 0, function () {
@@ -258,6 +283,27 @@ function updateMonthly() {
                     monthlyCost = document.getElementById("monthlyTotal").value;
                     newURL = url + "/updateMonthly";
                     data = { 'monthly_expense': monthlyName, 'monthly_cost': monthlyCost, 'id': "monthly" };
+                    return [4 /*yield*/, postData(newURL, data)];
+                case 1:
+                    resp = _a.sent();
+                    return [4 /*yield*/, resp.json()];
+                case 2:
+                    j = _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function updateBudget() {
+    return __awaiter(this, void 0, void 0, function () {
+        var budgetCate, budgetTotal, newURL, data, resp, j;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    budgetCate = document.getElementById("budgetCategory").value;
+                    budgetTotal = document.getElementById("budgetTotal").value;
+                    newURL = url + "/updateBudget";
+                    data = { 'budget_category': budgetCate, 'budget_total': budgetTotal, 'id': "budget" };
                     return [4 /*yield*/, postData(newURL, data)];
                 case 1:
                     resp = _a.sent();
@@ -291,9 +337,28 @@ function deleteMonthly() {
         });
     }); })();
 }
+function deleteBudget() {
+    var _this = this;
+    (function () { return __awaiter(_this, void 0, void 0, function () {
+        var budgetCate, data, newURL, resp, j;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    budgetCate = document.getElementById("budgetCategory").value;
+                    data = { 'budget_category': budgetCate, 'id': "budget" };
+                    newURL = url + "/deleteBudget";
+                    return [4 /*yield*/, postData(newURL, data)];
+                case 1:
+                    resp = _a.sent();
+                    return [4 /*yield*/, resp.json()];
+                case 2:
+                    j = _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    }); })();
+}
 // ALL DRAW FUNCTIONS:
-// This is all assuming TA's get back to us and the functions work as intended
-//
 // 1) call a read --> returns an array of documents (in JSON format)
 // 2) process data and draw/create graphs
 //Money formatter
@@ -406,6 +471,8 @@ function drawMonthlySpendingByCateGraph() {
                         }
                     }
                     allCategory = [["Grocery", groceryTotal], ["Transportation & Gas", transportTotal], ["Entertainment", entertainmentTotal], ["Loans & Other Payments", loanTotal], ["Shopping", shoppingTotal], ["Bills & Insurance", billTotal], ["Restaurant & Dining", dineTotal]];
+                    //display this array
+                    console.log(allCategory);
                     pieChart = new Chart(ctx, {
                         type: 'pie',
                         data: {
@@ -449,11 +516,6 @@ function drawMonthlySpendingByCateGraph() {
         });
     });
 }
-/*
-Available funds display
-read income - read expenses
-should update when income or expenses is changed - should budget be factored into this??
-*/
 function totalAvailable() {
     return __awaiter(this, void 0, void 0, function () {
         var expenses, income, expenseTotal, incomeTotal, i, i, remaining;
@@ -562,14 +624,13 @@ function drawMostPopSpendingTable() {
 // Line Graph - forget what this one does, anna input? shows the monthly trend filtered down by category
 function drawLineGraph() {
     return __awaiter(this, void 0, void 0, function () {
-        var array, cate, month, total, grocery, transport, entertainment, loan, shopping, bill, dine, i, date, date, date, date, date, date, date, lineGraph;
+        var array, month, grocery, transport, entertainment, loan, shopping, bill, dine, i, date, date, date, date, date, date, date, lineGraph;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, readExpense()];
                 case 1:
                     array = _a.sent();
                     month = ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'];
-                    console.log(month);
                     grocery = [0, 0, 0, 0, 0, 0];
                     transport = [0, 0, 0, 0, 0, 0];
                     entertainment = [0, 0, 0, 0, 0, 0];
@@ -586,40 +647,30 @@ function drawLineGraph() {
                     for (i = 0; i < array.length; i++) {
                         if (array[i].category == "Grocery") {
                             date = new Date(array[i].date.replace(/-/g, '/'));
-                            //grocery = [ _ , _ , _ , _ , _, _]
                             grocery[date.getMonth() + 1] = grocery[date.getMonth() + 1] + parseFloat(array[i].expense_total);
-                            //month.push(new Date(array[i].date));
-                            console.log(array[i].date);
-                            console.log(month);
                         }
                         else if (array[i].category == "Transportation & Gas") {
                             date = new Date(array[i].date.replace(/-/g, '/'));
-                            //grocery = [ _ , _ , _ , _ , _, _]
                             transport[date.getMonth() + 1] = transport[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else if (array[i].category == "Entertainment") {
                             date = new Date(array[i].date.replace(/-/g, '/'));
-                            //grocery = [ _ , _ , _ , _ , _, _]
                             entertainment[date.getMonth() + 1] = entertainment[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else if (array[i].category == "Loans & Other Payments") {
                             date = new Date(array[i].date.replace(/-/g, '/'));
-                            //grocery = [ _ , _ , _ , _ , _, _]
                             loan[date.getMonth() + 1] = loan[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else if (array[i].category == "Shopping") {
                             date = new Date(array[i].date.replace(/-/g, '/'));
-                            //grocery = [ _ , _ , _ , _ , _, _]
                             shopping[date.getMonth() + 1] = shopping[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else if (array[i].category == "Bills & Insurance") {
                             date = new Date(array[i].date.replace(/-/g, '/'));
-                            //grocery = [ _ , _ , _ , _ , _, _]
                             bill[date.getMonth() + 1] = bill[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else if (array[i].category == "Restaurant & Dining") {
                             date = new Date(array[i].date.replace(/-/g, '/'));
-                            //grocery = [ _ , _ , _ , _ , _, _]
                             dine[date.getMonth() + 1] = dine[date.getMonth() + 1] + parseFloat(array[i].expense_total);
                         }
                         else {

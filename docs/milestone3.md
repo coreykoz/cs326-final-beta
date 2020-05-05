@@ -1,21 +1,31 @@
 # BETA Milestone 3
 
 ## Database Documentation
+<<<<<<< HEAD
+Transaction document
+=======
  #### Transaction document
  ```json
  
+>>>>>>> dca5321a9a3ef8f5fd223a2aee46a8f373e50306
     * id: "transaction" - string, the type of object it is
     * trans_category: "Transportation & Gas" - String, category of the transaction
     * trans_date: "2020-04-05" - String, data of the transaction
     * trans_name: "Uber" - String, name of the transaction
     * trans_price: "12.00" - String, price of the transaction
     * trans_type: "Expense" - String, type of transaction
+<<<<<<< HEAD
+    * _id: "5eb091c3b6fbfe46cecd9a63"
+
+Expense document
+=======
     _id: "5eb091c3b6fbfe46cecd9a63"
 
 ```
 #### Expense document
 ```json 
 
+>>>>>>> dca5321a9a3ef8f5fd223a2aee46a8f373e50306
     * category: "Shopping" - String, category of the expense
     * date: "2020-04-20" - String Date of expense
     * expense_name: "Shoes" - String, name of expense
@@ -23,17 +33,26 @@
     * id: "expense" - String, the type of object that it is
     * _id: "5eaca211b6fbfe46ce1241ac"
 
+<<<<<<< HEAD
+Income document
+=======
 ```
 
 #### Income document
 ```json 
 
+>>>>>>> dca5321a9a3ef8f5fd223a2aee46a8f373e50306
     * category: "Cash" - String, category of income
     * date: "2020-05-04"- String, date of income payment
     * id: "income" - String, the type of object
     * income_name: "Birthday Money" - String, name of the income transaction
     * income_total: "5.50" - String, the total in dollars
     * _id: "5eb08c8db6fbfe46cecb5c68"
+<<<<<<< HEAD
+
+Still has to be implemented after we figure out user authentication
+User
+=======
 
 ```
 
@@ -62,12 +81,17 @@ Still has to be implemented after we figure out user authentication
 
 ```json 
 
+>>>>>>> dca5321a9a3ef8f5fd223a2aee46a8f373e50306
     * name: "Bob Ross" - String, first and last name of user
     * email: "bob@umass.edu" : - String, email of user
     * age: "32" - String, age of user
     * password: "example" - String, password of user for account
     * id: "user" - String, the type of object
     * _id: "5eb08c8db6fbfe46cecb5c68"
+<<<<<<< HEAD
+    
+=======
 
 ```
+>>>>>>> dca5321a9a3ef8f5fd223a2aee46a8f373e50306
 ### Division of Labor

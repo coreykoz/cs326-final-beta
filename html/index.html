@@ -55,6 +55,7 @@
         <div class="row">
             <div class="col-md-6 pt-5">
                 <div class="container">
+                    <h3 class="text-center">Monthly Spending by Category</h3>
                     <canvas id="monthySpending" width="400" height="400"></canvas>
                 </div>
             </div>
@@ -210,6 +211,54 @@
             <div class="col-md-12 pt-5 text-center">
                 <h3 id="budget_sec">Budget</h3>
             </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 text-center">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#budgetModal">Edit Budget</button> 
+
+          <!--Modal for Budget -->
+        <div class="modal fade" id="budgetModal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Edit Budget</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body">
+                <div class = "container form-group pt-5">
+                  <div class="form-group">
+                    <label for="budgetCategory">Category</label>
+                    <select class="form-control" id="budgetCategory">
+                      <option>Grocery</option>
+                      <option>Transportation & Gas</option>
+                      <option>Entertainment</option>
+                      <option>Loans & Other Payments</option>
+                      <option>Shopping</option>
+                      <option>Bills & Insurance</option>
+                      <option>Restaurant & Dining</option>
+                    </select>
+                  </div> <br>
+                  
+                  <input type="number" name="budgetTotal" id="budgetTotal" class="form-control" placeholder="Monthly Budget for Category"><br>
+
+                </div>
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="updateBudget();" data-dismiss="modal">Edit/Create</button>
+                <button type="button" class="btn btn-primary" onclick="deleteBudget();" data-dismiss="modal">Delete</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="row">
             <div class="col-md-6 pt-5">

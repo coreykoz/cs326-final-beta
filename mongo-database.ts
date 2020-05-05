@@ -57,7 +57,8 @@ export class Database {
 		case "income":
 			var result = await collection.updateOne({'income_name': name, 'income_total': total, 'date': date, 'category': category,  'id': id}, { $set : { 'income_total' : total} }, { 'upsert' : true });
 			break;
-		case "userInfo":
+		case "budget":
+			var result = await collection.updateOne({'budget_category': name, 'id': id}, { $set : { 'budget_total' : total} }, { 'upsert' : true });
 			break;
 		case "monthly":
 			var result = await collection.updateOne({'monthly_expense': name, 'id': id}, { $set : { 'monthly_cost' : total} }, { 'upsert' : true });
@@ -87,6 +88,9 @@ export class Database {
 				break;
 			case "transaction":
 				var result = await collection.deleteOne({'trans_name' : name});
+				break;
+			case "budget":
+				var result = await collection.deleteOne({'budget_category' : name});
 				break;
 				
 		}
