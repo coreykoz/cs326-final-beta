@@ -551,19 +551,45 @@ function totalAvailable() {
 // Bar Chart - Should be calling readExpenses() - have one array hold all docs from readExpenses() for current month and another for the rest
 //                                                we'll calculate budget based on avg spending? Or we could have more data (inside userInfo or a separate data structure)
 //                                                that allows input for budget
-/*
-function drawBudgetGraph(){
-    let array = readExpense();
-    const currDate = new Date(); // gets the current date as a string
-    const currMonth = currDate.getMonth();
-
-    for(let i = 0; i < array.length; i++){
-        if(new Date(array[i].date.replace(/-/g, '/')).getMonth() == currMonth){
-            monthlyArray += array[i];
-        }
-    }
+function drawBudgetGraph() {
+    return __awaiter(this, void 0, void 0, function () {
+        var array, mixedChart;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, readBudget()];
+                case 1:
+                    array = _a.sent();
+                    console.log(array);
+                    mixedChart = new Chart(ctx2, {
+                        type: 'bar',
+                        data: {
+                            datasets: [{
+                                    label: 'Bar Dataset',
+                                    data: [10, 20, 30, 40]
+                                }, {
+                                    label: 'Line Dataset',
+                                    data: [50, 50, 50, 50],
+                                    // Changes this dataset to become a line
+                                    type: 'bar'
+                                }],
+                            labels: ['January', 'February', 'March', 'April']
+                        },
+                        options: { scales: {
+                                xAxes: [{ stacked: true }],
+                                yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        },
+                                        stacked: false
+                                    }]
+                            }
+                        }
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    });
 }
-*/
 // Table - Should be calling readExpenses() and putting top 3-5 values (total spent wise) on table
 function drawMostPopSpendingTable() {
     return __awaiter(this, void 0, void 0, function () {
