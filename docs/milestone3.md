@@ -56,6 +56,25 @@ User
 
 ```
 
+#### Monthly Expense document
+```json
+
+    * id: "monthly"
+    * monthly_expense: "Health Insurance"
+    * monthly_cost: "20"
+    * _id: "5eb08c8db6fbfe46cecb5c68"
+
+```
+
+#### Budget document
+```json
+
+    * id: "budget"
+    * budget_category: "Entertainment"
+    * budget_total: "20"
+    * _id: "5eb08c8db6fbfe46cecb5c68"
+
+
 #### User
 
 Still has to be implemented after we figure out user authentication
