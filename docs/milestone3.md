@@ -1,7 +1,8 @@
 # BETA Milestone 3
 
 ## Database Documentation
-```json Transaction document{
+ Transaction document
+ ```json{
     * id: "transaction" - string, the type of object it is
     * trans_category: "Transportation & Gas" - String, category of the transaction
     * trans_date: "2020-04-05" - String, data of the transaction
@@ -11,7 +12,8 @@
     _id: "5eb091c3b6fbfe46cecd9a63"
 }
 ```
-```json Expense document{
+Expense document
+```json {
     * category: "Shopping" - String, category of the expense
     * date: "2020-04-20" - String Date of expense
     * expense_name: "Shoes" - String, name of expense
@@ -21,7 +23,8 @@
 }
 ```
 
-```json Income document{
+Income document
+```json {
     * category: "Cash" - String, category of income
     * date: "2020-05-04"- String, date of income payment
     * id: "income" - String, the type of object
@@ -32,7 +35,8 @@
 ```
 
 Still has to be implemented after we figure out user authentication
-```json User{
+User
+```json {
     * name: "Bob Ross" - String, first and last name of user
     * email: "bob@umass.edu: - String, email of user
     * age: "32" - String, age of user
