@@ -76,3 +76,5 @@ Still has to be implemented after we figure out user authentication
 ```
 
 ### Division of Labor
+
+For the database implementation, we all worked on the database structure together (previously) and implemented the CRUD functionality for all our database aspects together over Zoom calls to exchange ideas.  We then put the data structure documentation on a google doc that we collaborated on, and had one of  the members move it here and format accordingly. Then, we set up our mongo db, secrets.json, and heroku password together. Dhruvi and Annapurna added the graph functionality while Corey added functionality for the Budget portion.
