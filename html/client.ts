@@ -357,14 +357,15 @@ async function totalAvailable(){
         incomeTotal += parseFloat(income[i].income_total);
     }
     
-    let remaining = (expenseTotal - incomeTotal).toFixed(2);
+    let remaining = (incomeTotal - expenseTotal).toFixed(2);
     remaining.toString();
-    
+   
+
     if(expenseTotal > incomeTotal){
-        document.getElementById("totalMoney").innerHTML = "-" + remaining;
+        document.getElementById("totalMoney").innerHTML = "-$" + remaining;
     }
     else{
-        document.getElementById("totalMoney").innerHTML = "" + remaining;
+        document.getElementById("totalMoney").innerHTML = "$" + remaining;
     }
 
 }

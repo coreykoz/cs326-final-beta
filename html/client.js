@@ -529,13 +529,13 @@ function totalAvailable() {
                     for (i = 0; i < income.length; i++) {
                         incomeTotal += parseFloat(income[i].income_total);
                     }
-                    remaining = (expenseTotal - incomeTotal).toFixed(2);
+                    remaining = (incomeTotal - expenseTotal).toFixed(2);
                     remaining.toString();
                     if (expenseTotal > incomeTotal) {
-                        document.getElementById("totalMoney").innerHTML = "-" + remaining;
+                        document.getElementById("totalMoney").innerHTML = "-$" + remaining;
                     }
                     else {
-                        document.getElementById("totalMoney").innerHTML = "" + remaining;
+                        document.getElementById("totalMoney").innerHTML = "$" + remaining;
                     }
                     return [2 /*return*/];
             }
