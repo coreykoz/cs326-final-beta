@@ -48,7 +48,7 @@ export class MyServer {
 
 	//CREATES
 	private async createIncomeHandler(request, response){
-		await this.theDatabase.put(request.body.income_name, request.body.income_total, request.body.date, request.body.category, "unused", request.body.id);
+		await this.theDatabase.put(request.body.income_name, request.body.income_total, request.body.category, request.body.date, "unused", request.body.id);
 		response.write(JSON.stringify({'result' : 'created',
 					       'income_name' : request.body.income_name,
 					       'value' : 0 }));
