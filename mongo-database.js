@@ -146,27 +146,6 @@ var Database = /** @class */ (function () {
             });
         });
     };
-    /*
-    public async del(name: string, id: string) : Promise<void> {
-        let db = this.client.db(this.dbName);
-        let collection = db.collection(this.collectionName);
-
-        switch(id){
-            case "monthly":
-                var result = await collection.deleteOne({'monthly_expense' : name});
-                break;
-            case "transaction":
-                var result = await collection.deleteOne({'trans_name' : name});
-                break;
-            case "budget":
-                var result = await collection.deleteOne({'budget_category' : name});
-                break;
-                
-        }
-    
-        
-    }
-   */
     Database.prototype.del = function (name, id) {
         return __awaiter(this, void 0, void 0, function () {
             var db, collection, _a, result, result, result;

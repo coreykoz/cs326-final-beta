@@ -34,8 +34,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-//const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
-var url = "http://localhost:8080/uwallet";
+var url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
+//const url = "http://localhost:8080/uwallet";
 //canvas for the graphs
 var ctx = document.getElementById('monthySpending');
 var ctx2 = document.getElementById('budget');
@@ -315,31 +315,6 @@ function updateBudget() {
     });
 }
 // DELETES
-/*
-function deleteMonthly(){
-    (async () => {
-        let expenseName = (<HTMLInputElement>document.getElementById("monthlyName")).value;
-
-        let data = { 'expense_name': expenseName, 'id': "monthly"};
-        const newURL = url + "/deleteMonthly";
-        const resp = await postData(newURL, data);
-        const j = await resp.json();
-
-    })();
-}
-
-function deleteBudget(){
-    (async () => {
-        let budgetCate = (<HTMLInputElement>document.getElementById("budgetCategory")).value;
-
-        let data = { 'budget_category': budgetCate, 'id': "budget"};
-        const newURL = url + "/deleteBudget";
-        const resp = await postData(newURL, data);
-        const j = await resp.json();
-
-    })();
-}
-*/
 function deleteMonthly() {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
