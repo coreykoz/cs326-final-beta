@@ -80,11 +80,11 @@
                       <!-- Modal body -->
                       <div class="modal-body">
                         <div class = "container form-group pt-5">
-                          <input type="text" name="incomeName" id="incomeName" class="form-control" placeholder="Income Name" required><br>
+                          <input type="text" name="incomeName" id="incomeName" class="form-control" placeholder="Income Name" required/><br>
               
-                          <input type="number" name="incomeTotal" id="incomeTotal" class="form-control" placeholder="Income Total" required><br>
+                          <input type="number" name="incomeTotal" id="incomeTotal" class="form-control" placeholder="Income Total" required/><br>
                           
-                          <input type="date" name="incomeDate" id="incomeDate" class="form-control" placeholder="Income Date" required><br>
+                          <input type="date" name="incomeDate" id="incomeDate" class="form-control" placeholder="Income Date" required/><br>
                           
                             <div class="form-group">
                               <label for="incomeCategory">Category</label>
@@ -100,7 +100,7 @@
                       
                       <!-- Modal footer -->
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="createIncome()" data-dismiss="modal">Submit</button>
+                        <button type="button" class="btn btn-primary" onclick="createIncome(),window.location.reload()" data-dismiss="modal">Submit</button>
                       </div>
                       
                     </div>
@@ -149,7 +149,7 @@
                       
                       <!-- Modal footer -->
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="createExpense()" data-dismiss="modal">Submit</button>
+                        <button type="button" class="btn btn-primary" onclick="createExpense(),window.location.reload()" data-dismiss="modal">Submit</button>
                       </div>
                       
                     </div>
@@ -198,8 +198,8 @@
                       
                       <!-- Modal footer -->
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="updateMonthly();" data-dismiss="modal">Edit/Create</button>
-                        <button type="button" class="btn btn-primary" onclick="deleteMonthly();" data-dismiss="modal">Delete</button>
+                        <button type="button" class="btn btn-primary" onclick="updateMonthly(), window.location.reload()" data-dismiss="modal">Edit/Create</button>
+                        <button type="button" class="btn btn-primary" onclick="deleteMonthly(), window.location.reload()" data-dismiss="modal">Delete</button>
                       </div>
                       
                     </div>
@@ -251,8 +251,8 @@
               
               <!-- Modal footer -->
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="updateBudget();" data-dismiss="modal">Edit/Create</button>
-                <button type="button" class="btn btn-primary" onclick="deleteBudget();" data-dismiss="modal">Delete</button>
+                <button type="button" class="btn btn-primary" onclick="updateBudget(), window.location.reload()" data-dismiss="modal">Edit/Create</button>
+                <button type="button" class="btn btn-primary" onclick="deleteBudget(), window.location.reload()" data-dismiss="modal">Delete</button>
               </div>
               
             </div>

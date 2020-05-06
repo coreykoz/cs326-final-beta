@@ -1,5 +1,5 @@
-const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
-//const url = "http://localhost:8080/uwallet";
+//const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
+const url = "http://localhost:8080/uwallet";
 
 //canvas for the graphs
 const ctx = (<HTMLCanvasElement>document.getElementById('monthySpending'));
