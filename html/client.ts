@@ -1,5 +1,5 @@
-const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
-//const url = "http://localhost:8080/uwallet";
+//const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
+const url = "http://localhost:8080/uwallet";
 
 //canvas for the graphs
 const ctx = (<HTMLCanvasElement>document.getElementById('monthySpending'));
@@ -170,6 +170,7 @@ async function updateBudget(){
 
 // DELETES
 
+/*
 function deleteMonthly(){
     (async () => {
         let expenseName = (<HTMLInputElement>document.getElementById("monthlyName")).value;
@@ -193,7 +194,31 @@ function deleteBudget(){
 
 	})();
 }
+*/
 
+function deleteMonthly(){
+    (async () => {
+        let expenseName = (<HTMLInputElement>document.getElementById("monthlyName")).value;
+
+        let data = { 'expense_name': expenseName, 'id': "monthly"};
+        const newURL = url + "/deleteMonthly"; 
+        const resp = await postData(newURL, data);
+        const j = await resp.json();
+
+	})();
+}
+
+function deleteBudget(){
+    (async () => {
+        let budgetCate = (<HTMLInputElement>document.getElementById("budgetCategory")).value;
+
+        let data = { 'budget_category': budgetCate, 'id': "budget"};
+        const newURL = url + "/deleteBudget"; 
+        const resp = await postData(newURL, data);
+        const j = await resp.json();
+
+	})();
+}
 
 // ALL DRAW FUNCTIONS:
 // 1) call a read --> returns an array of documents (in JSON format)
