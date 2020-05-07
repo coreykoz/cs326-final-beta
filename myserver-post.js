@@ -85,8 +85,8 @@ var MyServer = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         response.write(JSON.stringify({ 'result': 'created',
-                            'income_name': request.body.income_name,
-                            'value': 0 }));
+                            'income_name': request.body.income_name
+                        }));
                         response.end();
                         return [2 /*return*/];
                 }
@@ -101,8 +101,8 @@ var MyServer = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         response.write(JSON.stringify({ 'result': 'created',
-                            'expense_name': request.body.expense_name,
-                            'value': 0 }));
+                            'expense_name': request.body.expense_name
+                        }));
                         response.end();
                         return [2 /*return*/];
                 }
@@ -120,8 +120,7 @@ var MyServer = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         response.write(JSON.stringify({ 'result': 'created',
-                            'income_name': name,
-                            'value': 0 }));
+                            'income_name': name }));
                         response.end();
                         return [2 /*return*/];
                 }

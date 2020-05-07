@@ -52,16 +52,16 @@ export class MyServer {
 	private async createIncomeHandler(request, response){
 		await this.theDatabase.put(request.body.income_name, request.body.income_total, request.body.category, request.body.date, "unused", request.body.id);
 		response.write(JSON.stringify({'result' : 'created',
-					       'income_name' : request.body.income_name,
-					       'value' : 0 }));
+					       'income_name' : request.body.income_name
+					       }));
 		response.end();
 	}
 
 	private async createExpenseHandler(request, response){
 		await this.theDatabase.put(request.body.expense_name, request.body.expense_total, request.body.category, request.body.date, "unused", request.body.id);
 		response.write(JSON.stringify({'result' : 'created',
-					       'expense_name' : request.body.expense_name,
-					       'value' : 0 }));
+					       'expense_name' : request.body.expense_name
+					       }));
 		response.end();
 	}
 
@@ -70,8 +70,7 @@ export class MyServer {
 		
 		await this.theDatabase.put(request.body.trans_name, request.body.trans_price, request.body.trans_category, request.body.trans_date, request.body.trans_type, request.body.id);
 		response.write(JSON.stringify({'result' : 'created',
-					       'income_name' : name,
-					       'value' : 0 }));
+					       'income_name' : name}));
 		response.end();
 	}
 
