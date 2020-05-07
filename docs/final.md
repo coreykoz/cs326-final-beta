@@ -3,9 +3,7 @@
 ## Spring 2020
 
 ### Overview
-Our application, UWallet, is a personal finance application that is catered to the user. The user has control over setting budgets, adding and removing transactions, and multiple ways to view the user’s finances in various graphics.
-
-How is this different from Mint?
+Our application, UWallet, is a personal finance application that is catered to the user. The user has control over setting budgets, adding and removing monthly transactions, and multiple ways to view the user’s finances in various graphics. How is this different from Mint? Our application intends to streamline and iterate over what Mint currently accomplishes. To begin, Mint’s design and user interface is very cluttered and at times can be very restrictive of information due to having a lot of the information hidden under layers that the user has to click through. With our app, our first priority was making the user interface accessible and present the information in an upfront and clean way. Part of our design focused on feedback from criticisms of Mint users, one of which being how “hands-off” it is. Mint allows you to connect your bank accounts, credit cards, and other financial accounts for it to automatically.
 
 ### Team Members
 *Corey Kozlovski (coreykoz)
@@ -27,7 +25,7 @@ Using CRUD operations and RESTful APIs, UWallet is able to create JSON data base
 ##### URIs and Parameters
 From the main.html page, the user can add sources of income through the Add Income button. From there, the user is prompted to input the following information. 
 
-some-heroku-link.com/index.html
+https://cryptic-eyrie-49046.herokuapp.com/createIncome
 
 | Parameter    | Description                                                                           | Example                         |
 |--------------|---------------------------------------------------------------------------------------|---------------------------------|
@@ -40,6 +38,8 @@ some-heroku-link.com/index.html
 
 ##### Responses
 The income API will return the income data as a JSON object.
+
+
 
 #### Expenses
 ##### Overview
@@ -164,7 +164,16 @@ The monthly expenses API will return the montly expense data as a JSON object.
 
 ### URL Routes/Mappings
 
-
+| URL                                                         | Description                                                                                                                                                                                                                    |
+|-------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| https://cryptic-eyrie-49046.herokuapp.com/read              | The read endpoint allows reading in data from the database for various items. These include income, expenses, transactions, monthly expenses, and budget information.                                                          |
+| https://cryptic-eyrie-49046.herokuapp.com/createIncome      | The Create Income endpoint allows the user to input data (through a prompted text field) and create an income object.                                                                                                          |
+| https://cryptic-eyrie-49046.herokuapp.com/createExpense     | The Create Expense endpoint allows the user to input data (through a prompted text field) and create an expense object.                                                                                                        |
+| https://cryptic-eyrie-49046.herokuapp.com/createTransaction | The Create Transaction endpoint creates a transaction object and adds an income or expense to a table containing all incomes and expenses.                                                                                     |
+| https://cryptic-eyrie-49046.herokuapp.com/updateMonthly     | The Update Monthly endpoint allows the user to input data (through a prompted text field) and update monthly expenses by putting in an monthly expense name and a monthly expense value.                                       |
+| https://cryptic-eyrie-49046.herokuapp.com/updateBudget      | The Update Budget endpoint allows the user to input data (through a prompted text field) and update budgets by putting in a category name and a budget value. If a budget doesn’t exist for a category yet, it will create it. |
+| https://cryptic-eyrie-49046.herokuapp.com/deleteMonthly     | The Delete Monthly endpoint allows users to delete a monthly expense by entering the monthly expense name and value and then pressing a delete button.                                                                         |
+| https://cryptic-eyrie-49046.herokuapp.com/deleteBudget      | The Delete Budget endpoint allows users to delete a monthly expense by entering the category name and value and then pressing a delete button.                                                                                 |
 ### Division of labor
 Our original idea had multiple pages, so each of us designed one, and all three of us worked on parts of the main page. 
 Write about milstone 2 and 3 and who did what
