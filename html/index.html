@@ -80,7 +80,8 @@
                       <!-- Modal body -->
                       <div class="modal-body">
                         <div class = "container form-group pt-5">
-                          <input type="text" name="incomeName" id="incomeName" class="form-control" placeholder="Income Name" required/><br>
+                          <form>
+                          <input type="text" name="incomeName" id="incomeName" class="form-control"  placeholder="Income Name"/><br>
               
                           <input type="number" name="incomeTotal" id="incomeTotal" class="form-control" placeholder="Income Total" required/><br>
                           
@@ -95,6 +96,7 @@
                                 <option>Gift</option>
                               </select>
                             </div>
+                          </form>
                         </div>
                       </div>
                       
@@ -308,6 +310,9 @@
     </body>
     <script src="client.js"></script>
     <script>
+    
+
+    
     totalAvailable();
     drawTransTable(); 
     drawMonthlyTable();

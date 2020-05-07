@@ -1,5 +1,5 @@
-//const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
-const url = "http://localhost:8080/uwallet";
+const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
+//const url = "http://localhost:8080/uwallet";
 
 //canvas for the graphs
 const ctx = (<HTMLCanvasElement>document.getElementById('monthySpending'));
@@ -31,6 +31,11 @@ function createIncome(){
         let incomeDate = (<HTMLInputElement>document.getElementById("incomeDate")).value;
         let incomeCategory = (<HTMLInputElement>document.getElementById("incomeCategory")).value;
 
+
+        //budget requirement checker
+        if (incomeName == "" || incomeTotal == "" || incomeDate == "" || incomeCategory == "")
+            return
+
         let data = { 'income_name': incomeName, 'income_total': incomeTotal, 'date': incomeDate, 'category': incomeCategory,  'id': "income"};
         
         
@@ -47,6 +52,10 @@ function createExpense(){
         let expenseTotal = (<HTMLInputElement>document.getElementById("expenseTotal")).value;
         let expenseDate = (<HTMLInputElement>document.getElementById("expenseDate")).value;
         let expenseCategory = (<HTMLInputElement>document.getElementById("expenseCategory")).value;
+
+        //budget requirement checker
+        if (expenseName == "" || expenseTotal == "" || expenseDate == "" || expenseCategory == "")
+            return
 
         let data = { 'expense_name': expenseName, 'expense_total': expenseTotal, 'date': expenseDate, 'category': expenseCategory, 'id': "expense"};
         createTransaction(expenseName, expenseTotal, expenseDate, expenseCategory, "Expense");
@@ -151,6 +160,10 @@ async function updateMonthly(){
         let monthlyName = (<HTMLInputElement>document.getElementById("monthlyName")).value;
         let monthlyCost = (<HTMLInputElement>document.getElementById("monthlyTotal")).value;
 
+        //budget requirement checker
+        if (monthlyName == "" || monthlyCost == "")
+            return
+
         const newURL = url + "/updateMonthly";
         const data = { 'monthly_expense': monthlyName, 'monthly_cost': monthlyCost, 'id': "monthly"};
 	    const resp = await postData(newURL, data);
@@ -160,6 +173,10 @@ async function updateMonthly(){
 async function updateBudget(){
     let budgetCate = (<HTMLInputElement>document.getElementById("budgetCategory")).value;
     let budgetTotal = (<HTMLInputElement>document.getElementById("budgetTotal")).value;
+    
+    //budget requirement checker
+    if (budgetCate == "" || budgetTotal == "")
+        return
 
     const newURL = url + "/updateBudget";
     const data = { 'budget_category': budgetCate, 'budget_total': budgetTotal, 'id': "budget"};
@@ -172,6 +189,9 @@ async function updateBudget(){
 function deleteMonthly(){
     (async () => {
         let expenseName = (<HTMLInputElement>document.getElementById("monthlyName")).value;
+
+        if (expenseName == "")
+            return
 
         let data = { 'expense_name': expenseName, 'id': "monthly"};
         const newURL = url + "/deleteMonthly"; 

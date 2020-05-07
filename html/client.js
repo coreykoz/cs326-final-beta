@@ -34,8 +34,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-//const url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
-var url = "http://localhost:8080/uwallet";
+var url = "https://cryptic-eyrie-49046.herokuapp.com/uwallet";
+//const url = "http://localhost:8080/uwallet";
 //canvas for the graphs
 var ctx = document.getElementById('monthySpending');
 var ctx2 = document.getElementById('budget');
@@ -76,6 +76,9 @@ function createIncome() {
                     incomeTotal = document.getElementById("incomeTotal").value;
                     incomeDate = document.getElementById("incomeDate").value;
                     incomeCategory = document.getElementById("incomeCategory").value;
+                    //budget requirement checker
+                    if (incomeName == "" || incomeTotal == "" || incomeDate == "" || incomeCategory == "")
+                        return [2 /*return*/];
                     data = { 'income_name': incomeName, 'income_total': incomeTotal, 'date': incomeDate, 'category': incomeCategory, 'id': "income" };
                     newURL = url + "/createIncome";
                     return [4 /*yield*/, postData(newURL, data)];
@@ -101,6 +104,9 @@ function createExpense() {
                     expenseTotal = document.getElementById("expenseTotal").value;
                     expenseDate = document.getElementById("expenseDate").value;
                     expenseCategory = document.getElementById("expenseCategory").value;
+                    //budget requirement checker
+                    if (expenseName == "" || expenseTotal == "" || expenseDate == "" || expenseCategory == "")
+                        return [2 /*return*/];
                     data = { 'expense_name': expenseName, 'expense_total': expenseTotal, 'date': expenseDate, 'category': expenseCategory, 'id': "expense" };
                     createTransaction(expenseName, expenseTotal, expenseDate, expenseCategory, "Expense");
                     newURL = url + "/createExpense";
@@ -280,6 +286,9 @@ function updateMonthly() {
                 case 0:
                     monthlyName = document.getElementById("monthlyName").value;
                     monthlyCost = document.getElementById("monthlyTotal").value;
+                    //budget requirement checker
+                    if (monthlyName == "" || monthlyCost == "")
+                        return [2 /*return*/];
                     newURL = url + "/updateMonthly";
                     data = { 'monthly_expense': monthlyName, 'monthly_cost': monthlyCost, 'id': "monthly" };
                     return [4 /*yield*/, postData(newURL, data)];
@@ -301,6 +310,9 @@ function updateBudget() {
                 case 0:
                     budgetCate = document.getElementById("budgetCategory").value;
                     budgetTotal = document.getElementById("budgetTotal").value;
+                    //budget requirement checker
+                    if (budgetCate == "" || budgetTotal == "")
+                        return [2 /*return*/];
                     newURL = url + "/updateBudget";
                     data = { 'budget_category': budgetCate, 'budget_total': budgetTotal, 'id': "budget" };
                     return [4 /*yield*/, postData(newURL, data)];
@@ -323,6 +335,8 @@ function deleteMonthly() {
             switch (_a.label) {
                 case 0:
                     expenseName = document.getElementById("monthlyName").value;
+                    if (expenseName == "")
+                        return [2 /*return*/];
                     data = { 'expense_name': expenseName, 'id': "monthly" };
                     newURL = url + "/deleteMonthly";
                     return [4 /*yield*/, postData(newURL, data)];
