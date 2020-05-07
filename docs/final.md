@@ -11,6 +11,20 @@ Our application, UWallet, is a personal finance application that is catered to t
 *Annapurna Jagasia (ajagasia)
 
 ### User Interface
+*Home page: Users can see the bigger picture of their finances for the last few months, including a pie chart, bar plot, a scatter plot. On this page, they will also be able to view their entire transaction history and input a transaction be it an expense or an income. They can also input a monthly recurring expense such as rent or health insurance premiums. Users can also set a budget for various categories like shopping, entertainment, bills and insurance, restaurant and dining, etc. The bar plot should depict the category-wise budget set by the user as well as the total amount spent in each category. The line chart depicts the trend of spending over the past 6 months, split by category. The pie chart depicts the breakdown of spending in each category out of the user’s total expenses. 
+![homepage](/docs/images/homepage.JPG)
+
+*Add Income pop-up: This pop-up allows users to submit details about an income such as the income name, amount, the date it was received, and the method it was received in (cash, check, direct deposit, gift). 
+![income](/docs/images/incomepopup.JPG)
+
+*Add Expense: This pop-up allows users to submit details about an expense such as the expense name, amount, date it was incurred, and the category of the expense (shopping, entertainment, bills and insurance, loans and other payments, etc).
+![expense](/docs/images/expensepopup.JPG)
+
+*Edit Monthly Expense: This pop-up allows the user to edit, create, or delete a monthly recurring expense such as rent, health insurance premiums, utilities, etc. 
+![monthlyexpense](/docs/images/monthlyexpensespopup.JPG)
+
+*Edit Budget: This pop-up allows the user to set a budget for each of the seven categories.
+![budget](/docs/images/budgetpopup.JPG)
 
 ### APIs
 ADD BUDGET API
