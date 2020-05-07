@@ -37,12 +37,12 @@ function createIncome(){
             return
 
         let data = { 'income_name': incomeName, 'income_total': incomeTotal, 'date': incomeDate, 'category': incomeCategory,  'id': "income"};
-        
+        createTransaction(incomeName, incomeTotal, incomeDate, incomeCategory, "Income");
         
         const newURL = url + "/createIncome"; 
         const resp = await postData(newURL, data);
         const j = await resp.json();
-        createTransaction(incomeName, incomeTotal, incomeDate, incomeCategory, "Income");
+        
 	})();
 }
 

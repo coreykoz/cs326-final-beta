@@ -80,6 +80,7 @@ function createIncome() {
                     if (incomeName == "" || incomeTotal == "" || incomeDate == "" || incomeCategory == "")
                         return [2 /*return*/];
                     data = { 'income_name': incomeName, 'income_total': incomeTotal, 'date': incomeDate, 'category': incomeCategory, 'id': "income" };
+                    createTransaction(incomeName, incomeTotal, incomeDate, incomeCategory, "Income");
                     newURL = url + "/createIncome";
                     return [4 /*yield*/, postData(newURL, data)];
                 case 1:
@@ -87,7 +88,6 @@ function createIncome() {
                     return [4 /*yield*/, resp.json()];
                 case 2:
                     j = _a.sent();
-                    createTransaction(incomeName, incomeTotal, incomeDate, incomeCategory, "Income");
                     return [2 /*return*/];
             }
         });
