@@ -120,7 +120,7 @@ var MyServer = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         response.write(JSON.stringify({ 'result': 'created',
-                            'income_name': name }));
+                            'trans_name': name }));
                         response.end();
                         return [2 /*return*/];
                 }

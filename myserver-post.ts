@@ -70,7 +70,7 @@ export class MyServer {
 		
 		await this.theDatabase.put(request.body.trans_name, request.body.trans_price, request.body.trans_category, request.body.trans_date, request.body.trans_type, request.body.id);
 		response.write(JSON.stringify({'result' : 'created',
-					       'income_name' : name}));
+					       'trans_name' : name}));
 		response.end();
 	}
 
