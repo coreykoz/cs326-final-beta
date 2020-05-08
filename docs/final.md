@@ -34,15 +34,15 @@ Our application, UWallet, is a personal finance application that is catered to t
 ### APIs
 
 #### Read API
-_Overview_: The read endpoint allows reading in data from the database for various items. These include income, expenses, transactions, monthly expenses, and budget information.
+__Overview__: The read endpoint allows reading in data from the database for various items. These include income, expenses, transactions, monthly expenses, and budget information.
 
-Endpoint URI and Parameters:
+__Endpoint URI and Parameters__:
 https://cryptic-eyrie-49046.herokuapp.com/read
 
-| Parameter 	| Description	 					| Example 	|
-| id		| Type of data to be read, either “transaction”, “expense”, “income”, “monthly”, or “budget”	| postData(“/read”, {'id':"transaction"}) → readHandler() |
+| Parameter | Description	 					                                                            | Example 	                                              |
+| id	    | Type of data to be read, either “transaction”, “expense”, “income”, “monthly”, or “budget”	| postData(“/read”, {'id':"transaction"}) → readHandler() |
 
-Responses:
+__Responses__:
 The read API returns the data as an array of JSON objects. 
 
 | Key		| Value Type						| Description	|
@@ -50,9 +50,9 @@ The read API returns the data as an array of JSON objects.
 
 
 #### Create Income API
-Overview: The Create Income endpoint allows the user to input data (through a prompted text field) and create an income object.
+__Overview__: The Create Income endpoint allows the user to input data (through a prompted text field) and create an income object.
 
-Endpoint URI and Parameters:
+__Endpoint URI and Parameters__:
 https://cryptic-eyrie-49046.herokuapp.com/createIncome
 
 | Parameter       | Description                                                         |
@@ -62,7 +62,7 @@ https://cryptic-eyrie-49046.herokuapp.com/createIncome
 | Date     | Date of transaction.                                                |
 | Category | Selected category that the input fulfills from a pre-selected list. |
 
-Responses:
+__Responses__:
 This API returns all the response data as a JSON object, formatted below:
 
 | Key         | Value Type | Description             |
@@ -72,9 +72,9 @@ This API returns all the response data as a JSON object, formatted below:
 
 
 #### Create Expense API
-Overview: The Create Expense endpoint allows the user to input data (through a prompted text field) and create an expense object.
+__Overview__: The Create Expense endpoint allows the user to input data (through a prompted text field) and create an expense object.
 
-Endpoint URI and Parameters:
+__Endpoint URI and Parameters__:
 https://cryptic-eyrie-49046.herokuapp.com/createExpense
 
 | Parameter        | Description                                                                       |
@@ -85,8 +85,7 @@ https://cryptic-eyrie-49046.herokuapp.com/createExpense
 | Category | Selected category from a pre-selected list that best suits the given transaction. |
 |Id	| Internal ID used to keep track of different types of documents.	| 
 
-
-Responses:
+__Responses__:
 This API returns all the response data as a JSON object, formatted below:
 
 | Key          | Value Type | Description              |
@@ -97,9 +96,9 @@ This API returns all the response data as a JSON object, formatted below:
 
 
 #### Create Transaction API
-Overview: The Create Transaction endpoint creates a transaction object and adds an income or expense to a table containing all incomes and expenses. 
+__Overview__: The Create Transaction endpoint creates a transaction object and adds an income or expense to a table containing all incomes and expenses. 
 
-Endpoint URI and Parameters:
+__Endpoint URI and Parameters__:
 https://cryptic-eyrie-49046.herokuapp.com/createTransaction
 
 | Parameter            | Description                                                                       |
@@ -112,7 +111,7 @@ https://cryptic-eyrie-49046.herokuapp.com/createTransaction
 | Id                   | Internal ID used to keep track of different types of documents.                   |
 
 
-Responses:
+__Responses__:
 This API returns all the response data as a JSON object, formatted below:
 
 | Key        | Value Type | Description                  |
@@ -122,9 +121,9 @@ This API returns all the response data as a JSON object, formatted below:
 
 
 #### Update Monthly API
-Overview: The Update Monthly endpoint allows the user to input data (through a prompted text field) and update monthly expenses by putting in an monthly expense name and a monthly expense value.
+__Overview__: The Update Monthly endpoint allows the user to input data (through a prompted text field) and update monthly expenses by putting in an monthly expense name and a monthly expense value.
 
-Endpoint URI and Parameters:
+__Endpoint URI and Parameters__:
 https://cryptic-eyrie-49046.herokuapp.com/updateMonthly
 
 | Parameter    | Description              |
@@ -132,8 +131,7 @@ https://cryptic-eyrie-49046.herokuapp.com/updateMonthly
 | Monthly_Expense| Name of Monthly Expense. |
 | Monthly_Cost | Amount of Monthly Cost.  |
 
-
-Responses:
+__Responses__:
 This API returns all the response data as a JSON object, formatted below:
 
 | Key    | Value Type | Description                               |
@@ -144,9 +142,9 @@ This API returns all the response data as a JSON object, formatted below:
 
 
 #### Update Budget API
-Overview: The Update Budget endpoint allows the user to input data (through a prompted text field) and update budgets by putting in a category name and a budget value. If a budget doesn’t exist for a category yet, it will create it.
+__Overview__: The Update Budget endpoint allows the user to input data (through a prompted text field) and update budgets by putting in a category name and a budget value. If a budget doesn’t exist for a category yet, it will create it.
 
-Endpoint URI and Parameters:
+__Endpoint URI and Parameters__:
 https://cryptic-eyrie-49046.herokuapp.com/updateBudget
 
 | Parameter       | Description                       |
@@ -154,7 +152,7 @@ https://cryptic-eyrie-49046.herokuapp.com/updateBudget
 | Budget_Category | Category that this budget is for. |
 | Budget_Total    | Set amount of budget.             |
 
-Responses:
+__Responses__:
 This API returns all the response data as a JSON object, formatted below:
 
 | Key    | Value Type | Description                       |
@@ -166,16 +164,16 @@ This API returns all the response data as a JSON object, formatted below:
 
 
 #### Delete Monthly API
-Overview: The Delete Monthly API allows users to delete a monthly expense by entering the monthly expense name and value and then pressing a delete button.
+__Overview__: The Delete Monthly API allows users to delete a monthly expense by entering the monthly expense name and value and then pressing a delete button.
 
-Endpoint URI and Parameters:
+__Endpoint URI and Parameters__:
 https://cryptic-eyrie-49046.herokuapp.com/deleteMonthly
 | Parameter       | Description                                            |
 |-----------------|--------------------------------------------------------|
 | Monthly_Expense | Name of monthly expense that is desired to be deleted. |
 
 
-Responses:
+__Responses__:
 This API returns all the response data as a JSON object, formatted below:
 
 | Key    | Value Type | Description                      |
@@ -185,9 +183,9 @@ This API returns all the response data as a JSON object, formatted below:
 
 
 #### Delete Budget API
-Overview: The Delete Budget API allows users to delete a monthly expense by entering the category name and value and then pressing a delete button.
+__Overview__: The Delete Budget API allows users to delete a monthly expense by entering the category name and value and then pressing a delete button.
 
-Endpoint URI and Parameters:
+__Endpoint URI and Parameters__:
 https://cryptic-eyrie-49046.herokuapp.com/deleteBudget
 
 | Parameter       | Description                                    |
@@ -195,7 +193,7 @@ https://cryptic-eyrie-49046.herokuapp.com/deleteBudget
 | Budget_Category | Category in which the budget is to be deleted. |
 
 
-Responses:
+__Responses__:
 This API returns all the response data as a JSON object, formatted below:
 
 | Key    | Value Type | Description                      |
