@@ -40,6 +40,7 @@ __Endpoint URI and Parameters__:
 https://cryptic-eyrie-49046.herokuapp.com/read
 
 | Parameter | Description	 					                                                            | Example 	                                              |
+|-----------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------|
 | id	    | Type of data to be read, either “transaction”, “expense”, “income”, “monthly”, or “budget”	| postData(“/read”, {'id':"transaction"}) → readHandler() |
 
 
@@ -47,7 +48,8 @@ __Responses__:
 The read API returns the data as an array of JSON objects. 
 
 | Key		    | Value Type | Description	                                    |
-|result 		| Array	     | Array of JSON objects that fulfill the given id	|
+|---------------|------------|--------------------------------------------------|
+| result 		| Array	     | Array of JSON objects that fulfill the given id	|
 
 
 #### Create Income API
