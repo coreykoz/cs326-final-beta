@@ -32,93 +32,177 @@ Our application, UWallet, is a personal finance application that is catered to t
 ![budget](/docs/images/budgetpopup.JPG)
 
 ### APIs
-ADD BUDGET API
 
-#### Overview
-Using CRUD operations and RESTful APIs, UWallet is able to create JSON data based on a user’s input with information relating to personal finance. This data includes information on income, expenses, transaction history, budget, and monthly expenses. 
+Read API
+Overview: The read endpoint allows reading in data from the database for various items. These include income, expenses, transactions, monthly expenses, and budget information.
 
-#### Income
-##### Overview
- The Income API allows the user to input types of income they have into their account.  
+Endpoint URI and Parameters:
+https://cryptic-eyrie-49046.herokuapp.com/read
 
-##### URIs and Parameters
-From the main.html page, the user can add sources of income through the Add Income button. From there, the user is prompted to input the following information. 
+| Parameter 	| Description	 					| Example 	|
+| id		| Type of data to be read, either “transaction”, “expense”, “income”, “monthly”, or “budget”	| postData(“/read”, {'id':"transaction"}) → readHandler()
 
+Responses:
+The read API returns the data as an array of JSON objects. 
+
+| Key		| Value Type						| Description	|
+|result 		| Array							|Array of JSON objects that fulfill the given id	|
+
+
+Create Income API
+Overview: The Create Income endpoint allows the user to input data (through a prompted text field) and create an income object.
+
+Endpoint URI and Parameters:
 https://cryptic-eyrie-49046.herokuapp.com/createIncome
 
-| Parameter    | Description                                                                           | Example                         |
-|--------------|---------------------------------------------------------------------------------------|---------------------------------|
-| Income Name  | User inputs a name for the income transaction.                                        | { ‘income_name’: paycheck }     |
-| Income Total | User inputs the amount of money being deposited.                                      | { ‘income_total’’ : 607}        |
-| Date         | User inputs the date of the deposit.                                                  | { ‘date’: 04/22/2020}           |
-| Category     | User picks the best fitting category the deposit falls under from a list of options.  | { ‘category’’: direct deposit } |
-| Id           | This acts as an identifier for the type of data we’re dealing with.                   | { ‘id’ : “income”}              |
+| Parameter       | Description                                                         |
+|-----------------|---------------------------------------------------------------------|
+| Income_name     | Name of income.                                                     |
+| Income_total    | Total amount of income to be deposited.                             |
+| Date     | Date of transaction.                                                |
+| Category | Selected category that the input fulfills from a pre-selected list. |
+
+Responses:
+This API returns all the response data as a JSON object, formatted below:
+
+| Key         | Value Type | Description             |
+|-------------|------------|-------------------------|
+| result      | string     | Operation status.       |
+| income_name | string     | Name of created Income. |
 
 
-##### Responses
-The income API will return the income data as a JSON object.
+Create Expense API
+Overview: The Create Expense endpoint allows the user to input data (through a prompted text field) and create an expense object.
+
+Endpoint URI and Parameters:
+https://cryptic-eyrie-49046.herokuapp.com/createExpense
+
+| Parameter        | Description                                                                       |
+|------------------|-----------------------------------------------------------------------------------|
+| Expense_name     | Name of expense.                                                                  |
+| Expense_otal    | Total amount of expense to be recorded.                                           |
+| Date     | Date of transaction.                                                              |
+| Category | Selected category from a pre-selected list that best suits the given transaction. |
+|Id	| Internal ID used to keep track of different types of documents.	| 
+
+
+Responses:
+This API returns all the response data as a JSON object, formatted below:
+
+| Key          | Value Type | Description              |
+|--------------|------------|--------------------------|
+| result       | string     | Operation status.        |
+| expense_name | string     | Name of created expense. |
 
 
 
-#### Expenses
-##### Overview
-The expense API allows the user to input types of expenses they have into their account.
+Create Transaction API
+Overview: The Create Transaction endpoint creates a transaction object and adds an income or expense to a table containing all incomes and expenses. 
 
-##### URIs and Parameters
-From main.html, the option to add an expense is through a button. This prompts the user to fill out the following fields.
+Endpoint URI and Parameters:
+https://cryptic-eyrie-49046.herokuapp.com/createTransaction
 
-some-heroku-link.com/index.html
-
-| Parameter     | Description                                                         | Example                     |
-|---------------|---------------------------------------------------------------------|-----------------------------|
-| Expense name  | User-entered name of the expense that occured.                      | { ‘expense_name’ : fruits } |
-| Expense total | Total amount of the expense as per user input.                      | { ‘expense_total’ : 27.50 } |
-| Date          | The date that the expense incurred as entered by the user.          | { ‘date’ : 04/22/2020 }     |
-| Category      | The category that the expense belongs to as determined by the user. | { ‘category’ : groceries }  |
-| Id            | This acts as an identifier for the type of data we’re dealing with. | { ‘id’ : “expense”}         |   
-
-##### Responses
-The expenses API will return the expenses data as a JSON object.
+| Parameter            | Description                                                                       |
+|----------------------|-----------------------------------------------------------------------------------|
+| Trans_Name     | Name of Transaction.                                                              |
+| Trans_Price   | Total amount of transaction to be recorded.                                       |
+| Trans_Date     | Date of transaction.                                                              |
+| Trans_Category | Selected category from a pre-selected list that best suits the given transaction. |
+| Trans_Type     | Type of transaction, either "expense" or "income".                                |
+| Id                   | Internal ID used to keep track of different types of documents.                   |
 
 
-#### Transaction History
-##### Overview
- Transaction History’s API uses the data from both income and expenses to derive a master list of transactions to document history, display graphs, and calculate trends overall. 
-##### URIs and Parameters
-Transactions are only apparent on main.html. Transactions can not be modified directly, but can be modified through the income and expenses API. 
+Responses:
+This API returns all the response data as a JSON object, formatted below:
 
-some-heroku-link.com/index.html
-
-| Parameter        | Description                                                                                              | Example                                 |
-|------------------|----------------------------------------------------------------------------------------------------------|-----------------------------------------|
-| Transaction Name | Name of the transaction that occurred, derived from either Income or Expenses.                           | { ‘trans_name’ : example_transaction }  |
-| Transaction Type | Type of transaction that occurred that is of 3 types: Income, Expense, or Monthly Expense.               | { ‘trans_type’ : expense }              |
-| Category         | The category that the transaction belongs to, derived from either income, expenses, or monthly expenses. | { ‘trans_category’ : example_category } |
-| Date             | The date in which the transaction occurred, derived from either income, expenses, or monthly expenses.   | { ‘trans_date’ : example_date}          |
-| Price            | The price of the transaction. 								                                    	      | { ‘trans_price': example_price}		    |
-| Id               | This acts as an identifier for the type of data we’re dealing with.                                      | { ‘id’ : “transaction"}                 |
+| Key        | Value Type | Description                  |
+|------------|------------|------------------------------|
+| result     | string     | Operation status.            |
+| trans_name | string     | Name of created transaction. |
 
 
-##### Responses
-The transaction history API will return the transaction history data as a JSON object. This response is generally used to calculate the graphs that are shown on main.html. 
+Update Monthly API
+Overview: The Update Monthly endpoint allows the user to input data (through a prompted text field) and update monthly expenses by putting in an monthly expense name and a monthly expense value.
 
-#### Monthly Expenses
-##### Overview
-Monthly Expenses’s API uses the data from the user information’s survey alongside a button on the main page to create a master list of all transactions that reoccur monthly. Some examples of this could include rent, insurance, or loans. 
+Endpoint URI and Parameters:
+https://cryptic-eyrie-49046.herokuapp.com/updateMonthly
 
-##### URIs and Parameters
-From main.html, the user is able to input a transaction name alongside a price to add a monthly expense. The user is also able to remove past monthly expenses through this method.
+| Parameter    | Description              |
+|--------------|--------------------------|
+| Monthly_Expense| Name of Monthly Expense. |
+| Monthly_Cost | Amount of Monthly Cost.  |
 
-some-heroku-link.com/index.html
 
-| Parameter    | Description                                                                                                                        | Example                                |
-|--------------|------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|
-| Expense Name | Name of given monthly expense. This is autofilled if given through the survey. If not through the survey, user input is required.  | { ‘monthly_expense’: example_expense } |
-| Monthly Cost | Price of the given monthly expense. This input is required.                                                                        | { ‘monthly_cost’ : example_cost }      |
-| Id           | This acts as an identifier for the type of data we’re dealing with.                                                                | { ‘id’ : “monthly”}                    |
+Responses:
+This API returns all the response data as a JSON object, formatted below:
 
-##### Responses
-The monthly expenses API will return the montly expense data as a JSON object.
+| Key    | Value Type | Description                               |
+|--------|------------|-------------------------------------------|
+| result | string     | Operation status.                         |
+| name   | string     | Name of Monthly expense updated.          |
+| value  | string     | Cost of Monthly expense that was updated. |
+
+
+Update Budget API
+Overview: The Update Budget endpoint allows the user to input data (through a prompted text field) and update budgets by putting in a category name and a budget value. If a budget doesn’t exist for a category yet, it will create it.
+
+Endpoint URI and Parameters:
+https://cryptic-eyrie-49046.herokuapp.com/updateBudget
+
+| Parameter       | Description                       |
+|-----------------|-----------------------------------|
+| Budget_Category | Category that this budget is for. |
+| Budget_Total    | Set amount of budget.             |
+
+Responses:
+This API returns all the response data as a JSON object, formatted below:
+
+| Key    | Value Type | Description                       |
+|--------|------------|-----------------------------------|
+| result | string     | Operation status.                 |
+| name   | string     | Name of budget updated.           |
+| value  | string     | Price of budget that was updated. |
+
+
+
+Delete Monthly API
+Overview: The Delete Monthly API allows users to delete a monthly expense by entering the monthly expense name and value and then pressing a delete button.
+
+Endpoint URI and Parameters:
+https://cryptic-eyrie-49046.herokuapp.com/deleteMonthly
+| Parameter       | Description                                            |
+|-----------------|--------------------------------------------------------|
+| Monthly_Expense | Name of monthly expense that is desired to be deleted. |
+
+
+Responses:
+This API returns all the response data as a JSON object, formatted below:
+
+| Key    | Value Type | Description                      |
+|--------|------------|----------------------------------|
+| result | string     | Operation status.                |
+| value  | string     | Name of Monthly Expense deleted. |
+
+
+Delete Budget API
+Overview: The Delete Budget API allows users to delete a monthly expense by entering the category name and value and then pressing a delete button.
+
+Endpoint URI and Parameters:
+https://cryptic-eyrie-49046.herokuapp.com/deleteBudget
+
+| Parameter       | Description                                    |
+|-----------------|------------------------------------------------|
+| Budget_Category | Category in which the budget is to be deleted. |
+
+
+Responses:
+This API returns all the response data as a JSON object, formatted below:
+
+| Key    | Value Type | Description                      |
+|--------|------------|----------------------------------|
+| result | string     | Operation status.                |
+| value  | string     | Name of budget deleted. |
+
 
 
 ### Database 
