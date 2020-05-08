@@ -33,14 +33,14 @@ Our application, UWallet, is a personal finance application that is catered to t
 
 ### APIs
 
-Read API
-Overview: The read endpoint allows reading in data from the database for various items. These include income, expenses, transactions, monthly expenses, and budget information.
+#### Read API
+_Overview_: The read endpoint allows reading in data from the database for various items. These include income, expenses, transactions, monthly expenses, and budget information.
 
 Endpoint URI and Parameters:
 https://cryptic-eyrie-49046.herokuapp.com/read
 
 | Parameter 	| Description	 					| Example 	|
-| id		| Type of data to be read, either “transaction”, “expense”, “income”, “monthly”, or “budget”	| postData(“/read”, {'id':"transaction"}) → readHandler()
+| id		| Type of data to be read, either “transaction”, “expense”, “income”, “monthly”, or “budget”	| postData(“/read”, {'id':"transaction"}) → readHandler() |
 
 Responses:
 The read API returns the data as an array of JSON objects. 
@@ -49,7 +49,7 @@ The read API returns the data as an array of JSON objects.
 |result 		| Array							|Array of JSON objects that fulfill the given id	|
 
 
-Create Income API
+#### Create Income API
 Overview: The Create Income endpoint allows the user to input data (through a prompted text field) and create an income object.
 
 Endpoint URI and Parameters:
@@ -71,7 +71,7 @@ This API returns all the response data as a JSON object, formatted below:
 | income_name | string     | Name of created Income. |
 
 
-Create Expense API
+#### Create Expense API
 Overview: The Create Expense endpoint allows the user to input data (through a prompted text field) and create an expense object.
 
 Endpoint URI and Parameters:
@@ -96,7 +96,7 @@ This API returns all the response data as a JSON object, formatted below:
 
 
 
-Create Transaction API
+#### Create Transaction API
 Overview: The Create Transaction endpoint creates a transaction object and adds an income or expense to a table containing all incomes and expenses. 
 
 Endpoint URI and Parameters:
@@ -121,7 +121,7 @@ This API returns all the response data as a JSON object, formatted below:
 | trans_name | string     | Name of created transaction. |
 
 
-Update Monthly API
+#### Update Monthly API
 Overview: The Update Monthly endpoint allows the user to input data (through a prompted text field) and update monthly expenses by putting in an monthly expense name and a monthly expense value.
 
 Endpoint URI and Parameters:
@@ -143,7 +143,7 @@ This API returns all the response data as a JSON object, formatted below:
 | value  | string     | Cost of Monthly expense that was updated. |
 
 
-Update Budget API
+#### Update Budget API
 Overview: The Update Budget endpoint allows the user to input data (through a prompted text field) and update budgets by putting in a category name and a budget value. If a budget doesn’t exist for a category yet, it will create it.
 
 Endpoint URI and Parameters:
@@ -165,7 +165,7 @@ This API returns all the response data as a JSON object, formatted below:
 
 
 
-Delete Monthly API
+#### Delete Monthly API
 Overview: The Delete Monthly API allows users to delete a monthly expense by entering the monthly expense name and value and then pressing a delete button.
 
 Endpoint URI and Parameters:
@@ -184,7 +184,7 @@ This API returns all the response data as a JSON object, formatted below:
 | value  | string     | Name of Monthly Expense deleted. |
 
 
-Delete Budget API
+#### Delete Budget API
 Overview: The Delete Budget API allows users to delete a monthly expense by entering the category name and value and then pressing a delete button.
 
 Endpoint URI and Parameters:
