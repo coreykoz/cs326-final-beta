@@ -42,11 +42,12 @@ https://cryptic-eyrie-49046.herokuapp.com/read
 | Parameter | Description	 					                                                            | Example 	                                              |
 | id	    | Type of data to be read, either “transaction”, “expense”, “income”, “monthly”, or “budget”	| postData(“/read”, {'id':"transaction"}) → readHandler() |
 
+
 __Responses__:
 The read API returns the data as an array of JSON objects. 
 
-| Key		| Value Type						| Description	|
-|result 		| Array							|Array of JSON objects that fulfill the given id	|
+| Key		    | Value Type | Description	                                    |
+|result 		| Array	     | Array of JSON objects that fulfill the given id	|
 
 
 #### Create Income API
@@ -59,8 +60,8 @@ https://cryptic-eyrie-49046.herokuapp.com/createIncome
 |-----------------|---------------------------------------------------------------------|
 | Income_name     | Name of income.                                                     |
 | Income_total    | Total amount of income to be deposited.                             |
-| Date     | Date of transaction.                                                |
-| Category | Selected category that the input fulfills from a pre-selected list. |
+| Date            | Date of transaction.                                                |
+| Category        | Selected category that the input fulfills from a pre-selected list. |
 
 __Responses__:
 This API returns all the response data as a JSON object, formatted below:
@@ -80,10 +81,10 @@ https://cryptic-eyrie-49046.herokuapp.com/createExpense
 | Parameter        | Description                                                                       |
 |------------------|-----------------------------------------------------------------------------------|
 | Expense_name     | Name of expense.                                                                  |
-| Expense_otal    | Total amount of expense to be recorded.                                           |
-| Date     | Date of transaction.                                                              |
-| Category | Selected category from a pre-selected list that best suits the given transaction. |
-|Id	| Internal ID used to keep track of different types of documents.	| 
+| Expense_otal     | Total amount of expense to be recorded.                                           |
+| Date             | Date of transaction.                                                              |
+| Category         | Selected category from a pre-selected list that best suits the given transaction. |
+| Id               | Internal ID used to keep track of different types of documents.	               | 
 
 __Responses__:
 This API returns all the response data as a JSON object, formatted below:
@@ -103,11 +104,11 @@ https://cryptic-eyrie-49046.herokuapp.com/createTransaction
 
 | Parameter            | Description                                                                       |
 |----------------------|-----------------------------------------------------------------------------------|
-| Trans_Name     | Name of Transaction.                                                              |
-| Trans_Price   | Total amount of transaction to be recorded.                                       |
-| Trans_Date     | Date of transaction.                                                              |
-| Trans_Category | Selected category from a pre-selected list that best suits the given transaction. |
-| Trans_Type     | Type of transaction, either "expense" or "income".                                |
+| Trans_Name           | Name of Transaction.                                                              |
+| Trans_Price          | Total amount of transaction to be recorded.                                       |
+| Trans_Date           | Date of transaction.                                                              |
+| Trans_Category       | Selected category from a pre-selected list that best suits the given transaction. |
+| Trans_Type           | Type of transaction, either "expense" or "income".                                |
 | Id                   | Internal ID used to keep track of different types of documents.                   |
 
 
